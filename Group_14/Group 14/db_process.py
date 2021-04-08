@@ -19,7 +19,7 @@ def check_in(user):
         return True
     else:
         return False
-print(check_in('ldq'))
+#print(check_in('ldq'))
 
 def db_user_login(user, password):
     host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
@@ -42,6 +42,7 @@ def db_user_login(user, password):
 
 # db_user_check('ldq','liu1')
 def db_user_signup(user, password):
+    print(user, password)
     host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
     port = 3306
     db_user = 'dingqi'
