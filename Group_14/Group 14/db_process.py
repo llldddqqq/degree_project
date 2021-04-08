@@ -1,4 +1,8 @@
 from pymysql import *
+from Search import search
+import sys
+sys.setrecursionlimit(10000000)
+
 
 
 def check_in(user):
@@ -12,14 +16,16 @@ def check_in(user):
     sql = "select user_name from user_info Where user_name='" + str(user) + "'"
     cur.execute(sql)
     result = cur.fetchall()
-    #print(result)
-    if result =='' or len(result)==0:
+    # print(result)
+    if result == '' or len(result) == 0:
         return False
     if result[0][0] == user:
         return True
     else:
         return False
-#print(check_in('ldq'))
+
+
+# print(check_in('ldq'))
 
 def db_user_login(user, password):
     host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
@@ -58,4 +64,37 @@ def db_user_signup(user, password):
     cur.close()
     print(user, password)
     return True
+
+
 # db_user_signup('ldq','liu1')
+
+def house_search(query):
+    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
+    port = 3306
+    db_user = 'dingqi'
+    db_password = 'Liu18501303736'
+    database = 'degree_project_db'
+    results=search(query)
+    #print(results)
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    house_dic={}
+    for id in results:
+        temp={}
+        sql = "select * from datas Where id='" + str(id) + "'"
+        cur.execute(sql)
+        result = cur.fetchall()
+        temp['address'] = result[0][1]
+        temp['postcode'] = result[0][2]
+        temp['county'] = result[0][3]
+        temp['price'] = result[0][4]
+        temp['full market price'] = result[0][5]
+        temp['vat_incude'] = result[0][6]
+        temp['type'] = result[0][7]
+        temp['square'] = result[0][8]
+        temp['pic_add'] = result[0][9]
+        house_dic[id] = temp
+    return house_dic
+
+#a=house_search('Dublin')
+#print(a)

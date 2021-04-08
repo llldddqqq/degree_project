@@ -1,5 +1,5 @@
 from flask import Flask , request, redirect, render_template, session
-
+import Search
 from pymysql import *
 from db_process import *
 app = Flask(__name__)
@@ -46,6 +46,9 @@ def signup():
         else:
             return redirect('/')
 
+@app.route('/signup',methods=['GET',"POST"])
+def search(query):
+    dic=house_search(query)
 
 
 if __name__ == '__main__':
