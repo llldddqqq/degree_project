@@ -1,8 +1,8 @@
 from pymysql import *
 from Search import search
 import sys
-sys.setrecursionlimit(10000000)
 
+sys.setrecursionlimit(10000000)
 
 
 def check_in(user):
@@ -58,7 +58,8 @@ def db_user_signup(user, password):
         return False
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "insert into user_info(user_name,user_password) VALUE (" + "'" + str(user) + "'," + "'" + str(password) + "')"
+    sql = "insert into user_info(user_name,user_password,saved_property) VALUE (" + "'" + str(user) + "'," + "'" + str(
+        password) + "'," + "'" + '' + "'" + ")"
     cur.execute(sql)
     conn.commit()
     cur.close()
@@ -66,7 +67,10 @@ def db_user_signup(user, password):
     return True
 
 
-# db_user_signup('ldq','liu1')
+# for i in range(30):
+#     string = 'ldq' + str(i)
+#     db_user_signup(string, 'liu1',str(i))
+
 
 def house_search(query):
     host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
@@ -74,13 +78,13 @@ def house_search(query):
     db_user = 'dingqi'
     db_password = 'Liu18501303736'
     database = 'degree_project_db'
-    results=search(query)
-    #print(results)
+    results = search(query)
+    # print(results)
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    house_dic={}
+    house_dic = {}
     for id in results:
-        temp={}
+        temp = {}
         sql = "select * from datas Where id='" + str(id) + "'"
         cur.execute(sql)
         result = cur.fetchall()
@@ -96,5 +100,23 @@ def house_search(query):
         house_dic[id] = temp
     return house_dic
 
-#a=house_search('Dublin')
-#print(a)
+
+# a=house_search('Dublin')
+# print(a)
+
+def add_prefer(username, house_id):
+    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
+    port = 3306
+    db_user = 'dingqi'
+    db_password = 'Liu18501303736'
+    database = 'degree_project_db'
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET saved_property = CONCAT(saved_property,'" + str(
+        house_id) + ",'" + ") WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+
+#add_prefer('ldqwww', 23521)
