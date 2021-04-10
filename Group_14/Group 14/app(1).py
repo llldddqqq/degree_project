@@ -1,17 +1,13 @@
-from flask import Flask, request, redirect, render_template, session, url_for, flash
-import Search
+from flask import Flask , request, redirect, render_template, session
+
 from pymysql import *
-import time
 from db_process import *
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
-    if request.method == 'POST' and request.form.get('query'):
-        query = request.form['query']
-        return redirect(url_for('search', query=query))
-    return render_template('home-7.html')
+    return render_template('index.html')
 
 @app.route('/blog')
 def appointment_success():
@@ -28,12 +24,9 @@ def login():
         return redirect('/signup')
     else:
         if db_user_login(user, pwd):
-            print('success')
             return render_template('my-profile.html')
         else:
-            print('fail')
             return render_template('login.html', msg='wrong password')
-
 
 
 
@@ -46,23 +39,12 @@ def signup():
     print(user)
     print(pwd)
     if check_in(user):
-        flash('This user has been registered')
         return redirect('/login')
     else:
         if db_user_signup(user, pwd):
-            flash('sign up success')
-            return redirect('/')
-        else:
-            flash('sign up failed')
-            return redirect('/')
+            return redirect('index.html')
 
-@app.route('/search/<query>',methods=['GET',"POST"])
-def search(query):
-    start_search = time.time()
-    result = house_search(query)
-    end_search = time.time()
-    print('search time:', str(end_search - start_search))
-    return render_template('search.html', result=result)
+
 
 if __name__ == '__main__':
     app.run()

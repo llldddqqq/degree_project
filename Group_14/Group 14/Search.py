@@ -61,7 +61,7 @@ def search(keystring):
 
 
 #start_search = time.time()
-#search = search('Dublin')
+#search = search('dublin')
 #end_search = time.time()
 #print(search)
-#print('evaluation indexing time:', str(end_search - start_search))
+#print('search time:', str(end_search - start_search))
