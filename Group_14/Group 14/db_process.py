@@ -1,7 +1,7 @@
 from pymysql import *
 from Search import search
 import sys
-
+import Usercf_house
 sys.setrecursionlimit(10000000)
 
 
@@ -118,5 +118,35 @@ def add_prefer(username, house_id):
     conn.commit()
     cur.close()
 
+
+def get_house(id):
+    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
+    port = 3306
+    db_user = 'dingqi'
+    db_password = 'Liu18501303736'
+    database = 'degree_project_db'
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from datas Where id='" + str(id) + "'"
+    cur.execute(sql)
+    result = cur.fetchall()
+    #print(result)
+    house_dic = {}
+    head = ['id','address',
+            'country',
+            'postcode',
+            'county',
+            'price'
+            'full_market_price',
+            'vat_exclusive',
+            'description',
+            'size',
+            'pic_address',
+            'message',
+            ]
+    for i in range(0,len(head)):
+        house_dic[head[i]]=result[0][i]
+    return house_dic
+#print(get_house('1'))
 
 #add_prefer('ldqwww', 23521)

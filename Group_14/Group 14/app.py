@@ -64,5 +64,16 @@ def search(query):
     print('search time:', str(end_search - start_search))
     return render_template('search.html', result=result)
 
+
+def recommend_to_user(user):
+    #获取user信息
+    house_list=Usercf_house.recommendation(user)
+    #print(house_list)
+    house_info={}
+    for i in house_list:
+        house_info[i]=get_house(str(i))
+    return house_info
+#recommend_to_user('ldq')
 if __name__ == '__main__':
+    #(recommend_to_user('ldq'))
     app.run()
