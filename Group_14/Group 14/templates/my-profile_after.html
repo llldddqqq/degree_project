@@ -5,11 +5,11 @@
 		<meta name="author" content="Drizvato" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		
-        <title>NB - Residence & Real Estate Template</title>
+        <title>Verio - Residence & Real Estate Template</title>
 		 
         <!-- Custom CSS -->
         <link href="../static/assets/css/styles.css" rel="stylesheet">
-		
+
 		<!-- Custom Color Option -->
 		<link href="../static/assets/css/colors.css" rel="stylesheet">
 		
@@ -35,15 +35,15 @@
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
 							<a class="nav-brand" href="#">
-								<img src="../static/assets/img/logo.png" class="logo" alt="" />
+								<img src="assets/img/logo.png" class="logo" alt="" />
 							</a>
 							<div class="nav-toggle"></div>
 						</div>
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 							
-								<li class="active"><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
-								<!--	<ul class="nav-dropdown nav-submenu">
+								<li><a href="#">Home<span class="submenu-indicator"></span></a>
+									<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
 										<li><a href="home-3.html">Home 3</a></li>
@@ -52,11 +52,11 @@
 										<li><a href="home-6.html">Home 6</a></li>
 										<li><a href="home-7.html">Home 7</a></li>
 										<li><a href="home-8.html">Home 8</a></li>
-									</ul> -->
+									</ul>
 								</li>
-
-								<li><a href="{{ url_for('listings')}}">listings<span class="submenu-indicator"></span></a>
-							<!--		<ul class="nav-dropdown nav-submenu">
+								
+								<li><a href="#">Listings<span class="submenu-indicator"></span></a>
+									<ul class="nav-dropdown nav-submenu">
 										<li><a href="#">Listing Grid<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 												<li><a href="grid-layout-with-sidebar.html">Grid Style 1</a></li>
@@ -80,18 +80,18 @@
 										</li>
 										<li><a href="agents.html">Find Agents</a></li>
 										<li><a href="agencies.html">Find Agencies</a></li>
-									</ul>-->
+									</ul>
 								</li>
-
-								<li><a href="#">Property<span class="submenu-indicator"></span></a>
+								
+								<li class="active"><a href="#">Property<span class="submenu-indicator"></span></a>
 									<ul class="nav-dropdown nav-submenu">
-										<li class=""><a href="#">User <span class="submenu-indicator"></span></a>
+										<li class=""><a href="#">User Admin<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
-											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
-												<li><a href="{{ url_for('myprofile')}}">My Profile</a></li>
-												<li><a href="{{ url_for('myproperty')}}">My Property</a></li>
-												<li><a href="{{ url_for('bookmarkproperty')}}">Bookmark Property</a></li>
-											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
+												<li><a href="dashboard.html">User Dashboard</a></li>
+												<li><a href="my-profile.html">My Profile</a></li>
+												<li><a href="my-property.html">My Property</a></li>
+												<li><a href="bookmark-list.html">Bookmark Property</a></li>
+												<li><a href="submit-property.html">Submit Property</a></li>
 											</ul>
 										</li>
 										<li><a href="#">Single Property<span class="submenu-indicator"></span></a>
@@ -102,11 +102,11 @@
 												<li><a href="single-property-4.html">Single Property 4</a></li>
 											</ul>
 										</li>
-									<!--	<li><a href="compare-property.html">Compare Property</a></li>-->
+										<li><a href="compare-property.html">Compare Property</a></li>
 									</ul>
 								</li>
-
-							<!--	<li><a href="#">Pages<span class="submenu-indicator"></span></a>
+								
+								<li><a href="#">Pages<span class="submenu-indicator"></span></a>
 									<ul class="nav-dropdown nav-submenu" style="right: auto; display: none;">
 										<li><a href="blog.html">Blog Style</a></li>
 										<li><a href="blog-detail.html">Blog Detail</a></li>
@@ -119,30 +119,28 @@
 										<li><a href="privacy.html">Privacy Policy</a></li>
 										<li><a href="faq.html">FAQs</a></li>
 									</ul>
-								</li>-->
-
-								<li><a href="{{ url_for('contacts')}}">Contacts</a></li>
-
+								</li>
+								
+								<li><a href="contact.html">Contacts</a></li>
+								
 							</ul>
-
-{#							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">#}
-                            <ul class="btn-group account-drop">
-                                <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, Yangshaonan
-                                </button>
-
-{#								<li>#}
-{#									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">#}
-{#										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>#}
-{#									</a>#}
-{#								</li>#}
-{#								<li class="add-listing bg-info">#}
-{#									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">#}
-{#										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up#}
-{#									</a>#}
-{#								</li>#}
+							
+							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">
+								
+								<li>
+									<div class="btn-group account-drop">
+										<button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<img src="assets/img/user-5.jpg" class="avater-img" alt="">Hi, Admin
+										</button>
+										<div class="dropdown-menu pull-right animated flipInX">
+											<a href="my-profile.html"><i class="ti-user"></i>My Profile</a>                                  
+											<a href="my-property.html"><i class="ti-layers"></i>Property List</a>                                   
+											<a href="bookmark-list.html"><i class="ti-bookmark"></i>Bookmarked Listings</a>                                   
+											<a class="active" href="change-password.html"><i class="ti-unlock"></i>Change Password</a>
+										</div>
+									</div>
+								</li>
 							</ul>
-
 						</div>
 					</nav>
 				</div>
@@ -152,23 +150,23 @@
 			<!-- ============================================================== -->
 			<!-- Top header  -->
 			<!-- ============================================================== -->
-
+			
 			<!-- ============================ User Dashboard ================================== -->
 			<section class="gray p-0">
 				<div class="container-fluid p-0">
-
+								
 					<div class="row">
-
+						
 						<div class="col-lg-3 col-md-4 col-sm-12">
 							<div class="property_dashboard_navbar">
-
+								
 								<div class="dash_user_menues">
 									<ul>
-									<!--	<li><a href="dashboard.html"><i class="ti-dashboard"></i>Dashboard</a></li>-->
-										<li class="active"><a href="{{ url_for('index')}}"><i class="ti-user"></i>My Profile</a></li>
+										<li><a href="dashboard.html"><i class="ti-dashboard"></i>Dashboard</a></li>
+										<li class="active"><a href="my-profile.html"><i class="ti-user"></i>My Profile</a></li>
 										<li><a href="bookmark-list.html"><i class="ti-bookmark"></i>Saved Property</a></li>
-										<!--	<li><a href="my-property.html"><i class="ti-layers"></i>My Properties</a></li>-->
-									<!--	<li><a href="choose-package.html"><i class="ti-gift"></i>Choose Package</a></li>-->
+										<li><a href="my-property.html"><i class="ti-layers"></i>My Properties</a></li>
+										<li><a href="choose-package.html"><i class="ti-gift"></i>Choose Package</a></li>
 										<li><a href="submit-property-dashboard.html"><i class="ti-pencil-alt"></i>Submit New Property</a></li>
 										<li><a href="change-password.html"><i class="ti-unlock"></i>Change Password</a></li>
 										<li><a href="#"><i class="ti-power-off"></i>Log Out</a></li>
@@ -191,17 +189,17 @@
 											
 												<div class="form-group col-md-6">
 													<label>Your Name</label>
-													<input type="text" class="form-control" value="Yanghsoanan">
+													<input type="text" class="form-control" value="Shaurya Preet">
 												</div>
 												
 												<div class="form-group col-md-6">
 													<label>Email</label>
-													<input type="email" class="form-control" value="17206034@ucdconnect.ie">
+													<input type="email" class="form-control" value="preet77@gmail.com">
 												</div>
 												
 												<div class="form-group col-md-6">
 													<label>Your Title</label>
-													<input type="text" class="form-control" value="Example">
+													<input type="text" class="form-control" value="Web Designer">
 												</div>
 												
 												<div class="form-group col-md-6">
@@ -211,24 +209,27 @@
 												
 												<div class="form-group col-md-6">
 													<label>Address</label>
-													<input type="text" class="form-control" value="Beijing University of technology">
+													<input type="text" class="form-control" value="522, Arizona, Canada">
 												</div>
 												
 												<div class="form-group col-md-6">
 													<label>City</label>
-													<input type="text" class="form-control" value="Beijing">
+													<input type="text" class="form-control" value="Montquebe">
 												</div>
 												
 												<div class="form-group col-md-6">
 													<label>State</label>
-													<input type="text" class="form-control" value="China">
+													<input type="text" class="form-control" value="Canada">
 												</div>
 												
-
+												<div class="form-group col-md-6">
+													<label>Zip</label>
+													<input type="text" class="form-control" value="160052">
+												</div>
 												
 												<div class="form-group col-md-12">
 													<label>About</label>
-													<textarea class="form-control">This is a beautiful house</textarea>
+													<textarea class="form-control">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</textarea>
 												</div>
 												
 											</div>
@@ -236,7 +237,7 @@
 									</div>
 									
 									<div class="frm_submit_block">	
-										<!--<h4>Social Accounts</h4>
+										<h4>Social Accounts</h4>
 										<div class="frm_submit_wrap">
 											<div class="form-row">
 											
@@ -262,7 +263,7 @@
 												
 												<div class="form-group col-lg-12 col-md-12">
 													<button class="btn btn-theme bg-2" type="submit">Save Changes</button>
-												</div>-->
+												</div>
 												
 											</div>
 										</div>
@@ -437,18 +438,18 @@
 		<!-- ============================================================== -->
 		<!-- All Jquery -->
 		<!-- ============================================================== -->
-		<script src="../static/assets/js/jquery.min.js"></script>
-		<script src="../static/assets/js/popper.min.js"></script>
-		<script src="../static/assets/js/bootstrap.min.js"></script>
-		<script src="../static/assets/js/ion.rangeSlider.min.js"></script>
-		<script src="../static/assets/js/select2.min.js"></script>
-		<script src="../static/assets/js/jquery.magnific-popup.min.js"></script>
-		<script src="../static/assets/js/slick.js"></script>
-		<script src="../static/assets/js/slider-bg.js"></script>
-		<script src="../static/assets/js/lightbox.js"></script>
-		<script src="../static/assets/js/imagesloaded.js"></script>
-		<script src="../static/assets/js/daterangepicker.js"></script>
-		<script src="../static/assets/js/custom.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/ion.rangeSlider.min.js"></script>
+		<script src="assets/js/select2.min.js"></script>
+		<script src="assets/js/jquery.magnific-popup.min.js"></script>
+		<script src="assets/js/slick.js"></script>
+		<script src="assets/js/slider-bg.js"></script>
+		<script src="assets/js/lightbox.js"></script> 
+		<script src="assets/js/imagesloaded.js"></script>
+		<script src="assets/js/daterangepicker.js"></script>
+		<script src="assets/js/custom.js"></script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

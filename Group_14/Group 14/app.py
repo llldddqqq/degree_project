@@ -56,6 +56,28 @@ def signup():
             flash('sign up failed')
             return redirect('/')
 
+@app.route('/myprofile',methods=['GET',"POST"])
+def myprofile():
+    return render_template('my-profile.html')
+
+@app.route('/listings',methods=['GET',"POST"])
+def listings():
+    return render_template('grid-layout-2.html')
+
+@app.route('/myproperty',methods=['GET',"POST"])
+def myproperty():
+    return render_template('my-property.html')
+
+@app.route('/bookmarkproperty',methods=['GET',"POST"])
+def bookmarkproperty():
+    return render_template('bookmark-list.html')
+
+@app.route('/contacts',methods=['GET',"POST"])
+def contacts():
+    return render_template('contact.html')
+
+
+
 @app.route('/search/<query>',methods=['GET',"POST"])
 def search(query):
     start_search = time.time()
