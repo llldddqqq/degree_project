@@ -76,7 +76,10 @@ def bookmarkproperty():
 def contacts():
     return render_template('contact.html')
 
-
+@app.route('/estates/<id>',methods=['GET',"POST"])
+def estatesdetail(id):
+    house=get_house(id)
+    return render_template('single-property-1.html', house=house)
 
 @app.route('/search/<query>',methods=['GET',"POST"])
 def search(query):

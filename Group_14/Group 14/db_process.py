@@ -133,16 +133,18 @@ def get_house(id):
     #print(result)
     house_dic = {}
     head = ['id','address',
-            'country',
             'postcode',
-            'county',
-            'price'
+            'country',
+            'price',
             'full_market_price',
             'vat_exclusive',
             'description',
             'size',
             'pic_address',
             'message',
+            'bedroom_amount',
+            'bathroom_amount',
+            'house_orientation'
             ]
     for i in range(0,len(head)):
         house_dic[head[i]]=result[0][i]

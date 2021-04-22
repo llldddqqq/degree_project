@@ -1,5 +1,4 @@
-﻿{% extends "index.html" %}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -179,22 +178,22 @@
 								<div id="clOne" class="panel-collapse collapse show" aria-expanded="true">
 									<div class="block-body">
 										<ul class="deatil_features">
-											<li><strong>Bedrooms:</strong>3 Beds</li>
-											<li><strong>Bathrooms:</strong>2 Bath</li>
-											<li><strong>Areas:</strong>4,240 sq ft</li>
-											<li><strong>Garage</strong>1</li>
-											<li><strong>Property Type:</strong>Apartment</li>
-											<li><strong>Year:</strong>Built1982</li>
-											<li><strong>Status:</strong>Active</li>
-											<li><strong>Cooling:</strong>Central A/C</li>
-											<li><strong>Heating Type:</strong>Forced Air</li>
-											<li><strong>Kitchen Features:</strong>Kitchen Facilities</li>
-											<li><strong>Exterior:</strong>FinishBrick</li>
-											<li><strong>Swimming Pool:</strong>Yes</li>
-											<li><strong>Elevetor:</strong>Yes</li>
-											<li><strong>Fireplace:</strong>Yes</li>
-											<li><strong>Free WiFi:</strong>No</li>
-											
+											<li><strong>Address:</strong>{{house['address']}}</li>
+											<li><strong>Country</strong>{{house['country']}}</li>
+											<li><strong>Postcode:</strong>{{house['postcode']}}</li>
+											<li><strong>County</strong>{{house['county']}}</li>
+											<li><strong>Price:</strong>{{house['price']}}</li>
+											<li><strong>Full market price:</strong>{{house['full_market_price']}}</li>
+											<li><strong>Vat exclusive:</strong>{{house['vat_exclusive']}}</li>
+											<li><strong>Description:</strong>{{house['description']}}</li>
+											<li><strong>Size:</strong>{{house['size']}}</li>
+{#											<li><strong>pic address:</strong>{{house['pic_address']}}</li>#}
+{#											<li><strong>Message:</strong>{{house['message']}}</li>#}
+											<li><strong>Bedroom amount:</strong>{{house['bedroom_amount']}}</li>
+											<li><strong>Bathroom amount:</strong>{{house['bathroom_amount']}}</li>
+											<li><strong>House orientation:</strong>{{house['house_orientation']}}</li>
+{#											<li><strong>Free WiFi:</strong>No</li>#}
+
 										</ul>
 									</div>
 								</div>
