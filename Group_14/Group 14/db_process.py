@@ -2,15 +2,16 @@ from pymysql import *
 from Search import search
 import sys
 import Usercf_house
+
 sys.setrecursionlimit(10000000)
+host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
+port = 3306
+db_user = 'dingqi'
+db_password = 'Liu18501303736'
+database = 'degree_project_db'
 
 
 def check_in(user):
-    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
-    port = 3306
-    db_user = 'dingqi'
-    db_password = 'Liu18501303736'
-    database = 'degree_project_db'
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "select user_name from user_info Where user_name='" + str(user) + "'"
@@ -28,11 +29,6 @@ def check_in(user):
 # print(check_in('ldq'))
 
 def db_user_login(user, password):
-    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
-    port = 3306
-    db_user = 'dingqi'
-    db_password = 'Liu18501303736'
-    database = 'degree_project_db'
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "select user_password from user_info Where user_name='" + user + "'"
@@ -48,12 +44,6 @@ def db_user_login(user, password):
 
 # db_user_check('ldq','liu1')
 def db_user_signup(user, password):
-    print(user, password)
-    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
-    port = 3306
-    db_user = 'dingqi'
-    db_password = 'Liu18501303736'
-    database = 'degree_project_db'
     if check_in(user):
         return False
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -73,11 +63,6 @@ def db_user_signup(user, password):
 
 
 def house_search(query):
-    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
-    port = 3306
-    db_user = 'dingqi'
-    db_password = 'Liu18501303736'
-    database = 'degree_project_db'
     results = search(query)
     # print(results)
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -105,11 +90,6 @@ def house_search(query):
 # print(a)
 
 def add_prefer(username, house_id):
-    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
-    port = 3306
-    db_user = 'dingqi'
-    db_password = 'Liu18501303736'
-    database = 'degree_project_db'
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "UPDATE user_info SET saved_property = CONCAT(saved_property,'" + str(
@@ -120,19 +100,14 @@ def add_prefer(username, house_id):
 
 
 def get_house(id):
-    host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
-    port = 3306
-    db_user = 'dingqi'
-    db_password = 'Liu18501303736'
-    database = 'degree_project_db'
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "select * from datas Where id='" + str(id) + "'"
     cur.execute(sql)
     result = cur.fetchall()
-    #print(result)
+    # print(result)
     house_dic = {}
-    head = ['id','address',
+    head = ['id', 'address',
             'postcode',
             'country',
             'price',
@@ -144,11 +119,49 @@ def get_house(id):
             'message',
             'bedroom_amount',
             'bathroom_amount',
-            'house_orientation'
+            'house_orientation',
+            'sold'
             ]
-    for i in range(0,len(head)):
-        house_dic[head[i]]=result[0][i]
+    for i in range(0, len(head)):
+        house_dic[head[i]] = result[0][i]
     return house_dic
-#print(get_house('1'))
 
-#add_prefer('ldqwww', 23521)
+
+# print(get_house('1'))
+# add_prefer('ldqwww', 23521)
+def update_user_phone(username, phone):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET pthone_number = '" + str(phone) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+    print('success', phone)
+
+
+# update_user_phone('ldq',18501303736)
+def update_user_address(username, address):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET curr_address = '" + str(address) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+
+def update_user_city(username, city):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET city = '" + str(city) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+
+def update_user_country(username, country):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET country = '" + str(country) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
