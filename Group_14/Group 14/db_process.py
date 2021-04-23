@@ -165,3 +165,13 @@ def update_user_country(username, country):  # curr_address, city, country):
     cur.execute(sql)
     conn.commit()
     cur.close()
+
+
+def update_user_password(username, password):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET user_password = '" + str(password) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
