@@ -43,8 +43,8 @@ def signup():
  #       return render_template('login.html')
     user=request.form.get('username')
     pwd=request.form.get('password')
-    print(user)
-    print(pwd)
+    #print(user)
+    #print(pwd)
     if check_in(user):
         flash('This user has been registered')
         return redirect('/login')

@@ -136,7 +136,7 @@ def update_user_phone(username, phone):  # curr_address, city, country):
     cur.execute(sql)
     conn.commit()
     cur.close()
-    print('success', phone)
+    #print('success', phone)
 
 
 # update_user_phone('ldq',18501303736)
