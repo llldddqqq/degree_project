@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template, session, url_for, flash
 import Search
-from pymysql import *
+#from pymysql import *
 import time
 from db_process import *
 app = Flask(__name__)
