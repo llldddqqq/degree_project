@@ -4,28 +4,28 @@
 		<meta charset="utf-8" />
 		<meta name="author" content="Drizvato" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		
+
         <title>NB - Residence & Real Estate Template</title>
-		 
+
         <!-- Custom CSS -->
         <link href="../static/assets/css/styles.css" rel="stylesheet">
-		
+
 		<!-- Custom Color Option -->
 		<link href="../static/assets/css/colors.css" rel="stylesheet">
-		
+
     </head>
-	
+
     <body class="yellow-skin">
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
        <div class="preloader"></div>
-		
+
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
-		
+
 			<!-- ============================================================== -->
             <!-- Top header  -->
             <!-- ============================================================== -->
@@ -41,7 +41,7 @@
 						</div>
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
-							
+
 								<li class="active"><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
@@ -126,10 +126,16 @@
 							</ul>
 
 {#							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">#}
-                            <ul class="btn-group account-drop">
+                            <ul class="btn-group account-drop align-to-right">
                                 <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, Yangshaonan
+                                    <img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, {{ username }}
                                 </button>
+                                <div class="dropdown-menu pull-right animated flipInX">
+                                    <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
+{#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
+                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Bookmarked Listings</a>
+                                    <a class="active" href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
+                                </div>
 
 {#								<li>#}
 {#									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">#}
@@ -147,7 +153,7 @@
 					</nav>
 				</div>
 			</div>
-			<!-- End Navigation -->
+            <!-- End Navigation -->
 			<div class="clearfix"></div>
 			<!-- ============================================================== -->
 			<!-- Top header  -->
@@ -166,7 +172,7 @@
 									<ul>
 									<!--	<li><a href="dashboard.html"><i class="ti-dashboard"></i>Dashboard</a></li>-->
 										<li class="active"><a href="{{ url_for('index')}}"><i class="ti-user"></i>My Profile</a></li>
-										<li><a href="bookmark-list.html"><i class="ti-bookmark"></i>Saved Property</a></li>
+										<li><a href="{{ url_for('bookmarkproperty')}}"><i class="ti-bookmark"></i>Saved Property</a></li>
 										<!--	<li><a href="my-property.html"><i class="ti-layers"></i>My Properties</a></li>-->
 									<!--	<li><a href="choose-package.html"><i class="ti-gift"></i>Choose Package</a></li>-->
 										<li><a href="submit-property-dashboard.html"><i class="ti-pencil-alt"></i>Submit New Property</a></li>

@@ -98,6 +98,14 @@ def add_prefer(username, house_id):
     conn.commit()
     cur.close()
 
+def check_prefer(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql2 = "select saved_property from user_info where user_name='" + username + "'"
+    cur.execute(sql2)
+    result = cur.fetchall()
+    results = result[0][0].split(',')
+    return results
 
 def get_house(id):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -127,7 +135,13 @@ def get_house(id):
     return house_dic
 
 
-# print(get_house('1'))
+# print(get_house('2'))
+# house = []
+# result = ['1', '2', '3']
+# for r in result:
+#     house.append(get_house(r))
+# for h in house:
+#     print(h['address'])
 # add_prefer('ldqwww', 23521)
 def update_user_phone(username, phone):  # curr_address, city, country):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -174,4 +188,3 @@ def update_user_password(username, password):  # curr_address, city, country):
     cur.execute(sql)
     conn.commit()
     cur.close()
-
