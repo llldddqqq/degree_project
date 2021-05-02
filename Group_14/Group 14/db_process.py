@@ -2,6 +2,7 @@ from pymysql import *
 from Search import search
 import sys
 import Usercf_house
+import json
 
 sys.setrecursionlimit(10000000)
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
@@ -136,7 +137,7 @@ def update_user_phone(username, phone):  # curr_address, city, country):
     cur.execute(sql)
     conn.commit()
     cur.close()
-    #print('success', phone)
+    # print('success', phone)
 
 
 # update_user_phone('ldq',18501303736)
@@ -175,3 +176,23 @@ def update_user_password(username, password):  # curr_address, city, country):
     conn.commit()
     cur.close()
 
+
+def get_search_house():
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "SELECT * from" + ' search'
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+    house_dic = {}
+    for res in result:
+        house_temp = {}
+        house_temp['term'] = json.loads(res[2])
+        house_temp['indoclen'] = res[1]
+        house_dic['id'] = house_temp
+        print(house_temp)
+    #cur.close()
+    return house_dic
+
+
+#print(get_search_house())

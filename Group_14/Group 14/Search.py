@@ -13,6 +13,7 @@ def search(keystring):
     k = 1
     b = 0.75
     avg = dicread['avg_doclen']
+    print(N,avg)
     stemmer = porter.PorterStemmer()
     stopwords = set()
     with open('stopwords.txt', 'r') as f:
