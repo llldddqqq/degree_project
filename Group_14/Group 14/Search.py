@@ -60,8 +60,8 @@ def search(keystring):
     return keylist
 
 
-start_search = time.time()
-search = search('dublin')
-end_search = time.time()
-# print(search)
-print('search time:', str(end_search - start_search))
+# start_search = time.time()
+# search = search('dublin')
+# end_search = time.time()
+# # print(search)
+# print('search time:', str(end_search - start_search))
