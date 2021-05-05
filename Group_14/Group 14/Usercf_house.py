@@ -10,7 +10,7 @@ from operator import itemgetter
 class UserBasedCF():
     # 初始化相关参数
     def __init__(self):
-        # 找到与目标用户兴趣相似的20个用户，为其推荐10部电影
+        # 找到与目标用户兴趣相似的20个用户，为其推荐10house
         self.n_sim_user = 20
         self.n_rec_house = 10
 
@@ -22,10 +22,10 @@ class UserBasedCF():
         self.user_sim_matrix = {}
         self.house_count = 0
 
-        print('Similar user number = %d' % self.n_sim_user)
-        print('Recommneded house number = %d' % self.n_rec_house)
+        #print('Similar user number = %d' % self.n_sim_user)
+        #print('Recommneded house number = %d' % self.n_rec_house)
 
-    # 读文件得到“用户-电影”数据
+    # 读文件得到“用户-house”数据
 
     def get_dataset(self, pivot=0.75):
         # 获取用户列表
@@ -54,6 +54,9 @@ class UserBasedCF():
             result = cur.fetchall()
             # print(result[0][0].split(','))
             results = result[0][0].split(',')
+            if results is None or results=='':
+                print('none')
+                results=[1,2,3,8]
             for i in results:
                 if i == '' or i == None:
                     continue
@@ -65,9 +68,9 @@ class UserBasedCF():
                     self.testSet.setdefault(user, {})
                     self.testSet[user][int(i)] = 5
                     testSet_len += 1
-        print('Split trainingSet and testSet success!')
-        print('TrainSet = %s' % trainSet_len)
-        print('TestSet = %s' % testSet_len)
+        #print('Split trainingSet and testSet success!')
+        #print('TrainSet = %s' % trainSet_len)
+        #print('TestSet = %s' % testSet_len)
         # print(self.trainSet,self.testSet)
 
     # 读文件，返回文件的每一行
@@ -77,25 +80,25 @@ class UserBasedCF():
                 if i == 0:  # 去掉文件第一行的title
                     continue
                 yield line.strip('\r\n')
-        print('Load %s success!' % filename)
+        #print('Load %s success!' % filename)
 
     # 计算用户之间的相似度
     def calc_user_sim(self):
         # 构建“电影-用户”倒排索引
         # key = houseID, value = list of userIDs who have seen this house
-        print('Building house-user table ...')
+        #print('Building house-user table ...')
         house_user = {}
         for user, houses in self.trainSet.items():
             for house in houses:
                 if house not in house_user:
                     house_user[house] = set()
                 house_user[house].add(user)
-        print('Build house-user table success!')
+        #print('Build house-user table success!')
 
         self.house_count = len(house_user)
-        print('Total house number = %d' % self.house_count)
+        #print('Total house number = %d' % self.house_count)
 
-        print('Build user co-rated house matrix ...')
+        #print('Build user co-rated house matrix ...')
         for house, users in house_user.items():
             for u in users:
                 for v in users:
@@ -104,15 +107,15 @@ class UserBasedCF():
                     self.user_sim_matrix.setdefault(u, {})
                     self.user_sim_matrix[u].setdefault(v, 0)
                     self.user_sim_matrix[u][v] += 1
-        print('Build user co-rated house matrix success!')
+        #print('Build user co-rated house matrix success!')
 
         # 计算相似性
-        print('Calculating user similarity matrix ...')
+        #print('Calculating user similarity matrix ...')
         for u, related_users in self.user_sim_matrix.items():
             for v, count in related_users.items():
                 self.user_sim_matrix[u][v] = count / math.sqrt(len(self.trainSet[u]) * len(self.trainSet[v]))
-        print('Calculate user similarity matrix success!')
-        print(self.user_sim_matrix)
+        #print('Calculate user similarity matrix success!')
+        #print(self.user_sim_matrix)
 
     # 针对目标用户U，找到其最相似的K个用户，产生N个推荐
     def recommend(self, user):

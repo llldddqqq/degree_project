@@ -99,6 +99,7 @@ def add_prefer(username, house_id):
     conn.commit()
     cur.close()
 
+
 def check_prefer(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
@@ -107,6 +108,7 @@ def check_prefer(username):
     result = cur.fetchall()
     results = result[0][0].split(',')
     return results
+
 
 def get_house(id):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -190,36 +192,110 @@ def update_user_password(username, password):  # curr_address, city, country):
     conn.commit()
     cur.close()
 
-def get_search_house():
+
+# def get_search_house():
+#     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+#     cur = conn.cursor()
+#     sql = "SELECT * from" + ' search'
+#     cur.execute(sql)
+#     result = cur.fetchall()
+#     cur.close()
+#     house_dic = {}
+#     for res in result:
+#         house_temp = {}
+#         house_temp['term'] = json.loads(res[2])
+#         house_temp['indoclen'] = res[1]
+#         house_dic['id'] = house_temp
+#         print(house_temp)
+#     # cur.close()
+#     return house_dic
+
+#/home/dingqi.liu/pictures/pics/1
+def update_pic():
+    err=0
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "SELECT * from" + ' search'
+    for j in range(0,462186):
+        # route = "/home/team/group14/pics/" + str((j+1)%212) + ".JPG"
+        #print(route)
+        sql = "UPDATE datas SET pic_address = '/home/team/group14/pics/" + str((j+1)%212) + ".JPG'" + " where id='" + str(j+1)+"'"
+        #print(sql)
+        try:
+            cur.execute(sql)
+            conn.commit()
+        except:
+            err+=1
+            print(err)
+    cur.close()
+#update_pic()
+
+def get_house_inprice(low,high):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from datas WHERE price>"+str(low)+" and price<"+str(high)
+    print(sql)
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
     house_dic = {}
-    for res in result:
-        house_temp = {}
-        house_temp['term'] = json.loads(res[2])
-        house_temp['indoclen'] = res[1]
-        house_dic['id'] = house_temp
-        print(house_temp)
-    #cur.close()
+    head = ['id', 'address',
+            'postcode',
+            'country',
+            'price',
+            'full_market_price',
+            'vat_exclusive',
+            'description',
+            'size',
+            'pic_address',
+            'message',
+            'bedroom_amount',
+            'bathroom_amount',
+            'house_orientation',
+            'sold'
+            ]
+    for i in range(0,len(result)):
+        for j in range(0,len(head)):
+            house_dic[j]=result[i][j]
     return house_dic
-
-def update_pic():
+#print(get_house_inprice(100,50000))
+def get_house_insize(low,high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    for i in range()
-    route='/home/team/group14/pics'
-    sql = "UPDATE datas SET pic_address = '" + str(country) + "'"
+    sql = "select * from datas WHERE size>="+str(low)+" and size<="+str(high)
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+    house_dic = {}
+    head = ['id', 'address',
+            'postcode',
+            'country',
+            'price',
+            'full_market_price',
+            'vat_exclusive',
+            'description',
+            'size',
+            'pic_address',
+            'message',
+            'bedroom_amount',
+            'bathroom_amount',
+            'house_orientation',
+            'sold'
+            ]
+    for i in range(0,len(result)):
+        for j in range(0,len(head)):
+            house_dic[j]=result[i][j]
+    return house_dic
+#print(get_house_insize(38,50))
+
+
+def recomm_new(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    id='1,3,7,10,12,13,14,15,16,17'
+    sql = "UPDATE user_info SET recom = '"+id+"'"+" WHERE user_name='"+ username+"'"
+    #print(sql)
     cur.execute(sql)
     conn.commit()
-
-
-
     cur.close()
-
-
-#print(get_search_house())
+#recomm_new('ldq')
 
