@@ -207,6 +207,18 @@ def get_search_house():
     #cur.close()
     return house_dic
 
+def update_pic():
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    for i in range()
+    route='/home/team/group14/pics'
+    sql = "UPDATE datas SET pic_address = '" + str(country) + "'"
+    cur.execute(sql)
+    conn.commit()
+
+
+
+    cur.close()
 
 
 #print(get_search_house())

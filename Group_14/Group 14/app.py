@@ -112,6 +112,7 @@ def recommend_to_user(user):
         house_info[i]=get_house(str(i))
     return house_info
 #recommend_to_user('ldq')
+
 if __name__ == '__main__':
     # print(recommend_to_user('ldq'))
     app.run()
