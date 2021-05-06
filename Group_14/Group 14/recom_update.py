@@ -46,7 +46,8 @@ def update():
     for user in users:
         try:
             result=to_string(recommend_to_user(user))
-            print(result)
+            #print(recommend_to_user(user))
+            #print(result)
             sql="UPDATE user_info SET recom='"+result+"'"+"WHERE user_name='"+user+"'"
             cur.execute(sql)
             conn.commit()

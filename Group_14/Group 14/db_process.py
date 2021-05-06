@@ -210,29 +210,32 @@ def update_user_password(username, password):  # curr_address, city, country):
 #     # cur.close()
 #     return house_dic
 
-#/home/dingqi.liu/pictures/pics/1
+# /home/dingqi.liu/pictures/pics/1
 def update_pic():
-    err=0
+    err = 0
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    for j in range(0,462186):
+    for j in range(0, 462186):
         # route = "/home/team/group14/pics/" + str((j+1)%212) + ".JPG"
-        #print(route)
-        sql = "UPDATE datas SET pic_address = '/home/team/group14/pics/" + str((j+1)%212) + ".JPG'" + " where id='" + str(j+1)+"'"
-        #print(sql)
+        # print(route)
+        sql = "UPDATE datas SET pic_address = '/home/team/group14/pics/" + str(
+            (j + 1) % 212) + ".JPG'" + " where id='" + str(j + 1) + "'"
+        # print(sql)
         try:
             cur.execute(sql)
             conn.commit()
         except:
-            err+=1
+            err += 1
             print(err)
     cur.close()
-#update_pic()
 
-def get_house_inprice(low,high):
+
+# update_pic()
+
+def get_house_inprice(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "select * from datas WHERE price>"+str(low)+" and price<"+str(high)
+    sql = "select * from datas WHERE price>" + str(low) + " and price<" + str(high)
     print(sql)
     cur.execute(sql)
     result = cur.fetchall()
@@ -253,15 +256,17 @@ def get_house_inprice(low,high):
             'house_orientation',
             'sold'
             ]
-    for i in range(0,len(result)):
-        for j in range(0,len(head)):
-            house_dic[j]=result[i][j]
+    for i in range(0, len(result)):
+        for j in range(0, len(head)):
+            house_dic[j] = result[i][j]
     return house_dic
-#print(get_house_inprice(100,50000))
-def get_house_insize(low,high):
+
+
+# print(get_house_inprice(100,50000))
+def get_house_insize(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "select * from datas WHERE size>="+str(low)+" and size<="+str(high)
+    sql = "select * from datas WHERE size>=" + str(low) + " and size<=" + str(high)
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
@@ -281,21 +286,52 @@ def get_house_insize(low,high):
             'house_orientation',
             'sold'
             ]
-    for i in range(0,len(result)):
-        for j in range(0,len(head)):
-            house_dic[j]=result[i][j]
+    for i in range(0, len(result)):
+        for j in range(0, len(head)):
+            house_dic[j] = result[i][j]
     return house_dic
-#print(get_house_insize(38,50))
+
+
+# print(get_house_insize(38,50))
 
 
 def recomm_new(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    id='1,3,7,10,12,13,14,15,16,17'
-    sql = "UPDATE user_info SET recom = '"+id+"'"+" WHERE user_name='"+ username+"'"
+    id = '1,3,7,10,12,13,14,15,16,17'
+    sql = "UPDATE user_info SET recom = '" + id + "'" + " WHERE user_name='" + username + "'"
+    # print(sql)
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+
+# recomm_new('ldq')
+
+def add_comment(username, house_id, comments):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    temp_dic = {}
+    temp_dic[username] = comments
+    str1=json.dumps(temp_dic)
+    sql = "UPDATE datas SET message = CONCAT(message,'" + str1 + ",'" + ") WHERE id ='" + str(house_id) + "'"
     #print(sql)
     cur.execute(sql)
     conn.commit()
     cur.close()
-#recomm_new('ldq')
 
+#add_comment('ldq', 1, 'such a 4')
+
+def read_comment(house_id):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select message from datas WHERE id='"+ str(house_id)+"'"
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+    list1=result[0][0][:-1].split(",")
+    for i in range(0,len(list1)):
+        list1[i]=json.loads(list1[i])
+    print(list1)
+    return list1
+#read_comment(1)

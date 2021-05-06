@@ -54,6 +54,7 @@ class UserBasedCF():
             result = cur.fetchall()
             # print(result[0][0].split(','))
             results = result[0][0].split(',')
+            # print(results)
             if results is None or results=='':
                 print('none')
                 results=[1,2,3,8]
