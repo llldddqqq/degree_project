@@ -332,6 +332,6 @@ def read_comment(house_id):
     list1=result[0][0][:-1].split(",")
     for i in range(0,len(list1)):
         list1[i]=json.loads(list1[i])
-    print(list1)
+    #print(list1)
     return list1
 #read_comment(1)
