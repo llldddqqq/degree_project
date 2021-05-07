@@ -106,8 +106,36 @@ def check_prefer(username):
     sql2 = "select saved_property from user_info where user_name='" + username + "'"
     cur.execute(sql2)
     result = cur.fetchall()
-    results = result[0][0].split(',')
+    results = result[0][0].split(',')[:-1]
     return results
+
+
+def renew_prefer(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET saved_property ='' WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+
+# renew_prefer('ldq1')
+
+
+def delete_prefer(username, house_id):
+    prefers = check_prefer(username)
+    if str(house_id) in prefers:
+        prefers.remove(str(house_id))
+        renew_prefer('ldq1')
+    else:
+        return False
+    for house in prefers:
+        add_prefer(username, house)
+    return True
+
+
+#print(delete_prefer('ldq1', 1))
+
 
 
 def get_house(id):
@@ -138,14 +166,6 @@ def get_house(id):
     return house_dic
 
 
-# print(get_house('2'))
-# house = []
-# result = ['1', '2', '3']
-# for r in result:
-#     house.append(get_house(r))
-# for h in house:
-#     print(h['address'])
-# add_prefer('ldqwww', 23521)
 def update_user_phone(username, phone):  # curr_address, city, country):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
@@ -192,23 +212,6 @@ def update_user_password(username, password):  # curr_address, city, country):
     conn.commit()
     cur.close()
 
-
-# def get_search_house():
-#     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
-#     cur = conn.cursor()
-#     sql = "SELECT * from" + ' search'
-#     cur.execute(sql)
-#     result = cur.fetchall()
-#     cur.close()
-#     house_dic = {}
-#     for res in result:
-#         house_temp = {}
-#         house_temp['term'] = json.loads(res[2])
-#         house_temp['indoclen'] = res[1]
-#         house_dic['id'] = house_temp
-#         print(house_temp)
-#     # cur.close()
-#     return house_dic
 
 # /home/dingqi.liu/pictures/pics/1
 def update_pic():
@@ -313,25 +316,26 @@ def add_comment(username, house_id, comments):
     cur = conn.cursor()
     temp_dic = {}
     temp_dic[username] = comments
-    str1=json.dumps(temp_dic)
+    str1 = json.dumps(temp_dic)
     sql = "UPDATE datas SET message = CONCAT(message,'" + str1 + ",'" + ") WHERE id ='" + str(house_id) + "'"
-    #print(sql)
+    # print(sql)
     cur.execute(sql)
     conn.commit()
     cur.close()
 
-#add_comment('ldq', 1, 'such a 4')
+
+# add_comment('ldq', 1, 'such a 4')
 
 def read_comment(house_id):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "select message from datas WHERE id='"+ str(house_id)+"'"
+    sql = "select message from datas WHERE id='" + str(house_id) + "'"
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
-    list1=result[0][0][:-1].split(",")
-    for i in range(0,len(list1)):
-        list1[i]=json.loads(list1[i])
-    #print(list1)
+    list1 = result[0][0][:-1].split(",")
+    for i in range(0, len(list1)):
+        list1[i] = json.loads(list1[i])
+    # print(list1)
     return list1
-#read_comment(1)
+# read_comment(1)
