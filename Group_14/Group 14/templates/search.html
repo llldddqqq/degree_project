@@ -175,40 +175,6 @@
 			<!-- Top header  -->
 			<!-- ============================================================== -->
 			
-			<!-- ============================ Filter Space ================================== -->
-			<div class="filterspaces">
-				<div class="container">
-					<div class="container">
-						<div class="row align-items-center">
-							
-							<div class="col-lg-9 col-md-9 col-sm-8">
-								<div class="filterspace__controls">
-									<ul class="nav nav-pills" id="pills-tab" role="tablist">
-										<li class="nav-item">
-											<a class="nav-link active" id="rent-tab" data-toggle="pill" href="#pills-rent" role="tab" aria-controls="pills-rent" aria-selected="true">Office</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" id="buy-tab" data-toggle="pill" href="#pills-buy" role="tab" aria-controls="pills-buy" aria-selected="false">Space</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" id="sell-tab" data-toggle="pill" href="#pills-sell" role="tab" aria-controls="pills-sell" aria-selected="false">Meet</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="col-lg-3 col-md-3 col-sm-4">
-								<div class="filterspace__link">
-									<a href="javascript_voide(0);" class="filt_link" data-toggle="modal" data-target="#searchfilter"><i class="ti-filter mr-1"></i><span>Filters</span></a>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- ============================ Filter Space ================================== -->
-			
 			<!-- ============================ All Property ================================== -->
 			<section>
 				<div class="container">
@@ -218,68 +184,39 @@
 						<!-- property Sidebar -->
 						<div class="col-lg-4 col-md-12 col-sm-12">
 							<div class="hidden-md-down">
-							
+
 								<div class="page-sidebar">
-									
+
 									<!-- Find New Property -->
 									<div class="sidebar-widgets">
 										
-										<div class="form-group">
-											<div class="input-with-icon">
-												<input type="text" class="form-control" placeholder="Neighborhood">
-												<i class="ti-search"></i>
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<div class="input-with-icon">
-												<input type="text" class="form-control" placeholder="Location">
-												<i class="ti-location-pin"></i>
-											</div>
-										</div>
-										
+{#										<div class="form-group">#}
+{#											<div class="input-with-icon">#}
+{#												<input type="text" class="form-control" placeholder="Neighborhood">#}
+{#												<i class="ti-search"></i>#}
+{#											</div>#}
+{#										</div>#}
+{#										#}
+{#										<div class="form-group">#}
+{#											<div class="input-with-icon">#}
+{#												<input type="text" class="form-control" placeholder="Location">#}
+{#												<i class="ti-location-pin"></i>#}
+{#											</div>#}
+{#										</div>#}
+									<form method="post">
 										<div class="form-group">
 											<div class="simple-input">
-												<select id="ptype" class="form-control">
+												<select id="ptype" name="ptype" class="form-control">
 													<option value="">&nbsp;</option>
-													<option value="1">Apartment</option>
-													<option value="2">Condo</option>
-													<option value="3">Family</option>
-													<option value="4">Houses</option>
-													<option value="5">Villa</option>
+													<option value="New Apartment">New Apartment</option>
+													<option value="Second-Hand Apartment">Second-Hand Apartment</option>
 												</select>
 											</div>
 										</div>
 										
 										<div class="form-group">
 											<div class="simple-input">
-												<select id="status" class="form-control">
-													<option value="">&nbsp;</option>
-													<option value="1">Apartment</option>
-													<option value="2">Condo</option>
-													<option value="3">Houses</option>
-													<option value="4">Villa</option>
-													<option value="5">Land</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<div class="simple-input">
-												<select id="price" class="form-control">
-													<option value="">&nbsp;</option>
-													<option value="1">Less Then $1000</option>
-													<option value="2">$1000 - $2000</option>
-													<option value="3">$2000 - $3000</option>
-													<option value="4">$3000 - $4000</option>
-													<option value="5">Above $5000</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<div class="simple-input">
-												<select id="bedrooms" class="form-control">
+												<select id="bedrooms" name="bedrooms" class="form-control">
 													<option value="">&nbsp;</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
@@ -292,7 +229,7 @@
 										
 										<div class="form-group">
 											<div class="simple-input">
-												<select id="bathrooms" class="form-control">
+												<select id="bathrooms" name="bathrooms" class="form-control">
 													<option value="">&nbsp;</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
@@ -302,46 +239,12 @@
 												</select>
 											</div>
 										</div>
-										
-										<div class="form-group">
-											<div class="simple-input">
-												<select id="garage" class="form-control">
-													<option value="">&nbsp;</option>
-													<option value="1">Any Type</option>
-													<option value="2">Yes</option>
-													<option value="3">No</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<div class="simple-input">
-												<select id="built" class="form-control">
-													<option value="">&nbsp;</option>
-													<option value="1">2010</option>
-													<option value="2">2011</option>
-													<option value="3">2012</option>
-													<option value="4">2013</option>
-													<option value="5">2014</option>
-													<option value="6">2015</option>
-													<option value="7">2016</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="col-lg-6 col-md-6 col-sm-6">
-												<div class="form-group">
-													<div class="simple-input">
-														<input type="text" class="form-control" placeholder="Min Area">
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-6">
-												<div class="form-group">
-													<div class="simple-input">
-														<input type="text" class="form-control" placeholder="Max Area">
-													</div>
+
+                                        <div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">
+												<h6>Choose area</h6>
+												<div class="rg-slider">
+													 <input type="text" class="js-range-slider" name="area_range" value="" />
 												</div>
 											</div>
 										</div>
@@ -350,15 +253,16 @@
 											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">
 												<h6>Choose Price</h6>
 												<div class="rg-slider">
-													 <input type="text" class="js-range-slider" name="my_range" value="" />
+													 <input type="text" class="js-range-slider" name="price_range" value="" />
 												</div>
 											</div>
 										</div>
 										
-										<button class="btn btn-theme full-width bg-2">Find New Home</button>
-									
+{#										<button class="btn btn-theme full-width bg-2">Find New Home</button>#}
+                                        <input type="submit" value="Find" class="btn btn-theme full-width bg-2"/>
+                                    </form>
 									</div>
-								
+
 								</div>
 							</div>
 							<!-- Sidebar End -->
@@ -392,73 +296,6 @@
 										</div>
 									</div>
                                     {% endfor %}
-									<!-- Single Property Start -->
-									<div class="sides_list_property large">
-										<div class="sides_list_property_thumb">
-											<img src="../static/assets/img/homes/2.jpg" class="img-fluid" alt="">
-										</div>
-										<div class="sides_list_property_detail">
-											<h4><a href="single-property-1.html">Montreal Quriqe Apartment</a></h4>
-											<span><i class="ti-location-pin"></i>Liverpool, London</span>
-											<div class="lists_property_types mt-1">
-												<div class="property_types_vlix">For Rent</div>
-											</div>
-											<div class="lists_property_price">
-												<div class="lists_property_price_value first">
-													<h4>$7,380</h4>
-												</div>
-												<div class="lists_property_added">
-													<small>10 days ago</small>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<!-- Single Property Start -->
-									<div class="sides_list_property large">
-										<div class="sides_list_property_thumb">
-											<img src="../static/assets/img/homes/3.jpg" class="img-fluid" alt="">
-										</div>
-										<div class="sides_list_property_detail">
-											<h4><a href="single-property-1.html">Curmic Studio For Office</a></h4>
-											<span><i class="ti-location-pin"></i>Montreal, Canada</span>
-											<div class="lists_property_types mt-1">
-												<div class="property_types_vlix">For Rent</div>
-											</div>
-											<div class="lists_property_price">
-												<div class="lists_property_price_value first">
-													<h4>$8,730</h4>
-												</div>
-												<div class="lists_property_added">
-													<small>25 days ago</small>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<!-- Single Property Start -->
-									<div class="sides_list_property large">
-										<div class="sides_list_property_thumb">
-											<img src="../static/assets/img/homes/4.jpg" class="img-fluid" alt="">
-										</div>
-										<div class="sides_list_property_detail">
-											<h4><a href="single-property-1.html">Lisque Viral Villa</a></h4>
-											<span><i class="ti-location-pin"></i>Sreek View, New York</span>
-											<div class="lists_property_types mt-1">
-												<div class="property_types_vlix buy">For Buy</div>
-											</div>
-											<div class="lists_property_price">
-												<div class="lists_property_price_value first">
-													<h4>$7,240</h4>
-												</div>
-												<div class="lists_property_added">
-													<small>29 days ago</small>
-												</div>
-											</div>
-										</div>
-									</div>
-
-							
 								</div>
 							</div>
 							
