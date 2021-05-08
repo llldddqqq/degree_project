@@ -331,9 +331,12 @@ def read_comment(house_id):
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
+    if result[0][0]==None or result[0][0]=='':
+        return False
     list1 = result[0][0][:-1].split(",")
+    print(len(list1))
     for i in range(0, len(list1)):
         list1[i] = json.loads(list1[i])
     # print(list1)
     return list1
-# read_comment(1)
+read_comment(2)
