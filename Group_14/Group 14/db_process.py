@@ -1,10 +1,8 @@
 from pymysql import *
 from Search import search
-import sys
-import Usercf_house
 import json
 
-sys.setrecursionlimit(10000000)
+
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
 port = 3306
 db_user = 'dingqi'
