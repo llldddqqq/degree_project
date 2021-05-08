@@ -102,7 +102,7 @@ def get_user_info(username):
     return user_info
 
 
-print(get_user_info('ldq'))
+#print(get_user_info('ldq'))
 
 
 def add_prefer(username, house_id):
