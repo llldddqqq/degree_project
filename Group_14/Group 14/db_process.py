@@ -87,6 +87,24 @@ def house_search(query):
 # a=house_search('Dublin')
 # print(a)
 
+def get_user_info(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from user_info Where user_name='" + username + "'"
+    cur.execute(sql)
+    result = cur.fetchall()
+    head = ['user_name', 'user_password', 'saved_property', 'email', 'phone_number', 'curr_address', 'city', 'country',
+            'recom']
+    user_info = {}
+    for i in range(0, len(result)):
+        for j in range(0, len(head)):
+            user_info[head[j]] = result[i][j]
+    return user_info
+
+
+print(get_user_info('ldq'))
+
+
 def add_prefer(username, house_id):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
@@ -235,7 +253,7 @@ def get_house_inprice(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "select * from datas WHERE price>" + str(low) + " and price<" + str(high)
-    #print(sql)
+    # print(sql)
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
@@ -264,7 +282,7 @@ def get_house_inprice(low, high):
     return house_dic
 
 
-print(get_house_inprice(100,50000))
+# print(get_house_inprice(100,50000))
 def get_house_insize(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
@@ -288,16 +306,16 @@ def get_house_insize(low, high):
             'house_orientation',
             'sold'
             ]
-    #print(result[0][0], result[1][0])
+    # print(result[0][0], result[1][0])
     for i in range(0, len(result)):
         temp = {}
         for j in range(0, len(head)):
             temp[head[j]] = result[i][j + 1]
-        house_dic[result[i][0]]=temp
+        house_dic[result[i][0]] = temp
     return house_dic
 
 
-#print(get_house_insize(38, 50))
+# print(get_house_insize(38, 50))
 
 
 def recomm_new(username):
@@ -376,5 +394,4 @@ def get_house_inoren(orientation):
         house_dic[result[i][0]] = temp
     return house_dic
 
-
-#print(get_house_inoren('west'))
+# print(get_house_inoren('west'))
