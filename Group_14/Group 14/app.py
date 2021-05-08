@@ -65,7 +65,60 @@ def signup():
 @app.route('/myprofile', methods=['GET', "POST"])
 def myprofile():
     username = session.get('CUS')
-    return render_template('my-profile.html', username=username)
+    user = get_user_info(username)
+    return render_template('my-profile.html', username=username, user=user)
+
+@app.route('/editprofile', methods=['GET', "POST"])
+def editprofile():
+    username = session.get('CUS')
+    user = get_user_info(username)
+    return render_template('my-profile-edit.html', username=username, user=user)
+
+
+@app.route('/check', methods=['GET', "POST"])
+def check():
+    username = session.get('CUS')
+    user = get_user_info(username)
+    return render_template('check-password.html', username=username, user=user)
+
+@app.route('/checkpassword', methods=['GET', "POST"])
+def checkpassword():
+    username = session.get('CUS')
+    user = get_user_info(username)
+    alert="wrong"
+    if user['user_password'] == request.form.get('password'):
+        return render_template('change-password.html', username=username, user=user)
+    else:
+        return render_template('check-password.html', username=username, user=user, alert=alert)
+
+
+
+@app.route('/changepassword', methods=['GET', "POST"])
+def changepassword():
+    username = session.get('CUS')
+    alert = "wrong"
+    if request.form.get('password1') == request.form.get('password2'):
+        password=request.form.get('password1')
+        update_user_password(username, password)
+        return redirect(url_for('myprofile'))
+    else:
+        return render_template('change-password.html', username=username, alert=alert)
+
+@app.route('/edit', methods=['GET', "POST"])
+def edit():
+    username = session.get('CUS')
+    email = request.form.get('email')
+    phone= request.form.get('phone')
+    address = request.form.get('address')
+    city = request.form.get('city')
+    country = request.form.get('country')
+    update_user_email(username, email)
+    update_user_phone(username, phone)
+    update_user_address(username, address)
+    update_user_city(username, city)
+    update_user_country(username, country)
+    user = get_user_info(username)
+    return redirect(url_for('myprofile'))
 
 
 @app.route('/listings', methods=['GET', "POST"])

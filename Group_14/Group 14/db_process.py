@@ -180,6 +180,15 @@ def get_house(id):
     return house_dic
 
 
+def update_user_email(username, email):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET email = '" + str(email) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+
+
 def update_user_phone(username, phone):  # curr_address, city, country):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
