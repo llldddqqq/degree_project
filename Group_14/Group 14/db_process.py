@@ -356,7 +356,7 @@ def read_comment(house_id):
     if result[0][0] == None or result[0][0] == '':
         return False
     list1 = result[0][0][:-1].split(",")
-    print(len(list1))
+    #print(len(list1))
     for i in range(0, len(list1)):
         list1[i] = json.loads(list1[i])
     # print(list1)
