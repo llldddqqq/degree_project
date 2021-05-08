@@ -3,6 +3,7 @@ import Search
 # from pymysql import *
 import time
 from db_process import *
+import Usercf_house
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'abcde'
@@ -98,7 +99,18 @@ def estatesdetail(id):
     house = get_house(id)
     if request.method == 'POST' and session.get('CUS'):
         add_prefer(session.get('CUS'), id)
-    return render_template('single-property-1.html', house=house)
+    comments=read_comment(id)
+    number=len(comments)
+    return render_template('single-property-1.html', house=house, id=id, comments=comments, number=number)
+
+@app.route('/comments/<id>', methods=['GET', "POST"])
+def addcomment(id):
+    if not session.get('CUS') is None:
+        comment=request.form.get("comment")
+        #comment = request.form["comment"]
+        #print(comment)
+        add_comment(session.get('CUS'), id, comment)
+    return redirect(url_for('estatesdetail', id=id))
 
 
 @app.route('/search/<query>', methods=['GET', "POST"])
