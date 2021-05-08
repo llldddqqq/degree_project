@@ -2,7 +2,6 @@ from pymysql import *
 from Search import search
 import json
 
-
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
 port = 3306
 db_user = 'dingqi'
@@ -132,8 +131,7 @@ def delete_prefer(username, house_id):
     return True
 
 
-#print(delete_prefer('ldq1', 1))
-
+# print(delete_prefer('ldq1', 1))
 
 
 def get_house(id):
@@ -237,12 +235,12 @@ def get_house_inprice(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "select * from datas WHERE price>" + str(low) + " and price<" + str(high)
-    print(sql)
+    #print(sql)
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
     house_dic = {}
-    head = ['id', 'address',
+    head = ['address',
             'postcode',
             'country',
             'price',
@@ -257,13 +255,16 @@ def get_house_inprice(low, high):
             'house_orientation',
             'sold'
             ]
+    # print(result[0][0], result[1][0])
     for i in range(0, len(result)):
+        temp = {}
         for j in range(0, len(head)):
-            house_dic[j] = result[i][j]
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]] = temp
     return house_dic
 
 
-# print(get_house_inprice(100,50000))
+print(get_house_inprice(100,50000))
 def get_house_insize(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
@@ -272,7 +273,7 @@ def get_house_insize(low, high):
     result = cur.fetchall()
     cur.close()
     house_dic = {}
-    head = ['id', 'address',
+    head = ['address',
             'postcode',
             'country',
             'price',
@@ -287,13 +288,16 @@ def get_house_insize(low, high):
             'house_orientation',
             'sold'
             ]
+    #print(result[0][0], result[1][0])
     for i in range(0, len(result)):
+        temp = {}
         for j in range(0, len(head)):
-            house_dic[j] = result[i][j]
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]]=temp
     return house_dic
 
 
-# print(get_house_insize(38,50))
+#print(get_house_insize(38, 50))
 
 
 def recomm_new(username):
@@ -331,7 +335,7 @@ def read_comment(house_id):
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
-    if result[0][0]==None or result[0][0]=='':
+    if result[0][0] == None or result[0][0] == '':
         return False
     list1 = result[0][0][:-1].split(",")
     print(len(list1))
@@ -339,4 +343,38 @@ def read_comment(house_id):
         list1[i] = json.loads(list1[i])
     # print(list1)
     return list1
-read_comment(2)
+
+
+def get_house_inoren(orientation):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from datas WHERE house_orientation='" + str(orientation) + "'"
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+    house_dic = {}
+    head = ['address',
+            'postcode',
+            'country',
+            'price',
+            'full_market_price',
+            'vat_exclusive',
+            'description',
+            'size',
+            'pic_address',
+            'message',
+            'bedroom_amount',
+            'bathroom_amount',
+            'house_orientation',
+            'sold'
+            ]
+    # print(result[0][0], result[1][0])
+    for i in range(0, len(result)):
+        temp = {}
+        for j in range(0, len(head)):
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]] = temp
+    return house_dic
+
+
+#print(get_house_inoren('west'))
