@@ -248,7 +248,7 @@ def update_pic():
     for j in range(0, 462186):
         # route = "/home/team/group14/pics/" + str((j+1)%212) + ".JPG"
         # print(route)
-        sql = "UPDATE datas SET pic_address = '/home/team/group14/pics/" + str(
+        sql = "UPDATE datas SET pic_address = '../static/assets/img/house_pics/" + str(
             (j + 1) % 212) + ".JPG'" + " where id='" + str(j + 1) + "'"
         # print(sql)
         try:
@@ -258,7 +258,7 @@ def update_pic():
             err += 1
             print(err)
     cur.close()
-
+update_pic()
 
 # update_pic()
 
