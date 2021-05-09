@@ -1,10 +1,7 @@
 from pymysql import *
 from Search import search
-import sys
-import Usercf_house
 import json
 
-sys.setrecursionlimit(10000000)
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
 port = 3306
 db_user = 'dingqi'
@@ -83,12 +80,32 @@ def house_search(query):
         temp['type'] = result[0][7]
         temp['square'] = result[0][8]
         temp['pic_add'] = result[0][9]
+        temp['bedroom_amount'] = result[0][11]
+        temp['bathroom_amount'] = result[0][12]
         house_dic[id] = temp
     return house_dic
 
 
 # a=house_search('Dublin')
 # print(a)
+
+def get_user_info(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from user_info Where user_name='" + username + "'"
+    cur.execute(sql)
+    result = cur.fetchall()
+    head = ['user_name', 'user_password', 'saved_property', 'email', 'phone_number', 'curr_address', 'city', 'country',
+            'recom']
+    user_info = {}
+    for i in range(0, len(result)):
+        for j in range(0, len(head)):
+            user_info[head[j]] = result[i][j]
+    return user_info
+
+
+# print(get_user_info('ldq'))
+
 
 def add_prefer(username, house_id):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -119,7 +136,7 @@ def renew_prefer(username):
     cur.close()
 
 
-# renew_prefer('ldq1')
+# print(check_prefer('123'))
 
 
 def delete_prefer(username, house_id):
@@ -134,8 +151,7 @@ def delete_prefer(username, house_id):
     return True
 
 
-#print(delete_prefer('ldq1', 1))
-
+# print(delete_prefer('ldq1', 1))
 
 
 def get_house(id):
@@ -164,6 +180,15 @@ def get_house(id):
     for i in range(0, len(head)):
         house_dic[head[i]] = result[0][i]
     return house_dic
+
+
+def update_user_email(username, email):  # curr_address, city, country):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "UPDATE user_info SET email = '" + str(email) + "'" + "WHERE user_name ='" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
 
 
 def update_user_phone(username, phone):  # curr_address, city, country):
@@ -239,12 +264,12 @@ def get_house_inprice(low, high):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     sql = "select * from datas WHERE price>" + str(low) + " and price<" + str(high)
-    print(sql)
+    # print(sql)
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
     house_dic = {}
-    head = ['id', 'address',
+    head = ['address',
             'postcode',
             'country',
             'price',
@@ -259,9 +284,12 @@ def get_house_inprice(low, high):
             'house_orientation',
             'sold'
             ]
+    # print(result[0][0], result[1][0])
     for i in range(0, len(result)):
+        temp = {}
         for j in range(0, len(head)):
-            house_dic[j] = result[i][j]
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]] = temp
     return house_dic
 
 
@@ -274,7 +302,7 @@ def get_house_insize(low, high):
     result = cur.fetchall()
     cur.close()
     house_dic = {}
-    head = ['id', 'address',
+    head = ['address',
             'postcode',
             'country',
             'price',
@@ -289,13 +317,16 @@ def get_house_insize(low, high):
             'house_orientation',
             'sold'
             ]
+    # print(result[0][0], result[1][0])
     for i in range(0, len(result)):
+        temp = {}
         for j in range(0, len(head)):
-            house_dic[j] = result[i][j]
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]] = temp
     return house_dic
 
 
-# print(get_house_insize(38,50))
+# print(get_house_insize(38, 50))
 
 
 def recomm_new(username):
@@ -310,6 +341,18 @@ def recomm_new(username):
 
 
 # recomm_new('ldq')
+def check_recomm(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql2 = "select recom from user_info where user_name='" + username + "'"
+    cur.execute(sql2)
+    result = cur.fetchall()
+    results = result[0][0].split(',')
+    if result[0][0] is None or result[0][0] == '':
+        return False
+    return results
+#print(check_recomm('123'))
+
 
 def add_comment(username, house_id, comments):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -333,9 +376,51 @@ def read_comment(house_id):
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
+    if result[0][0] is None or result[0][0] == '':
+        return False
     list1 = result[0][0][:-1].split(",")
+    # print(len(list1))
     for i in range(0, len(list1)):
         list1[i] = json.loads(list1[i])
     # print(list1)
     return list1
-# read_comment(1)
+
+
+def get_house_inoren(orientation):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from datas WHERE house_orientation='" + str(orientation) + "'"
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+    house_dic = {}
+    head = ['address',
+            'postcode',
+            'country',
+            'price',
+            'full_market_price',
+            'vat_exclusive',
+            'description',
+            'size',
+            'pic_address',
+            'message',
+            'bedroom_amount',
+            'bathroom_amount',
+            'house_orientation',
+            'sold'
+            ]
+    # print(result[0][0], result[1][0])
+    for i in range(0, len(result)):
+        temp = {}
+        for j in range(0, len(head)):
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]] = temp
+    return house_dic
+
+# print(get_house_inoren('west'))
+
+# def filter(house_dic,low_price,high_price,low_size,high_size,house_orien,bath_amount,bed_amount):
+#     for house_id in house_dic:
+
+
+

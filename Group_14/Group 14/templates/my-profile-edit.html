@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -175,115 +175,112 @@
 										<li><a href="{{ url_for('bookmarkproperty')}}"><i class="ti-bookmark"></i>Saved Property</a></li>
 										<!--	<li><a href="my-property.html"><i class="ti-layers"></i>My Properties</a></li>-->
 									<!--	<li><a href="choose-package.html"><i class="ti-gift"></i>Choose Package</a></li>-->
-
+										<li><a href="submit-property-dashboard.html"><i class="ti-pencil-alt"></i>Submit New Property</a></li>
+										<li><a href="change-password.html"><i class="ti-unlock"></i>Change Password</a></li>
 										<li><a href="#"><i class="ti-power-off"></i>Log Out</a></li>
 									</ul>
 								</div>
-								
+
 							</div>
 						</div>
+
 						<div class="col-lg-9 col-md-8 col-sm-12">
 							<div class="dashboard-body">
-							
+
 								<div class="dashboard-wraper">
-								
+
 									<!-- Basic Information -->
-									<div class="frm_submit_block">	
+
+									<div class="frm_submit_block">
 										<h4>My Account</h4>
-										<div class="frm_submit_wrap">
+                                        <form class="form-simple" method="post" action="/edit">
+{#										<div class="frm_submit_wrap">#}
 											<div class="form-row">
-											
+
 												<div class="form-group col-md-6">
 													<label>Your Name</label>
-{#													<input type="text" class="form-control" value="Yanghsoanan">#}
-                                                    <p>{{ user["user_name"] }}</p>
-												</div>
-												{% if user["email"] %}
+{#													<input type="text" class="form-control" value="{{ user["user_name"] }}">#}
+												    <p>{{ user["user_name"] }}</p>
+                                                </div>
+
 												<div class="form-group col-md-6">
 													<label>Email</label>
-{#													<input type="email" class="form-control" value="17206034@ucdconnect.ie">#}
-                                                    <p>{{ user["email"] }}</p>
+													<input type="email" class="form-control" name="email" value="{{ user["email"] }}">
 												</div>
-												{% endif %}
+
 {#												<div class="form-group col-md-6">#}
 {#													<label>Your Title</label>#}
 {#													<input type="text" class="form-control" value="Example">#}
 {#												</div>#}
-												{% if user["phone_number"] %}
+
 												<div class="form-group col-md-6">
 													<label>Phone</label>
-{#													<input type="text" class="form-control" value="123 456 5847">#}
-                                                    <p>{{ user["phone_number"] }}</p>
+													<input type="text" class="form-control" name="phone" value="{{ user["phone_number"] }}">
 												</div>
-												{% endif %}
-                                                {% if user["curr_address"] %}
+
 												<div class="form-group col-md-6">
 													<label>Address</label>
-{#													<input type="text" class="form-control" value="Beijing University of technology">#}
-                                                    <p>{{ user["curr_address"] }}</p>
+													<input type="text" class="form-control" name="address" value="{{ user["curr_address"] }}">
 												</div>
-												{% endif %}
-                                                {% if user["city"] %}
+
 												<div class="form-group col-md-6">
 													<label>City</label>
-{#													<input type="text" class="form-control" value="Beijing">#}
-                                                    <p>{{ user["city"] }}</p>
+													<input type="text" class="form-control" name="city" value="{{ user["city"] }}">
 												</div>
-												{% endif %}
-                                                {% if user["country"] %}
+
 												<div class="form-group col-md-6">
 													<label>Country</label>
-{#													<input type="text" class="form-control" value="China">#}
-                                                    <p>{{ user["country"] }}</p>
+													<input type="text" class="form-control" name="country" value="{{ user["country"] }}">
 												</div>
-												{% endif %}
 
-												
+
+
 {#												<div class="form-group col-md-12">#}
 {#													<label>About</label>#}
 {#													<textarea class="form-control">This is a beautiful house</textarea>#}
 {#												</div>#}
-												<button type="submit" onclick="window.location.href = '/editprofile'" class="btn btn-theme bg-2">Edit Your Personal Information</button>
-                                                <button type="submit" onclick="window.location.href = '/check'" class="btn btn-theme bg-2">Change Your Password</button>
+												<button type="submit" class="btn btn-md full-width pop-login bg-2" >Save</button>
+{#                                                <button type="submit" class="btn btn-md full-width pop-login bg-2">Change Your Password</button>#}
 											</div>
-										</div>
+{#										</div>#}
+                                        </form>
 									</div>
-									
-									<div class="frm_submit_block">	
+
+									<div class="frm_submit_block">
 										<!--<h4>Social Accounts</h4>
 										<div class="frm_submit_wrap">
 											<div class="form-row">
-											
+
 												<div class="form-group col-md-6">
 													<label>Facebook</label>
 													<input type="text" class="form-control" value="https://facebook.com/">
 												</div>
-												
+
 												<div class="form-group col-md-6">
 													<label>Twitter</label>
 													<input type="email" class="form-control" value="https://twitter.com/">
 												</div>
-												
+
 												<div class="form-group col-md-6">
 													<label>Google Plus</label>
 													<input type="text" class="form-control" value="https://googleplus.com">
 												</div>
-												
+
 												<div class="form-group col-md-6">
 													<label>LinkedIn</label>
 													<input type="text" class="form-control" value="https://linkedin.com/">
 												</div>
-												
+
 												<div class="form-group col-lg-12 col-md-12">
 													<button class="btn btn-theme bg-2" type="submit">Save Changes</button>
 												</div>-->
-												
+
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
-								
+
 								<div class="row">
 									<div class="col-md-12 col-lg-12 mt-4">
 										<footer class="text-center">
@@ -292,15 +289,15 @@
 									</div>
 								</div>
 								<!-- row -->
-							
+
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</section>
 			<!-- ============================ User Dashboard End ================================== -->
-			
+
 			<!-- Log In Modal -->
 			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -310,7 +307,7 @@
 							<h4 class="modal-header-title">Log In</h4>
 							<div class="login-form">
 								<form>
-								
+
 									<div class="form-group">
 										<label>User Name</label>
 										<div class="input-with-icon">
@@ -318,7 +315,7 @@
 											<i class="ti-user"></i>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<label>Password</label>
 										<div class="input-with-icon">
@@ -326,11 +323,11 @@
 											<i class="ti-unlock"></i>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-md full-width pop-login bg-2">Login</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or login via</span></div>
@@ -340,7 +337,7 @@
 									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="social-login mb-3">
 								<ul>
 									<li>
@@ -350,7 +347,7 @@
 									<li><a href="#" class="theme-cl">Forget Password?</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="text-center">
 								<p class="mt-2">Haven't Any Account? <a href="register.html" class="link">Click here</a></p>
 							</div>
@@ -359,7 +356,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Sign Up Modal -->
 			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="sign-up" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -369,9 +366,9 @@
 							<h4 class="modal-header-title">Sign Up</h4>
 							<div class="login-form">
 								<form>
-									
+
 									<div class="row">
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<div class="input-with-icon">
@@ -380,7 +377,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<div class="input-with-icon">
@@ -389,7 +386,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<div class="input-with-icon">
@@ -398,7 +395,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<div class="input-with-icon">
@@ -407,13 +404,13 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-md full-width pop-login">Sign Up</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or Signup via</span></div>
@@ -431,7 +428,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Video Modal -->
 			<div class="modal fade" id="popup-video" tabindex="-1" role="dialog" aria-labelledby="popup-video" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
@@ -439,9 +436,9 @@
 				</div>
 			</div>
 			<!-- End Video Modal -->
-			
+
 			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-			
+
 
 		</div>
 		<!-- ============================================================== -->

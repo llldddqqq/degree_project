@@ -3,6 +3,7 @@ import Search
 # from pymysql import *
 import time
 from db_process import *
+import Usercf_house
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'abcde'
@@ -64,7 +65,60 @@ def signup():
 @app.route('/myprofile', methods=['GET', "POST"])
 def myprofile():
     username = session.get('CUS')
-    return render_template('my-profile.html', username=username)
+    user = get_user_info(username)
+    return render_template('my-profile.html', username=username, user=user)
+
+@app.route('/editprofile', methods=['GET', "POST"])
+def editprofile():
+    username = session.get('CUS')
+    user = get_user_info(username)
+    return render_template('my-profile-edit.html', username=username, user=user)
+
+
+@app.route('/check', methods=['GET', "POST"])
+def check():
+    username = session.get('CUS')
+    user = get_user_info(username)
+    return render_template('check-password.html', username=username, user=user)
+
+@app.route('/checkpassword', methods=['GET', "POST"])
+def checkpassword():
+    username = session.get('CUS')
+    user = get_user_info(username)
+    alert="wrong"
+    if user['user_password'] == request.form.get('password'):
+        return render_template('change-password.html', username=username, user=user)
+    else:
+        return render_template('check-password.html', username=username, user=user, alert=alert)
+
+
+
+@app.route('/changepassword', methods=['GET', "POST"])
+def changepassword():
+    username = session.get('CUS')
+    alert = "wrong"
+    if request.form.get('password1') == request.form.get('password2'):
+        password=request.form.get('password1')
+        update_user_password(username, password)
+        return redirect(url_for('myprofile'))
+    else:
+        return render_template('change-password.html', username=username, alert=alert)
+
+@app.route('/edit', methods=['GET', "POST"])
+def edit():
+    username = session.get('CUS')
+    email = request.form.get('email')
+    phone= request.form.get('phone')
+    address = request.form.get('address')
+    city = request.form.get('city')
+    country = request.form.get('country')
+    update_user_email(username, email)
+    update_user_phone(username, phone)
+    update_user_address(username, address)
+    update_user_city(username, city)
+    update_user_country(username, country)
+    user = get_user_info(username)
+    return redirect(url_for('myprofile'))
 
 
 @app.route('/listings', methods=['GET', "POST"])
@@ -98,7 +152,20 @@ def estatesdetail(id):
     house = get_house(id)
     if request.method == 'POST' and session.get('CUS'):
         add_prefer(session.get('CUS'), id)
-    return render_template('single-property-1.html', house=house)
+    comments=read_comment(id)
+    number='No'
+    if comments:
+        number=len(comments)
+    return render_template('single-property-1.html', house=house, id=id, comments=comments, number=number)
+
+@app.route('/comments/<id>', methods=['GET', "POST"])
+def addcomment(id):
+    if not session.get('CUS') is None:
+        comment=request.form.get("comment")
+        #comment = request.form["comment"]
+        #print(comment)
+        add_comment(session.get('CUS'), id, comment)
+    return redirect(url_for('estatesdetail', id=id))
 
 
 @app.route('/search/<query>', methods=['GET', "POST"])
@@ -107,6 +174,20 @@ def search(query):
     result = house_search(query)
     end_search = time.time()
     print('search time:', str(end_search - start_search))
+    if request.method == 'POST':
+        ptype = request.form.get('ptype')
+        bedrooms = request.form.get('bedrooms')
+        bathrooms = request.form.get('bathrooms')
+        if ptype != '' or bedrooms != '' or bathrooms != '':
+            for id in list(result):
+                if ptype != '' and result[id]['type'] != ptype:
+                    del result[id]
+            for id in list(result):
+                if bedrooms != '' and result[id]['bedroom_amount'] != int(bedrooms):
+                    del result[id]
+            for id in list(result):
+                if bathrooms != '' and result[id]['bathroom_amount'] != int(bathrooms):
+                    del result[id]
     return render_template('search.html', result=result)
 
 
