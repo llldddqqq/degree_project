@@ -154,9 +154,10 @@ def estatesdetail(id):
         add_prefer(session.get('CUS'), id)
     comments=read_comment(id)
     number='No'
+    username=session.get('CUS')
     if comments:
         number=len(comments)
-    return render_template('single-property-1.html', house=house, id=id, comments=comments, number=number)
+    return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number)
 
 @app.route('/comments/<id>', methods=['GET', "POST"])
 def addcomment(id):

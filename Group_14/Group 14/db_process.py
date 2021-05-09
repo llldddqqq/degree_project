@@ -48,12 +48,14 @@ def db_user_signup(user, password):
     cur = conn.cursor()
     sql = "insert into user_info(user_name,user_password,saved_property) VALUE (" + "'" + str(user) + "'," + "'" + str(
         password) + "'," + "'" + '' + "'" + ")"
+    print(sql)
     cur.execute(sql)
+    #print(sql)
     conn.commit()
     cur.close()
     print(user, password)
     return True
-
+#print('ldq','123')
 
 # for i in range(30):
 #     string = 'ldq' + str(i)
