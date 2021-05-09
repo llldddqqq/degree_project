@@ -346,8 +346,10 @@ def check_recomm(username):
     cur.execute(sql2)
     result = cur.fetchall()
     results = result[0][0].split(',')
+    if result[0][0] is None or result[0][0] == '':
+        return False
     return results
-print(check_recomm('ldq'))
+#print(check_recomm('123'))
 
 
 def add_comment(username, house_id, comments):
