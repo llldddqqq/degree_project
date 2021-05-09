@@ -48,12 +48,14 @@ def db_user_signup(user, password):
     cur = conn.cursor()
     sql = "insert into user_info(user_name,user_password,saved_property) VALUE (" + "'" + str(user) + "'," + "'" + str(
         password) + "'," + "'" + '' + "'" + ")"
+    print(sql)
     cur.execute(sql)
+    #print(sql)
     conn.commit()
     cur.close()
     print(user, password)
     return True
-
+#print('ldq','123')
 
 # for i in range(30):
 #     string = 'ldq' + str(i)
@@ -92,7 +94,7 @@ def house_search(query):
 def get_user_info(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "select * from user_info Where user_name='" + username + "'"
+    sql = "select * from user_info Where user_name='" + str(username) + "'"
     cur.execute(sql)
     result = cur.fetchall()
     head = ['user_name', 'user_password', 'saved_property', 'email', 'phone_number', 'curr_address', 'city', 'country',
