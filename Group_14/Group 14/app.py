@@ -69,7 +69,7 @@ def myprofile():
 
 @app.route('/listings', methods=['GET', "POST"])
 def listings():
-    return render_template('grid-layout-2.html')
+    return render_template('grid-layout-4.html')
 
 
 @app.route('/myproperty', methods=['GET', "POST"])
