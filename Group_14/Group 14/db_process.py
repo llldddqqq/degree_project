@@ -339,6 +339,16 @@ def recomm_new(username):
 
 
 # recomm_new('ldq')
+def check_recomm(username):
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql2 = "select recom from user_info where user_name='" + username + "'"
+    cur.execute(sql2)
+    result = cur.fetchall()
+    results = result[0][0].split(',')
+    return results
+print(check_recomm('ldq'))
+
 
 def add_comment(username, house_id, comments):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -404,3 +414,9 @@ def get_house_inoren(orientation):
     return house_dic
 
 # print(get_house_inoren('west'))
+
+# def filter(house_dic,low_price,high_price,low_size,high_size,house_orien,bath_amount,bed_amount):
+#     for house_id in house_dic:
+
+
+
