@@ -16,6 +16,12 @@ def index():
         return redirect(url_for('search', query=query))
     return render_template('home-7.html')
 
+@app.route('/index_login/<user>', methods=['POST', 'GET'])
+def index_login(user):
+    if request.method == 'POST' and request.form.get('query'):
+        query = request.form['query']
+        return redirect(url_for('search', query=query))
+    return render_template('home-7_login.html', username=user, featured=recommend_to_user(user))
 
 @app.route('/blog')
 def appointment_success():
@@ -36,7 +42,7 @@ def login():
             session['CUS'] = user
             print('success')
             print(session.get('CUS'))
-            return render_template('home-7_login.html', username=user, featured=recommend_to_user(user))
+            return redirect(url_for('index_login', user=user))
         else:
             print('fail')
             return render_template('login.html', msg='wrong password')
