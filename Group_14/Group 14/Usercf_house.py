@@ -140,9 +140,7 @@ def recommendation(username):
     userCF = UserBasedCF()
     userCF.get_dataset()
     userCF.calc_user_sim()
-    #print(type(userCF.recommend(username)))
     result=[]
     for i in userCF.recommend(username):
         result.append(i[0])
     return result
-#print(recommendation('ldq'))

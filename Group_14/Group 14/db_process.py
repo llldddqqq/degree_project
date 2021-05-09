@@ -138,7 +138,7 @@ def renew_prefer(username):
     cur.close()
 
 
-print(check_prefer('ldq0'))
+#print(check_prefer('ldq0'))
 
 
 def delete_prefer(username, house_id):
@@ -378,12 +378,17 @@ def read_comment(house_id):
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
+    #print(result[0][0])
     if result[0][0] is None or result[0][0] == '':
         return False
     list1 = result[0][0][:-1].split(",")
+    #print(list1)
     # print(len(list1))
-    for i in range(0, len(list1)):
+    for i in range(0,len(list1)):
+        list1[i]=list1[i].replace("\n",'').replace("\r",'')
         list1[i] = json.loads(list1[i])
+    # for i in range(0, len(list1)):
+    #     list1[i] = json.loads(list1[i])
     # print(list1)
     return list1
 
