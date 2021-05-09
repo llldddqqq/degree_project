@@ -31,7 +31,7 @@
             <!-- Top header  -->
             <!-- ============================================================== -->
             <!-- Start Navigation -->
-			<div class="header header-light dark-text">
+			<div class="header header-light head-border">
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
@@ -43,7 +43,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li><a href="home-7.html">Home<span class="submenu-indicator"></span></a>
+								<li class=""><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -56,14 +56,14 @@
 									</ul> -->
 								</li>
 
-								<li><a href="grid-layout-4.html">Listings<span class="submenu-indicator"></span></a>
+								<li><a href="{{ url_for('listings')}}">listings<span class="submenu-indicator"></span></a>
 							<!--		<ul class="nav-dropdown nav-submenu">
 										<li><a href="#">Listing Grid<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 												<li><a href="grid-layout-with-sidebar.html">Grid Style 1</a></li>
 												<li><a href="grid-layout-2.html">Grid Style 2</a></li>
-												<li><a href="grid-layout-3.html">Grid Style 3</a></li>-->
-												<!--
+												<li><a href="grid-layout-3.html">Grid Style 3</a></li>
+												<li><a href="grid-layout-4.html">Grid Style 4</a></li>
 											</ul>
 										</li>
 										<li><a href="#">Listing List<span class="submenu-indicator"></span></a>
@@ -89,9 +89,9 @@
 										<li class=""><a href="#">User <span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
-												<li><a href="my-profile.html">My Profile</a></li>
-												<li><a href="my-property.html">My Property</a></li>
-												<li><a href="bookmark-list.html">Bookmark Property</a></li>
+												<li><a href="{{ url_for('myprofile')}}">My Profile</a></li>
+												<li class="active"><a href="{{ url_for('myproperty')}}">My Property</a></li>
+												<li><a href="{{ url_for('bookmarkproperty')}}">Bookmark Property</a></li>
 											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
 											</ul>
 										</li>
@@ -122,22 +122,32 @@
 									</ul>
 								</li>-->
 
-								<li class="active"><a href="contact.html">Contacts</a></li>
+								<li><a href="{{ url_for('contacts')}}">Contacts</a></li>
 
 							</ul>
 
-							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">
+{#							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">#}
+                            <ul class="btn-group account-drop align-to-right">
+                                <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, {{ username }}
+                                </button>
+                                <div class="dropdown-menu pull-right animated flipInX">
+                                    <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
+{#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
+                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Bookmarked Listings</a>
+                                    <a href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
+                                </div>
 
-								<li>
-									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">
-										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>
-									</a>
-								</li>
-								<li class="add-listing bg-info">
-									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">
-										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up
-									</a>
-								</li>
+{#								<li>#}
+{#									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">#}
+{#										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>#}
+{#									</a>#}
+{#								</li>#}
+{#								<li class="add-listing bg-info">#}
+{#									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">#}
+{#										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up#}
+{#									</a>#}
+{#								</li>#}
 							</ul>
 
 						</div>

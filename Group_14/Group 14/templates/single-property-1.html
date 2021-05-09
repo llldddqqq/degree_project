@@ -31,7 +31,7 @@
             <!-- Top header  -->
             <!-- ============================================================== -->
             <!-- Start Navigation -->
-			<div class="header header-light dark-text">
+			<div class="header header-light head-border">
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
@@ -43,7 +43,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li class="active"><a href="#">Home<span class="submenu-indicator"></span></a>
+								<li class="active"><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -56,14 +56,14 @@
 									</ul> -->
 								</li>
 
-								<li><a href="grid-layout-4.html">Listings<span class="submenu-indicator"></span></a>
+								<li><a href="{{ url_for('listings')}}">listings<span class="submenu-indicator"></span></a>
 							<!--		<ul class="nav-dropdown nav-submenu">
 										<li><a href="#">Listing Grid<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 												<li><a href="grid-layout-with-sidebar.html">Grid Style 1</a></li>
 												<li><a href="grid-layout-2.html">Grid Style 2</a></li>
-												<li><a href="grid-layout-3.html">Grid Style 3</a></li>-->
-												<!--
+												<li><a href="grid-layout-3.html">Grid Style 3</a></li>
+												<li><a href="grid-layout-4.html">Grid Style 4</a></li>
 											</ul>
 										</li>
 										<li><a href="#">Listing List<span class="submenu-indicator"></span></a>
@@ -89,9 +89,9 @@
 										<li class=""><a href="#">User <span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
-												<li><a href="my-profile.html">My Profile</a></li>
-												<li><a href="my-property.html">My Property</a></li>
-												<li><a href="bookmark-list.html">Bookmark Property</a></li>
+												<li class="active"><a href="{{ url_for('myprofile')}}">My Profile</a></li>
+												<li><a href="{{ url_for('myproperty')}}">My Property</a></li>
+												<li><a href="{{ url_for('bookmarkproperty')}}">Bookmark Property</a></li>
 											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
 											</ul>
 										</li>
@@ -122,28 +122,39 @@
 									</ul>
 								</li>-->
 
-								<li><a href="contact.html">Contacts</a></li>
+								<li><a href="{{ url_for('contacts')}}">Contacts</a></li>
 
 							</ul>
 
-							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">
+{#							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">#}
+                            <ul class="btn-group account-drop align-to-right">
+                                <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, {{ username }}
+                                </button>
+                                <div class="dropdown-menu pull-right animated flipInX">
+                                    <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
+{#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
+                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Bookmarked Listings</a>
+                                    <a class="active" href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
+                                </div>
 
-								<li>
-									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">
-										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>
-									</a>
-								</li>
-								<li class="add-listing bg-info">
-									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">
-										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up
-									</a>
-								</li>
+{#								<li>#}
+{#									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">#}
+{#										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>#}
+{#									</a>#}
+{#								</li>#}
+{#								<li class="add-listing bg-info">#}
+{#									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">#}
+{#										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up#}
+{#									</a>#}
+{#								</li>#}
 							</ul>
 
 						</div>
 					</nav>
 				</div>
 			</div>
+
             <!-- End Navigation -->
 			<div class="clearfix"></div>
 			<!-- ============================================================== -->
@@ -204,25 +215,83 @@
 							
 							<!-- Single Block Wrap -->
 
-							
 							<!-- Single Block Wrap -->
 
 							
 							<!-- Single Block Wrap -->
 
-
-							
 							<!-- Single Block Wrap -->
 
-							
 							<!-- Single Block Wrap -->
 
-							
 							<!-- Single Reviews Block -->
-
+							<div class="property_block_wrap style-2">
+								
+								<div class="property_block_wrap_header">
+									<a data-toggle="collapse" data-parent="#rev" href="#clEight" aria-expanded="true"><h4 class="property_block_title">{{ number }} Reviews</h4></a>
+								</div>
+								
+								<div id="clEight" class="panel-collapse collapse show" aria-expanded="true">
+									<div class="block-body">
+										<div class="author-review">
+											<div class="comment-list">
+												<ul>
+                                            {% if comments %}
+                                                {% for dict in comments %}
+                                                    {% for user in dict.keys() %}
+                                                    <li class="article_comments_wrap">
+														<article>
+{#															<div class="article_comments_thumb">#}
+{#																<img src="../static/assets/img/user-1.jpg" alt="">#}
+{#															</div>#}
+															<div class="comment-details">
+																<div class="comment-meta">
+																	<div class="comment-left-meta">
+																		<h4 class="author-name">{{ user }}</h4>
+{#																		<div class="comment-date">19th May 2018</div>#}
+																	</div>
+																</div>
+																<div class="comment-text">
+																	<p>{{ dict[user] }}</p>
+																</div>
+															</div>
+														</article>
+													</li>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <h4 class="author-name">No Review</h4>
+                                            {% endif %}
+{#													<li class="article_comments_wrap">#}
+{#														<article>#}
+{#															<div class="article_comments_thumb">#}
+{#																<img src="../static/assets/img/user-5.jpg" alt="">#}
+{#															</div>#}
+{#															<div class="comment-details">#}
+{#																<div class="comment-meta">#}
+{#																	<div class="comment-left-meta">#}
+{#																		<h4 class="author-name">Rosalina Kelian</h4>#}
+{#																		<div class="comment-date">19th May 2018</div>#}
+{#																	</div>#}
+{#																</div>#}
+{#																<div class="comment-text">#}
+{#																	<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborumab.#}
+{#																		perspiciatis unde omnis iste natus error.</p>#}
+{#																</div>#}
+{#															</div>#}
+{#														</article>#}
+{#													</li>#}
+												</ul>
+											</div>
+										</div>
+{#										<a href="#" class="reviews-checked theme-cl"><i class="fas fa-arrow-alt-circle-down mr-2"></i>See More Reviews</a>#}
+									</div>
+								</div>
+								
+							</div>
 							
 							<!-- Single Block Wrap -->
-							<div class="property_block_wrap style-2">
+						<!--	<div class="property_block_wrap style-2">
 								
 								<div class="property_block_wrap_header">
 									<a data-toggle="collapse" data-parent="#nerby" href="#clNine" aria-expanded="true"><h4 class="property_block_title">Nearby</h4></a>
@@ -231,7 +300,7 @@
 								<div id="clNine" class="panel-collapse collapse show" aria-expanded="true">
 									<div class="block-body">
 										
-										<!-- Schools -->
+										 Schools
 										<div class="nearby-wrap">
 											<div class="nearby_header">
 												<div class="nearby_header_first">
@@ -296,7 +365,7 @@
 											</div>
 										</div>
 										
-										<!-- Hotel & Restaurant -->
+										 Hotel & Restaurant
 										<div class="nearby-wrap">
 											<div class="nearby_header">
 												<div class="nearby_header_first">
@@ -348,7 +417,7 @@
 									</div>
 								</div>
 								
-							</div>
+							</div>-->
 							
 							<!-- Single Write a Review -->
 							<div class="property_block_wrap style-2">
@@ -359,32 +428,32 @@
 								
 								<div id="clTen" class="panel-collapse collapse show" aria-expanded="true">
 									<div class="block-body">
-										<form class="form-simple">
+										<form class="form-simple" method="post" action="/comments/{{ id }}">
 											<div class="row">
 												
 												<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="form-group">
-														<textarea class="form-control ht-80" placeholder="Messages"></textarea>
+														<textarea type="text" class="form-control ht-80" placeholder="Messages" name="comment" required></textarea>
 													</div>
 												</div>
 												
-												<div class="col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<input type="text" class="form-control" placeholder="Property Title">
-													</div>
-												</div>
-												
-												<div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<input type="text" class="form-control" placeholder="Your Name">
-													</div>
-												</div>
-												
-												<div class="col-lg-6 col-md-6 col-sm-12">
-													<div class="form-group">
-														<input type="email" class="form-control" placeholder="Your Email">
-													</div>
-												</div>
+{#												<div class="col-lg-12 col-md-12 col-sm-12">#}
+{#													<div class="form-group">#}
+{#														<input type="text" class="form-control" placeholder="Property Title">#}
+{#													</div>#}
+{#												</div>#}
+{#												#}
+{#												<div class="col-lg-6 col-md-6 col-sm-12">#}
+{#													<div class="form-group">#}
+{#														<input type="text" class="form-control" placeholder="Your Name">#}
+{#													</div>#}
+{#												</div>#}
+{#												#}
+{#												<div class="col-lg-6 col-md-6 col-sm-12">#}
+{#													<div class="form-group">#}
+{#														<input type="email" class="form-control" placeholder="Your Email">#}
+{#													</div>#}
+{#												</div>#}
 												
 												<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="form-group">
@@ -479,7 +548,7 @@
 									</div>
 								</div>
 							
-								 Agent Detail -->
+								<!-- Agent Detail -->
 								<!--<div class="agent-_blocks_wrap b-0">
 									<div class="side-block-header">
 										<h3 class="title">Message To Author</h3>
@@ -518,7 +587,7 @@
 									</div>
 								</div>
 								
-								 Download Pdf Report -->
+								<!-- Download Pdf Report -->
 								<!--<div class="downld_rport b-0">
 									<ul>
 										<li class="pdf"><a href="#"><i class="fas fa-file-pdf"></i>Download<span>PDF File</span></a></li>
@@ -526,7 +595,7 @@
 									</ul>
 								</div>
 								
-								Featured Property -->
+								<!-- Featured Property -->
 								<div class="sidebar-widgets">
 									
 									<h4>Similar Property</h4>
@@ -661,17 +730,17 @@
 							
 							<div class="col-lg-4 col-md-4">
 								<div class="footer_widget">
-									<div class="footlogo"><img src="../static/assets/img/logo-light.png" class="img-fluid mb-3" alt="" /></div>
-									<p>2512, New Market Eliza Road, Sincher 80<br>Montreal Central Canada,<br>USA QHVK1254</p>
-									<ul class="footer-bottom-social">
+									<div class="footlogo"><img src="../static/assets/img/logo.png" class="img-fluid mb-3" alt="" /></div>
+									<p>BEIJING UNIVERSITY OF TECHNOLOGY<br>GROUP 14<br>NB COMPANY</p>
+								<!--	<ul class="footer-bottom-social">
 										<li><a href="#"><i class="ti-facebook"></i></a></li>
 										<li><a href="#"><i class="ti-twitter"></i></a></li>
 										<li><a href="#"><i class="ti-instagram"></i></a></li>
 										<li><a href="#"><i class="ti-linkedin"></i></a></li>
-									</ul>
+									</ul>-->
 								</div>
 							</div>
-									
+
 							<div class="col-lg-2 col-md-2">
 								<div class="footer_widget">
 									<h4 class="widget_title">My Homes</h4>
@@ -683,19 +752,18 @@
 									</ul>
 								</div>
 							</div>
-									
+
 							<div class="col-lg-2 col-md-2">
 								<div class="footer_widget">
 									<h4 class="widget_title">About Us</h4>
 									<ul class="footer-menu">
 										<li><a href="#">Apartment</a></li>
 										<li><a href="#">My Houses</a></li>
-										<li><a href="#">Restaurant</a></li>
-										<li><a href="#">Nightlife</a></li>
+
 									</ul>
 								</div>
 							</div>
-							
+
 							<div class="col-lg-2 col-md-2">
 								<div class="footer_widget">
 									<h4 class="widget_title">News</h4>
@@ -707,8 +775,8 @@
 									</ul>
 								</div>
 							</div>
-							
-							<div class="col-lg-2 col-md-2">
+
+						<!--	<div class="col-lg-2 col-md-2">
 								<div class="footer_widget">
 									<h4 class="widget_title">Help</h4>
 									<ul class="footer-menu">
@@ -718,23 +786,23 @@
 										<li><a href="#">FAQs</a></li>
 									</ul>
 								</div>
-							</div>
-							
+							</div>-->
+
 						</div>
 					</div>
 				</div>
-				
-				<div class="footer-bottom">
+
+			<!--	<div class="footer-bottom">
 					<div class="container">
 						<div class="row align-items-center">
-							
+
 							<div class="col-lg-12 col-md-12">
 								<p class="mb-0">© 2020 Verio. Designd By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></p>
 							</div>
-							
+
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</footer>
 			<!-- ============================ Footer End ================================== -->
 			

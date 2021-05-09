@@ -92,7 +92,7 @@ def house_search(query):
 def get_user_info(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "select * from user_info Where user_name='" + username + "'"
+    sql = "select * from user_info Where user_name='" + str(username) + "'"
     cur.execute(sql)
     result = cur.fetchall()
     head = ['user_name', 'user_password', 'saved_property', 'email', 'phone_number', 'curr_address', 'city', 'country',
