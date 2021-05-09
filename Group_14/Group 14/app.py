@@ -144,7 +144,7 @@ def bookmarkproperty():
         results = check_prefer(session.get('CUS'))
         house = []
         for r in results:
-            house.append(get_house(r))
+            house.insert(0, get_house(r))
     return render_template('bookmark-list.html', house=house, username=username)
 
 
@@ -156,14 +156,18 @@ def contacts():
 @app.route('/estates/<id>', methods=['GET', "POST"])
 def estatesdetail(id):
     house = get_house(id)
-    if request.method == 'POST' and session.get('CUS'):
-        add_prefer(session.get('CUS'), id)
+    # if request.method == 'POST' and session.get('CUS'):
+    #     add_prefer(session.get('CUS'), id)
+    prefer = []
+    if session.get('CUS'):
+        username = session.get('CUS')
+        prefer = check_prefer(username)
     comments=read_comment(id)
     number='No'
     username=session.get('CUS')
     if comments:
         number=len(comments)
-    return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number)
+    return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number, prefer=prefer)
 
 @app.route('/comments/<id>', methods=['GET', "POST"])
 def addcomment(id):
@@ -174,6 +178,16 @@ def addcomment(id):
         add_comment(session.get('CUS'), id, comment)
     return redirect(url_for('estatesdetail', id=id))
 
+@app.route('/collect/<id>', methods=['GET', "POST"])
+def collect(id):
+    if session.get('CUS'):
+        username = session.get('CUS')
+        results = check_prefer(username)
+        if id in results:
+            delete_prefer(username, id)
+        else:
+            add_prefer(username, id)
+    return redirect(url_for('estatesdetail', id=id))
 
 @app.route('/search/<query>', methods=['GET', "POST"])
 def search(query):

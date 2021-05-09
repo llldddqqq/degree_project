@@ -476,13 +476,13 @@
 								
 								<!-- Share & Like Button -->
 								<div class="like_share_wrap b-0">
-                                    <form method="post">
-{#                                        <ul class="like_share_list">#}
-{#                                            <!--<li><a href="#" class="btn btn-likes" data-toggle="tooltip" data-original-title="Share"><i class="fas fa-share"></i>Share</a></li>-->#}
-{#                                            <li><a type="submit" class="btn btn-likes" data-toggle="tooltip" data-original-title="Save"><i class="fas fa-heart"></i>Save</a></li>#}
-{#                                        </ul>#}
-                                        <input type="submit" value="Save" class="btn btn-danger" data-toggle="tooltip" data-original-title="Save" />
-                                    </form>
+{#                                    <form method="post" action="/collect/{{ id }}">#}
+                                        <ul class="like_share_list">
+                                            <!--<li><a href="#" class="btn btn-likes" data-toggle="tooltip" data-original-title="Share"><i class="fas fa-share"></i>Share</a></li>-->
+                                            <li><a href="{{ url_for('collect', id=id) }}" class="btn btn-likes" data-toggle="tooltip" data-original-title="Save"><i class="fas fa-heart"></i>{% if id in prefer %}Unsave{% else %}Save{% endif %}</a></li>
+                                        </ul>
+{#                                        <input type="submit" value="Save" class="btn btn-danger" data-toggle="tooltip" data-original-title="Save" />#}
+{#                                    </form>#}
 								</div>
 								
 								<!--<div class="agent-_blocks_wrap b-0">
@@ -993,7 +993,21 @@
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->
-		
+        <script type="text/javascript">
+        $(function () {
+            $('.btn-likes').click(function () {
+                // this在回调函数中没有意义，需要临时保存
+                _this = this
+                $.get($(this).attr('href'), function () {
+                    if ($(_this).text() == 'Save') {
+                        $(_this).text('Unsave')
+                    } else {
+                        $(_this).text('Save')
+                    }
+                })
+            })
+        })
+        </script>
 
 	</body>
 </html>

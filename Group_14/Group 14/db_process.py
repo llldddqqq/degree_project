@@ -138,7 +138,7 @@ def renew_prefer(username):
     cur.close()
 
 
-# print(check_prefer('123'))
+print(check_prefer('ldq0'))
 
 
 def delete_prefer(username, house_id):
