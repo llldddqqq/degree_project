@@ -153,7 +153,9 @@ def estatesdetail(id):
     if request.method == 'POST' and session.get('CUS'):
         add_prefer(session.get('CUS'), id)
     comments=read_comment(id)
-    number=len(comments)
+    number='No'
+    if comments:
+        number=len(comments)
     return render_template('single-property-1.html', house=house, id=id, comments=comments, number=number)
 
 @app.route('/comments/<id>', methods=['GET', "POST"])
