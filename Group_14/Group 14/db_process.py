@@ -53,7 +53,7 @@ def db_user_signup(user, password):
     cur.close()
     print(user, password)
     return True
-
+print('ldq','123')
 
 # for i in range(30):
 #     string = 'ldq' + str(i)
