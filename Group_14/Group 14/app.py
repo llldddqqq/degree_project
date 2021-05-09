@@ -174,6 +174,20 @@ def search(query):
     result = house_search(query)
     end_search = time.time()
     print('search time:', str(end_search - start_search))
+    if request.method == 'POST':
+        ptype = request.form.get('ptype')
+        bedrooms = request.form.get('bedrooms')
+        bathrooms = request.form.get('bathrooms')
+        if ptype != '' or bedrooms != '' or bathrooms != '':
+            for id in list(result):
+                if ptype != '' and result[id]['type'] != ptype:
+                    del result[id]
+            for id in list(result):
+                if bedrooms != '' and result[id]['bedroom_amount'] != int(bedrooms):
+                    del result[id]
+            for id in list(result):
+                if bathrooms != '' and result[id]['bathroom_amount'] != int(bathrooms):
+                    del result[id]
     return render_template('search.html', result=result)
 
 

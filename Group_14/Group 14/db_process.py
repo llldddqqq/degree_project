@@ -80,6 +80,8 @@ def house_search(query):
         temp['type'] = result[0][7]
         temp['square'] = result[0][8]
         temp['pic_add'] = result[0][9]
+        temp['bedroom_amount'] = result[0][11]
+        temp['bathroom_amount'] = result[0][12]
         house_dic[id] = temp
     return house_dic
 
