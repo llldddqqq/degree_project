@@ -258,7 +258,7 @@ def update_pic():
             err += 1
             print(err)
     cur.close()
-update_pic()
+#update_pic()
 
 # update_pic()
 
