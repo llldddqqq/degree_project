@@ -2,6 +2,11 @@ from pymysql import *
 from Search import search
 import json
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.header import Header
+
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
 port = 3306
 db_user = 'dingqi'
@@ -50,12 +55,14 @@ def db_user_signup(user, password):
         password) + "'," + "'" + '' + "'" + ")"
     print(sql)
     cur.execute(sql)
-    #print(sql)
+    # print(sql)
     conn.commit()
     cur.close()
     print(user, password)
     return True
-#print('ldq','123')
+
+
+# print('ldq','123')
 
 # for i in range(30):
 #     string = 'ldq' + str(i)
@@ -138,7 +145,7 @@ def renew_prefer(username):
     cur.close()
 
 
-#print(check_prefer('ldq0'))
+# print(check_prefer('ldq0'))
 
 
 def delete_prefer(username, house_id):
@@ -258,7 +265,9 @@ def update_pic():
             err += 1
             print(err)
     cur.close()
-#update_pic()
+
+
+# update_pic()
 
 # update_pic()
 
@@ -353,7 +362,9 @@ def check_recomm(username):
     if result[0][0] is None or result[0][0] == '':
         return False
     return results
-#print(check_recomm('123'))
+
+
+# print(check_recomm('123'))
 
 
 def add_comment(username, house_id, comments):
@@ -378,14 +389,14 @@ def read_comment(house_id):
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
-    #print(result[0][0])
+    # print(result[0][0])
     if result[0][0] is None or result[0][0] == '':
         return False
     list1 = result[0][0][:-1].split(",")
-    #print(list1)
+    # print(list1)
     # print(len(list1))
-    for i in range(0,len(list1)):
-        list1[i]=list1[i].replace("\n",'').replace("\r",'')
+    for i in range(0, len(list1)):
+        list1[i] = list1[i].replace("\n", '').replace("\r", '')
         list1[i] = json.loads(list1[i])
     # for i in range(0, len(list1)):
     #     list1[i] = json.loads(list1[i])
@@ -424,10 +435,42 @@ def get_house_inoren(orientation):
         house_dic[result[i][0]] = temp
     return house_dic
 
+
 # print(get_house_inoren('west'))
 
 # def filter(house_dic,low_price,high_price,low_size,high_size,house_orien,bath_amount,bed_amount):
 #     for house_id in house_dic:
 
 
-
+def sentemail(receiver):
+    host = 'smtp.qq.com'
+    # 设置发件服务器地址
+    port = 465
+    # 设置发件服务器端口号。注意，这里有SSL和非SSL两种形式，现在一般是SSL方式
+    sender = '1457244296@qq.com'
+    # 设置发件邮箱，一定要自己注册的邮箱
+    pwd = 'bbbgbkcpxyohgjjh'
+    # 设置发件邮箱的授权码密码，根据163邮箱提示，登录第三方邮件客户端需要授权码
+    receiver = receiver
+    # 设置邮件接收人，可以是QQ邮箱
+    body = 'We have received the contact email and we will reply as soon as possible'
+    # 设置邮件正文，这里是支持HTML的
+    msg = MIMEText(body, 'html')
+    # 设置正文为符合邮件格式的HTML内容
+    msg['subject'] = 'Contact'
+    # 设置邮件标题
+    msg['from'] = sender
+    # 设置发送人
+    msg['to'] = receiver
+    # 设置接收人
+    try:
+        s = smtplib.SMTP_SSL(host, port)
+        # 注意！如果是使用SSL端口，这里就要改为SMTP_SSL
+        s.login(sender, pwd)
+        # 登陆邮箱
+        s.sendmail(sender, receiver, msg.as_string())
+        # 发送邮件！
+        print('Done.sent email success')
+    except smtplib.SMTPException:
+        print('Error.sent email fail')
+#sentemail('ldq-990730@163.com')
