@@ -479,7 +479,7 @@
 {#                                    <form method="post" action="/collect/{{ id }}">#}
                                         <ul class="like_share_list">
                                             <!--<li><a href="#" class="btn btn-likes" data-toggle="tooltip" data-original-title="Share"><i class="fas fa-share"></i>Share</a></li>-->
-                                            <li><a href="{{ url_for('collect', id=id) }}" class="btn btn-likes" data-toggle="tooltip" data-original-title="Save"><i class="fas fa-heart"></i>{% if id in prefer %}Unsave{% else %}Save{% endif %}</a></li>
+                                            <li><a href="{{ url_for('collect', id=id) }}" class="btn btn-likes" data-toggle="tooltip" data-original-title="Save"><i class="fas fa-heart"></i>{% if id in prefer %}Save{% else %}Unsave{% endif %}</a></li>
                                         </ul>
 {#                                        <input type="submit" value="Save" class="btn btn-danger" data-toggle="tooltip" data-original-title="Save" />#}
 {#                                    </form>#}
