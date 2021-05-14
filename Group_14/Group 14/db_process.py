@@ -58,6 +58,7 @@ def db_user_signup(user, password):
     # print(sql)
     conn.commit()
     cur.close()
+    #recomm_new(user)
     print(user, password)
     return True
 
@@ -343,7 +344,7 @@ def get_house_insize(low, high):
 def recomm_new(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    id = '1,3,7,10,12,13,14,15,16,17'
+    id = '1,3,30,10,12,13,14,15,16,17'
     sql = "UPDATE user_info SET recom = '" + id + "'" + " WHERE user_name='" + username + "'"
     # print(sql)
     cur.execute(sql)
@@ -364,7 +365,7 @@ def check_recomm(username):
     return results
 
 
-# print(check_recomm('123'))
+#print(check_recomm('ldq12138'))
 
 
 def add_comment(username, house_id, comments):

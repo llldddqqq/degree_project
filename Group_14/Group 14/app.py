@@ -65,6 +65,7 @@ def signup():
         return redirect('/login')
     else:
         if db_user_signup(user, pwd):
+            recomm_new(user)
             flash('sign up success')
             return redirect('/')
         else:
@@ -272,11 +273,13 @@ def logout():
 
 def recommend_to_user(user):
     # 获取user信息
-    house_list = Usercf_house.recommendation(user)
-    # print(house_list)
+    house_list = check_recomm(user)
+    print(house_list)
     house_info = {}
     for i in house_list:
+        print(i,get_house(str(i)))
         house_info[i] = get_house(str(i))
+
     return house_info
 
 
@@ -284,5 +287,4 @@ def recommend_to_user(user):
 
 
 if __name__ == '__main__':
-    # print(recommend_to_user('ldq'))
     app.run()
