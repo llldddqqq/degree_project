@@ -58,19 +58,35 @@ def signup():
     #       return render_template('login.html')
     user = request.form.get('username')
     pwd = request.form.get('password')
-    # print(user)
-    # print(pwd)
-    if check_in(user):
-        flash('This user has been registered')
-        return redirect('/login')
+    pwd2 = request.form.get('password2')
+    email = request.form.get('email')
+
+    if pwd != pwd2:
+
+        return render_template('home-7.html', msg="Two Passwords are Different!")
+
     else:
+<<<<<<< HEAD
         if db_user_signup(user, pwd):
             recomm_new(user)
             flash('sign up success')
             return redirect('/')
+=======
+        if check_in(user):
+            flash('This user has been registered')
+
+            return render_template('home-7.html', msg="This user has been registered")
+>>>>>>> f02b1a3027d818b2b69b2dcd6ae8621a31174fdf
         else:
-            flash('sign up failed')
-            return redirect('/')
+            if db_user_signup(user, pwd):
+                flash('sign up success')
+                session['CUS'] = user
+                update_user_email(user, email)
+                return redirect('/')
+                # return redirect(url_for('index_login', user=user))
+            else:
+                flash('sign up failed')
+                return render_template('home-7.html', msg="sign up failed")
 
 
 @app.route('/myprofile', methods=['GET', "POST"])
