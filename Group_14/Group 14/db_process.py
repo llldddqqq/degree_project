@@ -53,13 +53,13 @@ def db_user_signup(user, password):
     cur = conn.cursor()
     sql = "insert into user_info(user_name,user_password,saved_property) VALUE (" + "'" + str(user) + "'," + "'" + str(
         password) + "'," + "'" + '' + "'" + ")"
-    print(sql)
+    #print(sql)
     cur.execute(sql)
     # print(sql)
     conn.commit()
     cur.close()
     #recomm_new(user)
-    print(user, password)
+    #print(user, password)
     return True
 
 
