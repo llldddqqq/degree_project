@@ -66,17 +66,14 @@ def signup():
         return render_template('home-7.html', msg="Two Passwords are Different!")
 
     else:
-<<<<<<< HEAD
         if db_user_signup(user, pwd):
             recomm_new(user)
             flash('sign up success')
             return redirect('/')
-=======
         if check_in(user):
             flash('This user has been registered')
 
             return render_template('home-7.html', msg="This user has been registered")
->>>>>>> f02b1a3027d818b2b69b2dcd6ae8621a31174fdf
         else:
             if db_user_signup(user, pwd):
                 flash('sign up success')
