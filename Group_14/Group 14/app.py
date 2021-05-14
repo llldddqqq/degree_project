@@ -14,7 +14,11 @@ def index():
     if request.method == 'POST' and request.form.get('query'):
         query = request.form['query']
         return redirect(url_for('search', query=query))
-    return render_template('home-7.html')
+    if not session.get("CUS") is None:
+        user = session.get('CUS')
+        return render_template('home-7_login.html', username=user, featured=recommend_to_user(user))
+    else:
+        return render_template('home-7.html')
 
 @app.route('/index_login/<user>', methods=['POST', 'GET'])
 def index_login(user):
@@ -70,66 +74,86 @@ def signup():
 
 @app.route('/myprofile', methods=['GET', "POST"])
 def myprofile():
-    username = session.get('CUS')
-    user = get_user_info(username)
-    return render_template('my-profile.html', username=username, user=user)
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        user = get_user_info(username)
+        return render_template('my-profile.html', username=username, user=user)
+    else:
+        return render_template('home-7.html', msg='Please Login')
 
 @app.route('/editprofile', methods=['GET', "POST"])
 def editprofile():
-    username = session.get('CUS')
-    user = get_user_info(username)
-    return render_template('my-profile-edit.html', username=username, user=user)
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        user = get_user_info(username)
+        return render_template('my-profile-edit.html', username=username, user=user)
+    else:
+        return render_template('home-7.html', msg='Please Login')
 
 
 @app.route('/check', methods=['GET', "POST"])
 def check():
-    username = session.get('CUS')
-    user = get_user_info(username)
-    return render_template('check-password.html', username=username, user=user)
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        user = get_user_info(username)
+        return render_template('check-password.html', username=username, user=user)
+    else:
+        return render_template('home-7.html', msg='Please Login')
 
 @app.route('/checkpassword', methods=['GET', "POST"])
 def checkpassword():
-    username = session.get('CUS')
-    user = get_user_info(username)
-    alert="wrong"
-    if user['user_password'] == request.form.get('password'):
-        return render_template('change-password.html', username=username, user=user)
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        user = get_user_info(username)
+        alert="wrong"
+        if user['user_password'] == request.form.get('password'):
+            return render_template('change-password.html', username=username, user=user)
+        else:
+            return render_template('check-password.html', username=username, user=user, alert=alert)
     else:
-        return render_template('check-password.html', username=username, user=user, alert=alert)
+        return render_template('home-7.html', msg='Please Login')
 
 
 
 @app.route('/changepassword', methods=['GET', "POST"])
 def changepassword():
-    username = session.get('CUS')
-    alert = "wrong"
-    if request.form.get('password1') == request.form.get('password2'):
-        password=request.form.get('password1')
-        update_user_password(username, password)
-        return redirect(url_for('myprofile'))
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        alert = "wrong"
+        if request.form.get('password1') == request.form.get('password2'):
+            password=request.form.get('password1')
+            update_user_password(username, password)
+            return redirect(url_for('myprofile'))
+        else:
+            return render_template('change-password.html', username=username, alert=alert)
     else:
-        return render_template('change-password.html', username=username, alert=alert)
+        return render_template('home-7.html', msg='Please Login')
 
 @app.route('/edit', methods=['GET', "POST"])
 def edit():
-    username = session.get('CUS')
-    email = request.form.get('email')
-    phone= request.form.get('phone')
-    address = request.form.get('address')
-    city = request.form.get('city')
-    country = request.form.get('country')
-    update_user_email(username, email)
-    update_user_phone(username, phone)
-    update_user_address(username, address)
-    update_user_city(username, city)
-    update_user_country(username, country)
-    user = get_user_info(username)
-    return redirect(url_for('myprofile'))
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        email = request.form.get('email')
+        phone= request.form.get('phone')
+        address = request.form.get('address')
+        city = request.form.get('city')
+        country = request.form.get('country')
+        update_user_email(username, email)
+        update_user_phone(username, phone)
+        update_user_address(username, address)
+        update_user_city(username, city)
+        update_user_country(username, country)
+        return redirect(url_for('myprofile'))
+    else:
+        return render_template('home-7.html', msg='Please Login')
 
 
 @app.route('/listings', methods=['GET', "POST"])
 def listings():
-    return render_template('grid-layout-4.html')
+    if not session.get("CUS") is None:
+        return render_template('grid-layout-4.html')
+    else:
+        return render_template('grid-layout-4_before.html')
 
 
 @app.route('/myproperty', methods=['GET', "POST"])
@@ -145,12 +169,18 @@ def bookmarkproperty():
         house = []
         for r in results:
             house.insert(0, get_house(r))
-    return render_template('bookmark-list.html', house=house, username=username)
+        return render_template('bookmark-list.html', house=house, username=username)
+    else:
+        return render_template('home-7.html', msg='Please Login')
 
 
 @app.route('/contacts', methods=['GET', "POST"])
 def contacts():
-    return render_template('contact.html')
+    if not session.get("CUS") is None:
+        username = session.get('CUS')
+        return render_template('contact.html', username=username)
+    else:
+        return render_template('home-7.html', msg='Please Login')
 
 
 @app.route('/estates/<id>', methods=['GET', "POST"])
@@ -159,15 +189,18 @@ def estatesdetail(id):
     # if request.method == 'POST' and session.get('CUS'):
     #     add_prefer(session.get('CUS'), id)
     prefer = []
+
+    comments=read_comment(id)
+    number='No'
+    if comments:
+        number=len(comments)
     if session.get('CUS'):
         username = session.get('CUS')
         prefer = check_prefer(username)
-    comments=read_comment(id)
-    number='No'
-    username=session.get('CUS')
-    if comments:
-        number=len(comments)
-    return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number, prefer=prefer)
+        return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number, prefer=prefer)
+    else:
+        return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number)
+
 
 @app.route('/comments/<id>', methods=['GET', "POST"])
 def addcomment(id):
@@ -176,7 +209,14 @@ def addcomment(id):
         #comment = request.form["comment"]
         #print(comment)
         add_comment(session.get('CUS'), id, comment)
-    return redirect(url_for('estatesdetail', id=id))
+        return redirect(url_for('estatesdetail', id=id))
+    else:
+        house = get_house(id)
+        comments = read_comment(id)
+        number = 'No'
+        if comments:
+            number = len(comments)
+        return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number, msg='Please Login')
 
 @app.route('/collect/<id>', methods=['GET', "POST"])
 def collect(id):
@@ -187,7 +227,14 @@ def collect(id):
             delete_prefer(username, id)
         else:
             add_prefer(username, id)
-    return redirect(url_for('estatesdetail', id=id))
+        return redirect(url_for('estatesdetail', id=id))
+    else:
+        house = get_house(id)
+        comments = read_comment(id)
+        number = 'No'
+        if comments:
+            number = len(comments)
+        return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number, msg='Please Login')
 
 @app.route('/search/<query>', methods=['GET', "POST"])
 def search(query):
@@ -209,7 +256,11 @@ def search(query):
             for id in list(result):
                 if bathrooms != '' and result[id]['bathroom_amount'] != int(bathrooms):
                     del result[id]
-    return render_template('search.html', result=result)
+    if session.get('CUS'):
+        username = session.get('CUS')
+        return render_template('search.html', result=result, username=username)
+    else:
+        return render_template('search.html', result=result)
 
 
 @app.route('/logout')
