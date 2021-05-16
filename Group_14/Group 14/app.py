@@ -14,11 +14,12 @@ def index():
     if request.method == 'POST' and request.form.get('query'):
         query = request.form['query']
         return redirect(url_for('search', query=query))
-    if not session.get("CUS") is None:
-        user = session.get('CUS')
-        return render_template('home-7_login.html', username=user, featured=recommend_to_user(user))
     else:
-        return render_template('home-7.html')
+        if not session.get("CUS") is None:
+            user = session.get('CUS')
+            return render_template('home-7_login.html', username=user, featured=recommend_to_user(user))
+        else:
+            return render_template('home-7.html')
 
 @app.route('/index_login/<user>', methods=['POST', 'GET'])
 def index_login(user):
@@ -274,7 +275,7 @@ def search(query):
         username = session.get('CUS')
         return render_template('search.html', result=result, username=username)
     else:
-        return render_template('search.html', result=result)
+        return render_template('search_before.html', result=result)
 
 
 @app.route('/logout')

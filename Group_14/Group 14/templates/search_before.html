@@ -1,39 +1,39 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="author" content="Drizvato" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		
+
         <title>Verio - Residence & Real Estate Template</title>
-		 
+
         <!-- Custom CSS -->
         <link href="../static/assets/css/styles.css" rel="stylesheet">
-		
+
 		<!-- Custom Color Option -->
 		<link href="../static/assets/css/colors.css" rel="stylesheet">
-		
+
     </head>
-	
+
     <body class="yellow-skin">
-	
+
 		 <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
        <div class="preloader"></div>
-		
+
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
-		
+
             <!-- ============================================================== -->
             <!-- Top header  -->
             <!-- ============================================================== -->
 
-			
+
             <!-- Start Navigation -->
-			<div class="header header-light head-border">
+			<div class="header header-light dark-text">
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
@@ -45,7 +45,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li class="active"><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
+								<li><a href="#">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -58,14 +58,14 @@
 									</ul> -->
 								</li>
 
-								<li><a href="{{ url_for('listings')}}">listings<span class="submenu-indicator"></span></a>
+								<li><a href={{ url_for('listings')}}>Listings<span class="submenu-indicator"></span></a>
 							<!--		<ul class="nav-dropdown nav-submenu">
 										<li><a href="#">Listing Grid<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 												<li><a href="grid-layout-with-sidebar.html">Grid Style 1</a></li>
 												<li><a href="grid-layout-2.html">Grid Style 2</a></li>
-												<li><a href="grid-layout-3.html">Grid Style 3</a></li>
-												<li><a href="grid-layout-4.html">Grid Style 4</a></li>
+												<li><a href="grid-layout-3.html">Grid Style 3</a></li>-->
+												<!--
 											</ul>
 										</li>
 										<li><a href="#">Listing List<span class="submenu-indicator"></span></a>
@@ -91,20 +91,13 @@
 										<li class=""><a href="#">User <span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
-												<li class="active"><a href="{{ url_for('myprofile')}}">My Profile</a></li>
-												<li><a href="{{ url_for('myproperty')}}">My Property</a></li>
-												<li><a href="{{ url_for('bookmarkproperty')}}">Bookmark Property</a></li>
+												<li><a href={{ url_for('myprofile')}}>My Profile</a></li>
+											<!--	<li><a href={{ url_for('myproperty')}}>My Property</a></li>-->
+												<li><a href={{ url_for('bookmarkproperty')}}>Saved Property</a></li>
 											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
 											</ul>
 										</li>
-										<li><a href="#">Single Property<span class="submenu-indicator"></span></a>
-											<ul class="nav-dropdown nav-submenu" style="display: none;">
-												<li><a href="single-property-1.html">Single Property 1</a></li>
-												<li><a href="single-property-2.html">Single Property 2</a></li>
-												<li><a href="single-property-3.html">Single Property 3</a></li>
-												<li><a href="single-property-4.html">Single Property 4</a></li>
-											</ul>
-										</li>
+
 									<!--	<li><a href="compare-property.html">Compare Property</a></li>-->
 									</ul>
 								</li>
@@ -124,32 +117,22 @@
 									</ul>
 								</li>-->
 
-								<li><a href="{{ url_for('contacts')}}">Contacts</a></li>
+								<li><a href={{ url_for('contacts')}}>Contacts</a></li>
 
 							</ul>
 
-{#							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">#}
-                            <ul class="btn-group account-drop align-to-right">
-                                <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, {{ username }}
-                                </button>
-                                <div class="dropdown-menu pull-right animated flipInX">
-                                    <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
-{#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
-                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Bookmarked Listings</a>
-                                    <a class="active" href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
-                                </div>
+							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">
 
-{#								<li>#}
-{#									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">#}
-{#										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>#}
-{#									</a>#}
-{#								</li>#}
-{#								<li class="add-listing bg-info">#}
-{#									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">#}
-{#										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up#}
-{#									</a>#}
-{#								</li>#}
+								<li>
+									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">
+										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>
+									</a>
+								</li>
+								<li class="add-listing bg-info">
+									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">
+										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up
+									</a>
+								</li>
 							</ul>
 
 						</div>
@@ -161,23 +144,23 @@
 			<!-- ============================================================== -->
 			<!-- Top header  -->
 			<!-- ============================================================== -->
-			
+
 			<!-- ============================ Filter Space ================================== -->
 
 			<!-- ============================ Filter Space ================================== -->
-			
+
 			<!-- ============================ All Property ================================== -->
 			<section>
 				<div class="container">
-					
+
 					<div class="row">
-						
+
 						<!-- property Sidebar -->
 						<div class="col-lg-4 col-md-12 col-sm-12">
 							<div class="hidden-md-down">
-							
+
 								<div class="page-sidebar">
-									
+
 									<!-- Find New Property -->
 									<div class="sidebar-widgets">
 
@@ -204,7 +187,7 @@
 {#												</select>#}
 {#											</div>#}
 {#										</div>#}
-										
+
 										<div class="form-group">
  											<div class="simple-input">
  												<select id="bedrooms" name="bedrooms" class="form-control">
@@ -228,7 +211,7 @@
  												</select>
  											</div>
  										</div>
-										
+
 {#										<div class="form-group">#}
 {#											<div class="simple-input">#}
 {#												<select id="bathrooms" name="orientation" class="form-control">#}
@@ -240,7 +223,7 @@
 {#												</select>#}
 {#											</div>#}
 {#										</div>#}
-										
+
 										<div class="row">
 											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">
 												<h6>Area Range</h6>
@@ -249,7 +232,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="row">
 											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">
 												<h6>Choose Price</h6>
@@ -258,18 +241,18 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<input type="submit" value="Find" class="btn btn-theme full-width bg-2"/>
                                     </form>
 									</div>
 								</div>
 							</div>
 							<!-- Sidebar End -->
-						
+
 						</div>
-						
+
 						<div class="col-lg-8 col-md-12 col-sm-12">
-							
+
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 list-layout">
                                     {% for id in result %}
@@ -297,7 +280,7 @@
                                     {% endfor %}
 								</div>
 							</div>
-							
+
 							<!-- Pagination -->
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12">
@@ -322,26 +305,25 @@
 									</ul>
 								</div>
 							</div>
-					
+
 						</div>
-						
-						
+
+
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- ============================ All Property ================================== -->
-			
-			<!-- ============================ Call To Action ================================== -->
+
 
 			<!-- ============================ Call To Action End ================================== -->
-			
+
 			<!-- ============================ Footer Start ================================== -->
 			<footer class="dark-footer skin-dark-footer style-2">
-				
+
 				<div class="footer-middle">
 					<div class="container">
 						<div class="row">
-							
+
 							<div class="col-lg-4 col-md-4">
 								<div class="footer_widget">
 									<div class="footlogo"><img src="../static/assets/img/logo.png" class="img-fluid mb-3" alt="" /></div>
@@ -419,7 +401,7 @@
 				</div>-->
 			</footer>
 			<!-- ============================ Footer End ================================== -->
-			
+
 			<!-- Log In Modal -->
 			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -434,7 +416,7 @@
 						<div class="modal-body">
 							<div class="login-form">
 								<form>
-								
+
 									<div class="form-group">
 										<label>User Name</label>
 										<div class="input-with-icon">
@@ -442,7 +424,7 @@
 											<i class="ti-user"></i>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<label>Password</label>
 										<div class="input-with-icon">
@@ -450,11 +432,11 @@
 											<i class="ti-unlock"></i>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-md full-width pop-login bg-2">Login</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or login via</span></div>
@@ -464,7 +446,7 @@
 									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="social-login mb-3">
 								<ul>
 									<li>
@@ -474,7 +456,7 @@
 									<li><a href="#" class="theme-cl">Forget Password?</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="text-center">
 								<p class="mt-2">Haven't Any Account? <a href="register.html" class="link">Click here</a></p>
 							</div>
@@ -483,7 +465,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Sign Up Modal -->
 			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="sign-up" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -498,9 +480,9 @@
 						<div class="modal-body">
 							<div class="login-form">
 								<form>
-									
+
 									<div class="row">
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Full Name</label>
@@ -510,7 +492,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Email</label>
@@ -520,7 +502,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Username</label>
@@ -530,7 +512,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Password</label>
@@ -540,13 +522,13 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-md full-width pop-login bg-2">Create Account</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or Signup via</span></div>
@@ -564,7 +546,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Filter Search -->
 			<div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="searchmodal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -929,7 +911,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Video Modal -->
 			<div class="modal fade" id="popup-video" tabindex="-1" role="dialog" aria-labelledby="popup-video" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
@@ -937,9 +919,9 @@
 				</div>
 			</div>
 			<!-- End Video Modal -->
-			
+
 			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-			
+
 
 		</div>
 		<!-- ============================================================== -->
