@@ -1,4 +1,3 @@
-﻿
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -33,7 +32,7 @@
             <!-- ============================================================== -->
             <!-- Start Navigation -->
 			<!-- Start Navigation -->
-			<div class="header header-light head-border">
+			<div class="header header-light dark-text">
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
@@ -45,7 +44,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
+								<li><a href="#">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -58,14 +57,14 @@
 									</ul> -->
 								</li>
 
-								<li class="active"><a href="{{ url_for('listings')}}">listings<span class="submenu-indicator"></span></a>
+								<li class="active"><a href={{ url_for('listings')}}>Listings<span class="submenu-indicator"></span></a>
 							<!--		<ul class="nav-dropdown nav-submenu">
 										<li><a href="#">Listing Grid<span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 												<li><a href="grid-layout-with-sidebar.html">Grid Style 1</a></li>
 												<li><a href="grid-layout-2.html">Grid Style 2</a></li>
-												<li><a href="grid-layout-3.html">Grid Style 3</a></li>
-												<li><a href="grid-layout-4.html">Grid Style 4</a></li>
+												<li><a href="grid-layout-3.html">Grid Style 3</a></li>-->
+												<!--
 											</ul>
 										</li>
 										<li><a href="#">Listing List<span class="submenu-indicator"></span></a>
@@ -91,9 +90,9 @@
 										<li class=""><a href="#">User <span class="submenu-indicator"></span></a>
 											<ul class="nav-dropdown nav-submenu">
 											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
-												<li><a href="{{ url_for('myprofile')}}">My Profile</a></li>
-
-												<li><a href="{{ url_for('bookmarkproperty')}}">Saved Property</a></li>
+												<li><a href={{ url_for('myprofile')}}>My Profile</a></li>
+											<!--	<li><a href={{ url_for('myproperty')}}>My Property</a></li>-->
+												<li><a href={{ url_for('bookmarkproperty')}}>Saved Property</a></li>
 											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
 											</ul>
 										</li>
@@ -117,32 +116,22 @@
 									</ul>
 								</li>-->
 
-								<li><a href="{{ url_for('contacts')}}">Contacts</a></li>
+								<li><a href={{ url_for('contacts')}}>Contacts</a></li>
 
 							</ul>
 
-{#							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">#}
-                            <ul class="btn-group account-drop align-to-right">
-                                <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="static/assets/img/user-5.jpg" class="avater-img" alt="">Hi, {{ username }}
-                                </button>
-                                <div class="dropdown-menu pull-right animated flipInX">
-                                    <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
-{#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
-                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Saved Listings</a>
-                                    <a class="active" href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
-                                </div>
+							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">
 
-{#								<li>#}
-{#									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">#}
-{#										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>#}
-{#									</a>#}
-{#								</li>#}
-{#								<li class="add-listing bg-info">#}
-{#									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">#}
-{#										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up#}
-{#									</a>#}
-{#								</li>#}
+								<li>
+									<a href="#" data-toggle="modal" data-target="#login" class="text-muted">
+										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>
+									</a>
+								</li>
+								<li class="add-listing bg-info">
+									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">
+										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up
+									</a>
+								</li>
 							</ul>
 
 						</div>
@@ -155,7 +144,7 @@
 			<!-- ============================================================== -->
 			<!-- Top header  -->
 			<!-- ============================================================== -->
-			
+
 			<!-- ============================ Filter Space ================================== -->
 			<div class="filterspaces">
 				<div class="container">
@@ -163,28 +152,28 @@
 						<div class="row align-items-center">
 
 							<div class="col-lg-9 col-md-9 col-sm-8">
-								
+
 							</div>
-							
+
 							<div class="col-lg-3 col-md-3 col-sm-4">
 								<div class="filterspace__link">
 									<a href="javascript_voide(0);" class="filt_link" data-toggle="modal" data-target="#searchfilter"><i class="ti-filter mr-1"></i><span>Filters</span></a>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- ============================ Filter Space ================================== -->
-			
+
 			<!-- ============================ All Property ================================== -->
 			<section>
-			
+
 				<div class="container">
-						
+
 					<div class="row">
-					
+
 						<!-- Single Property -->
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<div class="list-slide-box">
@@ -200,7 +189,7 @@
 											<img src="../static/assets/img/user-1.jpg" class="author-avater-img" alt="">
 										</div>
 										<div class="listing-content-wrap smalls">
-											<h4 class="lst-title"><a href="single-property-3.html">HizratVitory House</a></h4> 
+											<h4 class="lst-title"><a href="single-property-3.html">HizratVitory House</a></h4>
 											<p>Montreal, Canada</p>
 										</div>
 										<div class="listing-footer-wrap property-lists mt-2">
@@ -213,10 +202,10 @@
 											<h4 class="mdr-price">$1850</h4>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</div>
 						</div>
-				
+
 						<!-- Single Property -->
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<div class="list-slide-box">
@@ -233,7 +222,7 @@
 											<img src="../static/assets/img/user-2.jpg" class="author-avater-img" alt="">
 										</div>
 										<div class="listing-content-wrap smalls">
-											<h4 class="lst-title"><a href="single-property-3.html">Green Park Vesu</a></h4> 
+											<h4 class="lst-title"><a href="single-property-3.html">Green Park Vesu</a></h4>
 											<p>Liverpool, London</p>
 										</div>
 										<div class="listing-footer-wrap property-lists mt-2">
@@ -246,10 +235,10 @@
 											<h4 class="mdr-price">$1,050</h4>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single Property -->
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<div class="list-slide-box">
@@ -265,7 +254,7 @@
 											<img src="../static/assets/img/user-3.jpg" class="author-avater-img" alt="">
 										</div>
 										<div class="listing-content-wrap smalls">
-											<h4 class="lst-title"><a href="single-property-3.html">Sai Singh Line</a></h4> 
+											<h4 class="lst-title"><a href="single-property-3.html">Sai Singh Line</a></h4>
 											<p>Bimingham, London</p>
 										</div>
 										<div class="listing-footer-wrap property-lists mt-2">
@@ -278,7 +267,7 @@
 											<h4 class="mdr-price">$854</h4>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</div>
 						</div>
 
@@ -297,7 +286,7 @@
 											<img src="../static/assets/img/user-1.jpg" class="author-avater-img" alt="">
 										</div>
 										<div class="listing-content-wrap smalls">
-											<h4 class="lst-title"><a href="single-property-3.html">Hizrat Villa</a></h4> 
+											<h4 class="lst-title"><a href="single-property-3.html">Hizrat Villa</a></h4>
 											<p>San Francisco, USA</p>
 										</div>
 										<div class="listing-footer-wrap property-lists mt-2">
@@ -310,10 +299,10 @@
 											<h4 class="mdr-price">$650</h4>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</div>
 						</div>
-				
+
 						<!-- Single Property -->
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<div class="list-slide-box">
@@ -330,7 +319,7 @@
 											<img src="../static/assets/img/user-2.jpg" class="author-avater-img" alt="">
 										</div>
 										<div class="listing-content-wrap smalls">
-											<h4 class="lst-title"><a href="single-property-3.html">Resort Valley Ocs</a></h4> 
+											<h4 class="lst-title"><a href="single-property-3.html">Resort Valley Ocs</a></h4>
 											<p>San Francisco, Canada</p>
 										</div>
 										<div class="listing-footer-wrap property-lists mt-2">
@@ -343,10 +332,10 @@
 											<h4 class="mdr-price">$750</h4>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</div>
 						</div>
-						
+
 						<!-- Single Property -->
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<div class="list-slide-box">
@@ -362,7 +351,7 @@
 											<img src="../static/assets/img/user-3.jpg" class="author-avater-img" alt="">
 										</div>
 										<div class="listing-content-wrap smalls">
-											<h4 class="lst-title"><a href="single-property-3.html">New Clue Apartment</a></h4> 
+											<h4 class="lst-title"><a href="single-property-3.html">New Clue Apartment</a></h4>
 											<p>Liverpool, London</p>
 										</div>
 										<div class="listing-footer-wrap property-lists mt-2">
@@ -375,12 +364,12 @@
 											<h4 class="mdr-price">$670</h4>
 										</div>
 									</div>
-								</div>	
+								</div>
 							</div>
-						</div>						
-						
+						</div>
+
 					</div>
-							
+
 					<!-- Pagination -->
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12">
@@ -405,22 +394,22 @@
 							</ul>
 						</div>
 					</div>
-					
-				</div>	
+
+				</div>
 			</section>
 			<!-- ============================ All Property ================================== -->
-			
+
 			<!-- ============================ Call To Action ================================== -->
 
 			<!-- ============================ Call To Action End ================================== -->
-			
+
 			<!-- ============================ Footer Start ================================== -->
 			<footer class="dark-footer skin-dark-footer style-2">
-				
+
 				<div class="footer-middle">
 					<div class="container">
 						<div class="row">
-							
+
 							<div class="col-lg-4 col-md-4">
 								<div class="footer_widget">
 									<div class="footlogo"><img src="../static/assets/img/logo.png" class="img-fluid mb-3" alt="" /></div>
@@ -498,7 +487,7 @@
 				</div>-->
 			</footer>
 			<!-- ============================ Footer End ================================== -->
-			
+
 			<!-- Log In Modal -->
 			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -563,7 +552,7 @@
 			</div>
 			<!-- End Modal -->
 			<!-- End Modal -->
-			
+
 			<!-- Sign Up Modal -->
 			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="sign-up" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -578,9 +567,9 @@
 						<div class="modal-body">
 							<div class="login-form">
 								<form>
-									
+
 									<div class="row">
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Full Name</label>
@@ -590,7 +579,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Email</label>
@@ -600,7 +589,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Username</label>
@@ -610,7 +599,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
 												<label>Password</label>
@@ -620,13 +609,13 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-md full-width pop-login bg-2">Create Account</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or Signup via</span></div>
@@ -644,7 +633,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Filter Search -->
 			<div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="searchmodal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -657,7 +646,7 @@
 					</header>
 					<div class="modal-content" id="searchmodal">
 						<div class="modal-body pl-0 pr-0">
-							
+
 							<div class="filter-search-box">
 								<div class="form-group">
 									<div class="input-with-icon">
@@ -666,16 +655,16 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="filter_wraps">
-								
+
 								<!-- Single Search -->
 								<div class="single_search_boxed">
 									<div class="widget-boxed-header">
 										<h4>
 											<a href="#where" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Where<span class="selected">Chicago</span></a>
 										</h4>
-										
+
 									</div>
 									<div class="widget-boxed-body collapse" id="where" data-parent="#where">
 										<div class="side-list no-border">
@@ -727,14 +716,14 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Single Search -->
 								<div class="single_search_boxed">
 									<div class="widget-boxed-header">
 										<h4>
 											<a href="#ptype" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Property Types<span class="selected">Apartment</span></a>
 										</h4>
-										
+
 									</div>
 									<div class="widget-boxed-body collapse" id="ptype" data-parent="#ptype">
 										<div class="side-list no-border">
@@ -778,14 +767,14 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Single Search -->
 								<div class="single_search_boxed">
 									<div class="widget-boxed-header">
 										<h4>
 											<a href="#bedrooms" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Bedrooms<span class="selected">2 Beds</span></a>
 										</h4>
-										
+
 									</div>
 									<div class="widget-boxed-body collapse" id="bedrooms" data-parent="#bedrooms">
 										<div class="side-list no-border">
@@ -825,14 +814,14 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Single Search -->
 								<div class="single_search_boxed">
 									<div class="widget-boxed-header">
 										<h4>
 											<a href="#price" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Price Range<span class="selected">$10,000 - $15,000</span></a>
 										</h4>
-										
+
 									</div>
 									<div class="widget-boxed-body collapse" id="price" data-parent="#price">
 										<div class="side-list no-border">
@@ -876,14 +865,14 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Single Search -->
 								<div class="single_search_boxed">
 									<div class="widget-boxed-header">
 										<h4>
 											<a href="#mood" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Mood<span class="selected">Any Mood</span></a>
 										</h4>
-										
+
 									</div>
 									<div class="widget-boxed-body collapse" id="mood" data-parent="#mood">
 										<div class="side-list no-border">
@@ -927,14 +916,14 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Single Search -->
 								<div class="single_search_boxed">
 									<div class="widget-boxed-header">
 										<h4>
 											<a href="#ameneties" data-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Ameneties<span class="selected">ADA Compliant</span></a>
 										</h4>
-										
+
 									</div>
 									<div class="widget-boxed-body collapse" id="ameneties" data-parent="#ameneties">
 										<div class="side-list no-border">
@@ -998,9 +987,9 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
-							
+
 							<div class="form-group filter_button">
 								<button type="submit" class="btn btn-md full-width pop-login bg-2">22 Results Show</button>
 							</div>
@@ -1010,7 +999,7 @@
 			</div>
 			<!-- End Modal -->
 {#            {% endblock %}#}
-			
+
 			<!-- Video Modal -->
 			<div class="modal fade" id="popup-video" tabindex="-1" role="dialog" aria-labelledby="popup-video" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
@@ -1018,9 +1007,9 @@
 				</div>
 			</div>
 			<!-- End Video Modal -->
-			
+
 			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-			
+
 
 		</div>
 		<!-- ============================================================== -->
@@ -1042,11 +1031,11 @@
 		<script src="../static/assets/js/imagesloaded.js"></script>
 		<script src="../static/assets/js/daterangepicker.js"></script>
 		<script src="../static/assets/js/custom.js"></script>
-		
+
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->
-		
+
 
 	</body>
 </html>

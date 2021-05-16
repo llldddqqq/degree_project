@@ -89,19 +89,12 @@
 											<ul class="nav-dropdown nav-submenu">
 											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
 												<li><a href="{{ url_for('myprofile')}}">My Profile</a></li>
-												<li><a href="{{ url_for('myproperty')}}">My Property</a></li>
-												<li><a href="{{ url_for('bookmarkproperty')}}">Bookmark Property</a></li>
+											<!--	<li><a href="{{ url_for('myproperty')}}">My Property</a></li>-->
+												<li><a href="{{ url_for('bookmarkproperty')}}">Saved Property</a></li>
 											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
 											</ul>
 										</li>
-										<li><a href="#">Single Property<span class="submenu-indicator"></span></a>
-											<ul class="nav-dropdown nav-submenu" style="display: none;">
-												<li><a href="single-property-1.html">Single Property 1</a></li>
-												<li><a href="single-property-2.html">Single Property 2</a></li>
-												<li><a href="single-property-3.html">Single Property 3</a></li>
-												<li><a href="single-property-4.html">Single Property 4</a></li>
-											</ul>
-										</li>
+
 									<!--	<li><a href="compare-property.html">Compare Property</a></li>-->
 									</ul>
 								</li>
@@ -133,7 +126,7 @@
                                 <div class="dropdown-menu pull-right animated flipInX">
                                     <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
 {#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
-                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Bookmarked Listings</a>
+                                    <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Saved Listings</a>
                                     <a class="active" href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
                                 </div>
 
@@ -260,7 +253,7 @@
 					
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 text-center">
-							<a href="#" class="btn btn-theme arrow-btn bg-2">Browse All Property<span><i class="ti-arrow-right"></i></span></a>
+							<a href="{{ url_for('listings')}}" class="btn btn-theme arrow-btn bg-2">Browse All Property<span><i class="ti-arrow-right"></i></span></a>
 						</div>
 					</div>
 					
