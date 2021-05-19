@@ -240,8 +240,10 @@ def collect(id):
         results = check_prefer(username)
         if id in results:
             delete_prefer(username, id)
+            print('delete',username, id)
         else:
             add_prefer(username, id)
+            print('add', username, id)
         return redirect(url_for('estatesdetail', id=id))
     else:
         house = get_house(id)

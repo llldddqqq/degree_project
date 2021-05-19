@@ -393,16 +393,32 @@ def read_comment(house_id):
     # print(result[0][0])
     if result[0][0] is None or result[0][0] == '':
         return False
-    list1 = result[0][0][:-1].split(",")
-    # print(list1)
-    # print(len(list1))
+    list1=[]
+    size=len(result[0][0][:-1])
+    i=j=0
+    query=result[0][0][:-1]
+    #print(query)
+    #print(size)
+    temp=0
+    while i < size :
+        if query[i]=="{":
+            temp=i
+        if query[i]=="}":
+            list1.append(query[temp:i+1])
+            temp=0
+        i+=1
+    #print(list1)
+
     for i in range(0, len(list1)):
-        list1[i] = list1[i].replace("\n", '').replace("\r", '')
+        #print(list1[i].replace("'",''))
+        list1[i] = list1[i].replace("'",'').replace("\n", '').replace("\r", '')
+        #print(list1[i])
         list1[i] = json.loads(list1[i])
     # for i in range(0, len(list1)):
     #     list1[i] = json.loads(list1[i])
     # print(list1)
     return list1
+print(read_comment('2'))
 
 
 def get_house_inoren(orientation):
