@@ -188,6 +188,21 @@ def bookmarkproperty():
     else:
         return render_template('home-7.html', msg='Please Login')
 
+@app.route('/bookmarkproperty/<id>', methods=['GET', 'POST'])
+def bookmarkproperty_collect(id):
+    if session.get('CUS'):
+        username = session.get('CUS') # username
+        results = check_prefer(username)  # [10, 11, 14]
+        if id in results:
+            delete_prefer(username, id)
+            # print('delete',username, id)
+        else:
+            add_prefer(username, id)
+            # print('add', username, id)
+        return redirect(url_for('bookmarkproperty', id=id))
+        # return jsonify(errno="1", errmsg="suss")
+
+
 
 @app.route('/contacts', methods=['GET', "POST"])
 def contacts():
@@ -212,6 +227,7 @@ def estatesdetail(id):
     if session.get('CUS'):
         username = session.get('CUS')
         prefer = check_prefer(username)
+        print(prefer)
         return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number, prefer=prefer)
     else:
         return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number)
@@ -233,17 +249,15 @@ def addcomment(id):
             number = len(comments)
         return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number, msg='Please Login')
 
-@app.route('/collect/<id>', methods=['GET', "POST"])
+@app.route('/collect/<id>', methods=['GET', 'POST'])
 def collect(id):
     if session.get('CUS'):
         username = session.get('CUS')
         results = check_prefer(username)
         if id in results:
             delete_prefer(username, id)
-            print('delete',username, id)
         else:
             add_prefer(username, id)
-            print('add', username, id)
         return redirect(url_for('estatesdetail', id=id))
     else:
         house = get_house(id)
