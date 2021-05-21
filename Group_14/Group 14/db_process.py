@@ -53,13 +53,13 @@ def db_user_signup(user, password):
     cur = conn.cursor()
     sql = "insert into user_info(user_name,user_password,saved_property) VALUE (" + "'" + str(user) + "'," + "'" + str(
         password) + "'," + "'" + '' + "'" + ")"
-    #print(sql)
+    # print(sql)
     cur.execute(sql)
     # print(sql)
     conn.commit()
     cur.close()
-    #recomm_new(user)
-    #print(user, password)
+    # recomm_new(user)
+    # print(user, password)
     return True
 
 
@@ -126,6 +126,7 @@ def add_prefer(username, house_id):
     conn.commit()
     cur.close()
 
+#print(add_prefer('ldq16','1233'))
 
 def check_prefer(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -133,7 +134,9 @@ def check_prefer(username):
     sql2 = "select saved_property from user_info where user_name='" + username + "'"
     cur.execute(sql2)
     result = cur.fetchall()
+    #print(result[0][0].split(','))
     results = result[0][0].split(',')[:-1]
+    #print(results)
     return results
 
 
@@ -151,17 +154,19 @@ def renew_prefer(username):
 
 def delete_prefer(username, house_id):
     prefers = check_prefer(username)
+    #print(prefers)
     if str(house_id) in prefers:
         prefers.remove(str(house_id))
-        renew_prefer('ldq1')
+        renew_prefer(username)
     else:
         return False
     for house in prefers:
+        #print(house)
         add_prefer(username, house)
     return True
 
 
-# print(delete_prefer('ldq1', 1))
+#print(delete_prefer('ldq16', 1))
 
 
 def get_house(id):
@@ -365,7 +370,7 @@ def check_recomm(username):
     return results
 
 
-#print(check_recomm('ldq12138'))
+# print(check_recomm('ldq12138'))
 
 
 def add_comment(username, house_id, comments):
@@ -390,35 +395,29 @@ def read_comment(house_id):
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
-    # print(result[0][0])
+
     if result[0][0] is None or result[0][0] == '':
         return False
-    list1=[]
-    size=len(result[0][0][:-1])
-    i=j=0
-    query=result[0][0][:-1]
-    #print(query)
-    #print(size)
-    temp=0
-    while i < size :
-        if query[i]=="{":
-            temp=i
-        if query[i]=="}":
-            list1.append(query[temp:i+1])
-            temp=0
-        i+=1
-    #print(list1)
+    list1 = []
+    size = len(result[0][0][:-1])
+    i = j = 0
+    query = result[0][0][:-1]
 
+    temp = 0
+    while i < size:
+        if query[i] == "{":
+            temp = i
+        if query[i] == "}":
+            list1.append(query[temp:i + 1])
+            temp = 0
+        i += 1
     for i in range(0, len(list1)):
-        #print(list1[i].replace("'",''))
-        list1[i] = list1[i].replace("'",'').replace("\n", '').replace("\r", '')
-        #print(list1[i])
+        list1[i] = list1[i].replace("'", '').replace("\n", '').replace("\r", '')
         list1[i] = json.loads(list1[i])
-    # for i in range(0, len(list1)):
-    #     list1[i] = json.loads(list1[i])
-    # print(list1)
     return list1
-print(read_comment('2'))
+
+
+#print(read_comment('3'))
 
 
 def get_house_inoren(orientation):
@@ -490,4 +489,4 @@ def sentemail(receiver):
         print('Done.sent email success')
     except smtplib.SMTPException:
         print('Error.sent email fail')
-#sentemail('ldq-990730@163.com')
+# sentemail('ldq-990730@163.com')
