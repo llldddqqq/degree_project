@@ -216,13 +216,13 @@
 						
 								<div class="listing_thumb_wrapper">
 									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/1.jpg" class="img-fluid mx-auto" alt=""></a>
+										<a href="single-property-1.html"><img src="{{ featured[id]['pic_add'] }}" class="img-fluid mx-auto" alt=""></a>
 									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
 								</div>
 								
 								<div class="property_caption_wrappers pb-0">
@@ -231,18 +231,18 @@
 											<h4 class="pr-property_title mb-1"><a href="/estates/{{id}}">{{ featured[id]['address'] }}</a></h4>
 											<div class="listing-location-name"><a href="/estates/{{id}}">{{ featured[id]['country'] }}</a></div>
 										</div>
-										<div class="property-real-price"><a href="/estates/{{id}}" class="cl-blue">{{ featured[id]['price'] }}<span class="price_status">/mo</span></a></div>
+										<div class="property-real-price"><a href="/estates/{{id}}" class="cl-blue">{{ featured[id]['price'] }}<span class="price_status"></span></a></div>
 									</div>
 								</div>
 								
 								<div class="modern_property_footer">
 									<div class="property-lists flex-1">
 										<ul>
-											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>{{ featured[id]['bedroom_amount'] }}</li>
-											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>{{ featured[id]['bathroom_amount'] }}</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>{{ featured[id]['bedroom_amount'] }} Beds</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>{{ featured[id]['bathroom_amount'] }} Baths</li>
 										</ul>
 									</div>
-									<div class="fp_types">For Rent</div>
+									<div class="fp_types">For Sale</div>
 								</div>
 							</div>
 						</div>

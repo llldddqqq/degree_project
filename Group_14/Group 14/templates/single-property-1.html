@@ -595,100 +595,100 @@
 									</ul>
 								</div>
 								
-								<!-- Featured Property -->
+								<-- Featured Property -->
 								<div class="sidebar-widgets">
 									
 									<h4>Similar Property</h4>
 									
 									<div class="sidebar_featured_property">
-										
+										{% for id in featured %}
 										<!-- List Sibar Property -->
 										<div class="sides_list_property midium b-0">
 											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/1.jpg" class="img-fluid" alt="">
+												<img src="{{ featured[id]['pic_add'] }}" class="img-fluid" alt="">
 											</div>
 											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Loss vengel New Apartment</a></h4>
-												<span><i class="ti-location-pin"></i>Sans Fransico</span>
+												<h4><a href="/estates/{{id}}">{{ featured[id]['address'] }}</a></h4>
+												<span><i class="ti-location-pin"></i>{{ featured[id]['country'] }}</span>
 												<div class="lists_property_types mt-1">
 													<div class="property_types_vlix sale">For Sale</div>
 												</div>
 												<div class="lists_property_price">
 													<div class="lists_property_price_value first">
-														<h4>$4,240</h4>
+														<h4>{{ featured[id]['price'] }}</h4>
 													</div>
-													<div class="lists_property_added">
-														<small>3 days ago</small>
-													</div>
+{#													<div class="lists_property_added">#}
+{#														<small>3 days ago</small>#}
+{#													</div>#}
 												</div>
 											</div>
 										</div>
-										
-										<!-- List Sibar Property -->
-										<div class="sides_list_property midium b-0">
-											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/2.jpg" class="img-fluid" alt="">
-											</div>
-											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Montreal Quriqe Apartment</a></h4>
-												<span><i class="ti-location-pin"></i>Liverpool, London</span>
-												<div class="lists_property_types mt-1">
-													<div class="property_types_vlix">For Rent</div>
-												</div>
-												<div class="lists_property_price">
-													<div class="lists_property_price_value first">
-														<h4>$7,380</h4>
-													</div>
-													<div class="lists_property_added">
-														<small>10 days ago</small>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<!-- List Sibar Property -->
-										<div class="sides_list_property midium b-0">
-											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/3.jpg" class="img-fluid" alt="">
-											</div>
-											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Curmic Studio For Office</a></h4>
-												<span><i class="ti-location-pin"></i>Montreal, Canada</span>
-												<div class="lists_property_types mt-1">
-													<div class="property_types_vlix">For Rent</div>
-												</div>
-												<div class="lists_property_price">
-													<div class="lists_property_price_value first">
-														<h4>$8,730</h4>
-													</div>
-													<div class="lists_property_added">
-														<small>25 days ago</small>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<!-- List Sibar Property -->
-										<div class="sides_list_property midium b-0">
-											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/4.jpg" class="img-fluid" alt="">
-											</div>
-											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Lisque Viral Villa</a></h4>
-												<span><i class="ti-location-pin"></i>Sreek View, New York</span>
-												<div class="lists_property_types mt-1">
-													<div class="property_types_vlix buy">For Buy</div>
-												</div>
-												<div class="lists_property_price">
-													<div class="lists_property_price_value first">
-														<h4>$7,240</h4>
-													</div>
-													<div class="lists_property_added">
-														<small>29 days ago</small>
-													</div>
-												</div>
-											</div>
-										</div>
+										{% endfor %}
+{#										<!-- List Sibar Property -->#}
+{#										<div class="sides_list_property midium b-0">#}
+{#											<div class="sides_list_property_thumb">#}
+{#												<img src="../static/assets/img/indoors/2.jpg" class="img-fluid" alt="">#}
+{#											</div>#}
+{#											<div class="sides_list_property_detail">#}
+{#												<h4><a href="single-property-1.html">Montreal Quriqe Apartment</a></h4>#}
+{#												<span><i class="ti-location-pin"></i>Liverpool, London</span>#}
+{#												<div class="lists_property_types mt-1">#}
+{#													<div class="property_types_vlix">For Rent</div>#}
+{#												</div>#}
+{#												<div class="lists_property_price">#}
+{#													<div class="lists_property_price_value first">#}
+{#														<h4>$7,380</h4>#}
+{#													</div>#}
+{#													<div class="lists_property_added">#}
+{#														<small>10 days ago</small>#}
+{#													</div>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#										#}
+{#										<!-- List Sibar Property -->#}
+{#										<div class="sides_list_property midium b-0">#}
+{#											<div class="sides_list_property_thumb">#}
+{#												<img src="../static/assets/img/indoors/3.jpg" class="img-fluid" alt="">#}
+{#											</div>#}
+{#											<div class="sides_list_property_detail">#}
+{#												<h4><a href="single-property-1.html">Curmic Studio For Office</a></h4>#}
+{#												<span><i class="ti-location-pin"></i>Montreal, Canada</span>#}
+{#												<div class="lists_property_types mt-1">#}
+{#													<div class="property_types_vlix">For Rent</div>#}
+{#												</div>#}
+{#												<div class="lists_property_price">#}
+{#													<div class="lists_property_price_value first">#}
+{#														<h4>$8,730</h4>#}
+{#													</div>#}
+{#													<div class="lists_property_added">#}
+{#														<small>25 days ago</small>#}
+{#													</div>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#										#}
+{#										<!-- List Sibar Property -->#}
+{#										<div class="sides_list_property midium b-0">#}
+{#											<div class="sides_list_property_thumb">#}
+{#												<img src="../static/assets/img/indoors/4.jpg" class="img-fluid" alt="">#}
+{#											</div>#}
+{#											<div class="sides_list_property_detail">#}
+{#												<h4><a href="single-property-1.html">Lisque Viral Villa</a></h4>#}
+{#												<span><i class="ti-location-pin"></i>Sreek View, New York</span>#}
+{#												<div class="lists_property_types mt-1">#}
+{#													<div class="property_types_vlix buy">For Buy</div>#}
+{#												</div>#}
+{#												<div class="lists_property_price">#}
+{#													<div class="lists_property_price_value first">#}
+{#														<h4>$7,240</h4>#}
+{#													</div>#}
+{#													<div class="lists_property_added">#}
+{#														<small>29 days ago</small>#}
+{#													</div>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
 										
 									</div>
 									

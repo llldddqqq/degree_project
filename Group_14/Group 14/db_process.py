@@ -95,6 +95,37 @@ def house_search(query):
         house_dic[id] = temp
     return house_dic
 
+def get_allhouse():
+    conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
+    cur = conn.cursor()
+    sql = "select * from datas limit 0,10"
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+    house_dic = {}
+    head = ['address',
+            'postcode',
+            'country',
+            'price',
+            'full_market_price',
+            'vat_exclusive',
+            'description',
+            'size',
+            'pic_address',
+            'message',
+            'bedroom_amount',
+            'bathroom_amount',
+            'house_orientation',
+            'sold'
+            ]
+    # print(result[0][0], result[1][0])
+    for i in range(0, len(result)):
+        temp = {}
+        for j in range(0, len(head)):
+            temp[head[j]] = result[i][j + 1]
+        house_dic[result[i][0]] = temp
+    return house_dic
+
 
 # a=house_search('Dublin')
 # print(a)

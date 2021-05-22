@@ -53,7 +53,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li class="active"><a href="#">Home<span class="submenu-indicator"></span></a>
+								<li class="active"><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -217,22 +217,22 @@
 						
 								<div class="listing_thumb_wrapper">
 									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/1.jpg" class="img-fluid mx-auto" alt=""></a>
+										<a href="single-property-1.html"><img src="../static/assets/img/house_pics/1.JPG" class="img-fluid mx-auto" alt=""></a>
 									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
 								</div>
 								
 								<div class="property_caption_wrappers pb-0">
 									<div class="property_short_detail">
 										<div class="pr_type_status">
-											<h4 class="pr-property_title mb-1"><a href="single-property-1.html">Riqaza Apartment Montreal</a></h4>
-											<div class="listing-location-name"><a href="single-property-1.html">Resort Valley Ocs, USA</a></div>
+											<h4 class="pr-property_title mb-1"><a href="/estates/1">5 Braemor Drive, Churchtown, Co.Dublin</a></h4>
+											<div class="listing-location-name"><a href="/estates/1">Dublin</a></div>
 										</div>
-										<div class="property-real-price"><a href="single-property-1.html" class="cl-blue">$ 786,000<span class="price_status">/mo</span></a></div>
+										<div class="property-real-price"><a href="/estates/1" class="cl-blue">343000.0<span class="price_status"></span></a></div>
 									</div>
 								</div>
 								
@@ -243,7 +243,7 @@
 											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>2 Baths</li>
 										</ul>
 									</div>
-									<div class="fp_types">For Rent</div>
+									<div class="fp_types">For Sale</div>
 								</div>
 							</div>
 						</div>
@@ -254,70 +254,33 @@
 						
 								<div class="listing_thumb_wrapper">
 									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/2.jpg" class="img-fluid mx-auto" alt=""></a>
+										<a href="single-property-1.html"><img src="../static/assets/img/house_pics/3.JPG" class="img-fluid mx-auto" alt=""></a>
 									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
 								</div>
 								
 								<div class="property_caption_wrappers pb-0">
 									<div class="property_short_detail">
 										<div class="pr_type_status">
-											<h4 class="pr-property_title mb-1"><a href="single-property-1.html">Riqaza Apartment Montreal</a></h4>
-											<div class="listing-location-name"><a href="single-property-1.html">Resort Valley Ocs, USA</a></div>
+											<h4 class="pr-property_title mb-1"><a href="/estates/3">41  Boroimhe Hawthorn, Swords</a></h4>
+											<div class="listing-location-name"><a href="/estates/3">Dublin</a></div>
 										</div>
-										<div class="property-real-price"><a href="single-property-1.html" class="cl-blue">$ 786,000<span class="price_status">/mo</span></a></div>
+										<div class="property-real-price"><a href="/estates/3" class="cl-blue">438500.0<span class="price_status"></span></a></div>
 									</div>
 								</div>
 								
 								<div class="modern_property_footer">
 									<div class="property-lists flex-1">
 										<ul>
-											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>3 Beds</li>
-											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>2 Baths</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>1 Beds</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>1 Baths</li>
 										</ul>
 									</div>
-									<div class="fp_types">For Rent</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Single Property -->
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="single_property_style property_style_2 modern">
-						
-								<div class="listing_thumb_wrapper">
-									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/3.jpg" class="img-fluid mx-auto" alt=""></a>
-									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
-								</div>
-								
-								<div class="property_caption_wrappers pb-0">
-									<div class="property_short_detail">
-										<div class="pr_type_status">
-											<h4 class="pr-property_title mb-1"><a href="single-property-1.html">Riqaza Apartment Montreal</a></h4>
-											<div class="listing-location-name"><a href="single-property-1.html">Resort Valley Ocs, USA</a></div>
-										</div>
-										<div class="property-real-price"><a href="single-property-1.html" class="cl-blue">$ 786,000<span class="price_status">/mo</span></a></div>
-									</div>
-								</div>
-								
-								<div class="modern_property_footer">
-									<div class="property-lists flex-1">
-										<ul>
-											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>3 Beds</li>
-											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>2 Baths</li>
-										</ul>
-									</div>
-									<div class="fp_types">For Rent</div>
+									<div class="fp_types">For Sale</div>
 								</div>
 							</div>
 						</div>
@@ -328,33 +291,33 @@
 						
 								<div class="listing_thumb_wrapper">
 									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/4.jpg" class="img-fluid mx-auto" alt=""></a>
+										<a href="single-property-1.html"><img src="../static/assets/img/homes/30.jpg" class="img-fluid mx-auto" alt=""></a>
 									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
 								</div>
 								
 								<div class="property_caption_wrappers pb-0">
 									<div class="property_short_detail">
 										<div class="pr_type_status">
-											<h4 class="pr-property_title mb-1"><a href="single-property-1.html">Riqaza Apartment Montreal</a></h4>
-											<div class="listing-location-name"><a href="single-property-1.html">Resort Valley Ocs, USA</a></div>
+											<h4 class="pr-property_title mb-1"><a href="/estates/30">Apartment 117 Alder House, Silverbanks  The Coast, Baldoyle</a></h4>
+											<div class="listing-location-name"><a href="/estates/30">Wexford</a></div>
 										</div>
-										<div class="property-real-price"><a href="single-property-1.html" class="cl-blue">$ 786,000<span class="price_status">/mo</span></a></div>
+										<div class="property-real-price"><a href="/estates/30" class="cl-blue">255022.0<span class="price_status"></span></a></div>
 									</div>
 								</div>
 								
 								<div class="modern_property_footer">
 									<div class="property-lists flex-1">
 										<ul>
-											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>3 Beds</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>4 Beds</li>
 											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>2 Baths</li>
 										</ul>
 									</div>
-									<div class="fp_types">For Rent</div>
+									<div class="fp_types">For Sale</div>
 								</div>
 							</div>
 						</div>
@@ -365,33 +328,33 @@
 						
 								<div class="listing_thumb_wrapper">
 									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/5.jpg" class="img-fluid mx-auto" alt=""></a>
+										<a href="single-property-1.html"><img src="../static/assets/img/house_pics/10.JPG" class="img-fluid mx-auto" alt=""></a>
 									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
 								</div>
 								
 								<div class="property_caption_wrappers pb-0">
 									<div class="property_short_detail">
 										<div class="pr_type_status">
-											<h4 class="pr-property_title mb-1"><a href="single-property-1.html">Riqaza Apartment Montreal</a></h4>
-											<div class="listing-location-name"><a href="single-property-1.html">Resort Valley Ocs, USA</a></div>
+											<h4 class="pr-property_title mb-1"><a href="/estates/10">15a Moore Bay, Kilkee</a></h4>
+											<div class="listing-location-name"><a href="/estates/10">Clare</a></div>
 										</div>
-										<div class="property-real-price"><a href="single-property-1.html" class="cl-blue">$ 786,000<span class="price_status">/mo</span></a></div>
+										<div class="property-real-price"><a href="/estates/10" class="cl-blue">126500.0<span class="price_status"></span></a></div>
 									</div>
 								</div>
 								
 								<div class="modern_property_footer">
 									<div class="property-lists flex-1">
 										<ul>
-											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>3 Beds</li>
-											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>2 Baths</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>1 Beds</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>1 Baths</li>
 										</ul>
 									</div>
-									<div class="fp_types">For Rent</div>
+									<div class="fp_types">For Sale</div>
 								</div>
 							</div>
 						</div>
@@ -402,33 +365,70 @@
 						
 								<div class="listing_thumb_wrapper">
 									<div class="property_gallery_slide-thumb">
-										<a href="single-property-1.html"><img src="../static/assets/img/homes/6.jpg" class="img-fluid mx-auto" alt=""></a>
+										<a href="single-property-1.html"><img src="../static/assets/img/house_pics/12.JPG" class="img-fluid mx-auto" alt=""></a>
 									</div>
-									<div class="uilist_view_thumb">
-										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
-										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>
-										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>
-									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
 								</div>
 								
 								<div class="property_caption_wrappers pb-0">
 									<div class="property_short_detail">
 										<div class="pr_type_status">
-											<h4 class="pr-property_title mb-1"><a href="single-property-1.html">Riqaza Apartment Montreal</a></h4>
-											<div class="listing-location-name"><a href="single-property-1.html">Resort Valley Ocs, USA</a></div>
+											<h4 class="pr-property_title mb-1"><a href="/estates/12">4 NEWCASTLE COURT, NEWCASTLE PARK, GALWAY</a></h4>
+											<div class="listing-location-name"><a href="/estates/12">Dublin</a></div>
 										</div>
-										<div class="property-real-price"><a href="single-property-1.html" class="cl-blue">$ 786,000<span class="price_status">/mo</span></a></div>
+										<div class="property-real-price"><a href="/estates/12" class="cl-blue">430000.0<span class="price_status"></span></a></div>
 									</div>
 								</div>
 								
 								<div class="modern_property_footer">
 									<div class="property-lists flex-1">
 										<ul>
-											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>3 Beds</li>
-											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>2 Baths</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>1 Beds</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>1 Baths</li>
 										</ul>
 									</div>
-									<div class="fp_types">For Rent</div>
+									<div class="fp_types">For Sale</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single Property -->
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="single_property_style property_style_2 modern">
+						
+								<div class="listing_thumb_wrapper">
+									<div class="property_gallery_slide-thumb">
+										<a href="single-property-1.html"><img src="../static/assets/img/house_pics/13.JPG" class="img-fluid mx-auto" alt=""></a>
+									</div>
+{#									<div class="uilist_view_thumb">#}
+{#										<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>#}
+{#										<a href="#" class="uilist-btn text-success" data-toggle="tooltip" data-original-title="Compare Property"><i class="lni lni-shuffle"></i></a>#}
+{#										<a href="#" class="uilist-btn text-danger" data-toggle="tooltip" data-original-title="Save Property"><i class="ti-heart"></i></a>#}
+{#									</div>#}
+								</div>
+								
+								<div class="property_caption_wrappers pb-0">
+									<div class="property_short_detail">
+										<div class="pr_type_status">
+											<h4 class="pr-property_title mb-1"><a href="/estates/13">1 Mountain Road, Tubbercurry</a></h4>
+											<div class="listing-location-name"><a href="/estates/13">Dublin</a></div>
+										</div>
+										<div class="property-real-price"><a href="/estates/13" class="cl-blue">355000.0<span class="price_status"></span></a></div>
+									</div>
+								</div>
+								
+								<div class="modern_property_footer">
+									<div class="property-lists flex-1">
+										<ul>
+											<li><span class="flatcons"><img src="../static/assets/img/bed.svg" alt=""></span>1 Beds</li>
+											<li><span class="flatcons"><img src="../static/assets/img/bath.svg" alt=""></span>1 Baths</li>
+										</ul>
+									</div>
+									<div class="fp_types">For Sale</div>
 								</div>
 							</div>
 						</div>						
@@ -437,7 +437,7 @@
 					
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 text-center">
-							<a href="#" class="btn btn-theme arrow-btn bg-2">Browse All Property<span><i class="ti-arrow-right"></i></span></a>
+							<a href="{{ url_for('listings')}}" class="btn btn-theme arrow-btn bg-2">Browse All Property<span><i class="ti-arrow-right"></i></span></a>
 						</div>
 					</div>
 					

@@ -52,6 +52,13 @@ def login():
             print('fail')
             return render_template('login.html', msg='wrong password')
 
+@app.route('/semail', methods=['GET', "POST"])  # 路由默认接收请求方式位POST，然而登录所需要请求都有，所以要特别声明。
+def semail():
+    email = request.form.get('email')
+    sentemail(email)
+    return redirect(url_for('index'))
+
+
 
 @app.route('/signup', methods=['GET', "POST"])
 def signup():
@@ -165,10 +172,12 @@ def edit():
 
 @app.route('/listings', methods=['GET', "POST"])
 def listings():
+    result = get_allhouse()
     if not session.get("CUS") is None:
-        return render_template('grid-layout-4.html')
+        username = session.get('CUS')
+        return render_template('grid-layout-4.html', username=username, result=result)
     else:
-        return render_template('grid-layout-4_before.html')
+        return render_template('grid-layout-4_before.html', result=result)
 
 
 @app.route('/myproperty', methods=['GET', "POST"])
@@ -228,7 +237,7 @@ def estatesdetail(id):
         username = session.get('CUS')
         prefer = check_prefer(username)
         print(prefer)
-        return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number, prefer=prefer)
+        return render_template('single-property-1.html', username=username, house=house, id=id, comments=comments, number=number, prefer=prefer, featured=recommend_to_user(username))
     else:
         return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number)
 

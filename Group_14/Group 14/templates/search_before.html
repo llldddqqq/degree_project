@@ -45,7 +45,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li><a href="#">Home<span class="submenu-indicator"></span></a>
+								<li><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -259,7 +259,7 @@
 									<!-- Single Property Start -->
 									<div class="sides_list_property large">
 										<div class="sides_list_property_thumb">
-											<img src="../static/assets/img/homes/1.jpg" class="img-fluid" alt="">
+											<img src="{{ result[id]['pic_add'] }}" class="img-fluid" alt="">
 										</div>
 										<div class="sides_list_property_detail">
 											<h4><a href="/estates/{{id}}">{{ result[id]['address'] }}</a></h4>
