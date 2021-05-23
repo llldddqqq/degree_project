@@ -70,9 +70,19 @@ def db_user_signup(user, password):
 #     db_user_signup(string, 'liu1',str(i))
 
 
-def house_search(query):
+def house_search(query, page_no, page_size):
     results = search(query)
-    # print(results)
+    all_page = len(results) // page_size + 1
+    if int(page_no) > 1:
+        if len(results) > int(page_no) * int(page_size):
+            results = results[(int(page_no) - 1) * int(page_size): int(page_no) * int(page_size)]
+        else:
+            results = results[(int(page_no) - 1) * int(page_size): len(results)]
+    else:
+        if len(results) > int(page_size):
+            results = results[0: int(page_no) * int(page_size)]
+        else:
+            results = results[0: len(results)]
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     house_dic = {}
@@ -93,7 +103,7 @@ def house_search(query):
         temp['bedroom_amount'] = result[0][11]
         temp['bathroom_amount'] = result[0][12]
         house_dic[id] = temp
-    return house_dic
+    return house_dic, all_page
 
 def get_allhouse():
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
