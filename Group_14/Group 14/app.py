@@ -278,8 +278,11 @@ def collect(id):
 
 @app.route('/search/<query>', methods=['GET', "POST"])
 def search(query):
+    request_url = request.base_url
     start_search = time.time()
-    result = house_search(query)
+    page_no = request.args.get('page_no', 1)
+    page_size = request.args.get('page_size', 10)
+    result, all_page = house_search(query, page_no, page_size)
     end_search = time.time()
     print('search time:', str(end_search - start_search))
     if request.method == 'POST':
@@ -298,9 +301,9 @@ def search(query):
                     del result[id]
     if session.get('CUS'):
         username = session.get('CUS')
-        return render_template('search.html', result=result, username=username)
+        return render_template('search.html', result=result, username=username, all_page=all_page, page_no=int(page_no), url=request_url)
     else:
-        return render_template('search_before.html', result=result)
+        return render_template('search_before.html', result=result, all_page=all_page, page_no=int(page_no), url=request_url)
 
 
 @app.route('/logout')
