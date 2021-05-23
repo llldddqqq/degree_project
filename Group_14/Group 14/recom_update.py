@@ -1,6 +1,8 @@
 import Usercf_house
 from pymysql import *
 import time
+import db_process
+
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
 port = 3306
 db_user = 'dingqi'
@@ -14,16 +16,16 @@ def recommend_to_user(user):
     house_list2 = [1002, 1203, 12402, 3254, 234, 1, 23, 124, 12535, 4234]
     pivot = 10 - len(house_list) - 1
     if len(house_list) < 10:
-        for i in range(0, pivot+1):
+        for i in range(0, pivot + 1):
             house_list.append(house_list2[i])
     return house_list
 
 
-#print(recommend_to_user('ldq'))
+# print(recommend_to_user('ldq'))
 def to_string(list):
-    str1=''
+    str1 = ''
     for i in list:
-        str1=str1+str(i)+","
+        str1 = str1 + str(i) + ","
     return str1[:-1]
 
 
@@ -45,28 +47,36 @@ def update():
     users = get_all_user()
     for user in users:
         try:
-            result=to_string(recommend_to_user(user))
-            sql="UPDATE user_info SET recom='"+result+"'"+"WHERE user_name='"+user+"'"
+            result = to_string(recommend_to_user(user))
+            sql = "UPDATE user_info SET recom='" + result + "'" + "WHERE user_name='" + user + "'"
             cur.execute(sql)
             conn.commit()
         except:
-            result2='1,23,27,10,12,13,24,15,16,17'
-            sql = "UPDATE user_info SET recom='" + result2 + "'"+"WHERE user_name='"+user+"'"
+            result2 = '1,23,27,10,12,13,24,15,16,17'
+            sql = "UPDATE user_info SET recom='" + result2 + "'" + "WHERE user_name='" + user + "'"
             cur.execute(sql)
             conn.commit()
     cur.close()
 
-update()
+
+# update()
 
 # time_now=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6]
 # #print(str(time_now))
 # i=1
-# while True:
-#     time_now = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6])
-#     print(1)
-#     if time_now!='12':
-#         print(1)
-#         time.sleep(1)
-#         continue
+while True:
+    time_now = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6])
+    #print(1)
+    if time_now != '08':
+        time.sleep(60 * 60)
+    else:
+        try:
+            update()
+            print('update success')
+            db_process.sentemail('ldq-990730@163.com')
+        except:
+            print('update fail')
+            continue
+        time.sleep(60 * 60)
 
-    #time.sleep()
+    # time.sleep()
