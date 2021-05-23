@@ -325,7 +325,7 @@ def recommend_to_user(user):
     return house_info
 
 
-recommend_to_user('ldq')
+#recommend_to_user('ldq')
 
 
 if __name__ == '__main__':
