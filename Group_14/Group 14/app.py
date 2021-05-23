@@ -50,7 +50,7 @@ def login():
             return redirect(url_for('index_login', user=user))
         else:
             print('fail')
-            return render_template('login.html', msg='wrong password')
+            return render_template('home-7.html', msg='wrong password')
 
 @app.route('/semail', methods=['GET', "POST"])  # 路由默认接收请求方式位POST，然而登录所需要请求都有，所以要特别声明。
 def semail():
@@ -325,7 +325,7 @@ def recommend_to_user(user):
     return house_info
 
 
-#recommend_to_user('ldq')
+recommend_to_user('ldq')
 
 
 if __name__ == '__main__':
