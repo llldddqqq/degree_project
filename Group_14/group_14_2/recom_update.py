@@ -25,7 +25,7 @@ def to_string(list):
     for i in list:
         str1=str1+str(i)+","
     return str1[:-1]
-#print(to_string([1,2,3,4]))
+
 
 def get_all_user():
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -46,8 +46,6 @@ def update():
     for user in users:
         try:
             result=to_string(recommend_to_user(user))
-            #print(recommend_to_user(user))
-            #print(result)
             sql="UPDATE user_info SET recom='"+result+"'"+"WHERE user_name='"+user+"'"
             cur.execute(sql)
             conn.commit()

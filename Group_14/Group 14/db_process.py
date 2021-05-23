@@ -401,7 +401,7 @@ def check_recomm(username):
     return results
 
 
-# print(check_recomm('ldq12138'))
+print(check_recomm('ldq16'))
 
 
 def add_comment(username, house_id, comments):

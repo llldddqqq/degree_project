@@ -1,33 +1,32 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="author" content="Drizvato" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		
-        <title>NB - Residence & Real Estate </title>
-		 
+
+        <title>NB - Residence & Real Estate Template</title>
+
         <!-- Custom CSS -->
         <link href="../static/assets/css/styles.css" rel="stylesheet">
-		
+
 		<!-- Custom Color Option -->
 		<link href="../static/assets/css/colors.css" rel="stylesheet">
-		
+
     </head>
-	
+
     <body class="yellow-skin">
-	
-		 <!-- ============================================================== -->
+        <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
        <div class="preloader"></div>
-		
+
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
-		
-            <!-- ============================================================== -->
+
+			<!-- ============================================================== -->
             <!-- Top header  -->
             <!-- ============================================================== -->
             <!-- Start Navigation -->
@@ -43,7 +42,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li class=""><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
+								<li class="active"><a href="{{ url_for('index')}}">Home<span class="submenu-indicator"></span></a>
 								<!--	<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home 1</a></li>
 										<li><a href="home-2.html">Home 2</a></li>
@@ -90,7 +89,7 @@
 											<ul class="nav-dropdown nav-submenu">
 											<!--	<li><a href="dashboard.html">User Dashboard</a></li>-->
 												<li><a href="{{ url_for('myprofile')}}">My Profile</a></li>
-												<li class="active"><a href="{{ url_for('myproperty')}}">My Property</a></li>
+												<li><a href="{{ url_for('myproperty')}}">My Property</a></li>
 												<li><a href="{{ url_for('bookmarkproperty')}}">Bookmark Property</a></li>
 											<!--	<li><a href="submit-property.html">Submit Property</a></li>-->
 											</ul>
@@ -135,7 +134,7 @@
                                     <a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a>
 {#                                    <a href="my-property.html"><i class="ti-layers"></i>Property List</a>#}
                                     <a href="{{ url_for('bookmarkproperty') }}"><i class="ti-bookmark"></i>Bookmarked Listings</a>
-                                    <a href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
+                                    <a class="active" href="{{ url_for('logout') }}"><i class="ti-unlock"></i>Log out</a>
                                 </div>
 
 {#								<li>#}
@@ -154,230 +153,161 @@
 					</nav>
 				</div>
 			</div>
-			<!-- End Navigation -->
+            <!-- End Navigation -->
 			<div class="clearfix"></div>
 			<!-- ============================================================== -->
 			<!-- Top header  -->
 			<!-- ============================================================== -->
-		
-           
-			
-			<!-- ============================ Page Title Start================================== -->
-			<div class="page-title" style="background:#f4f4f4 url(../static/assets/img/inner-banner.jpg);" data-overlay="5">
-				<div class="container">
+
+			<!-- ============================ User Dashboard ================================== -->
+			<section class="gray p-0">
+				<div class="container-fluid p-0">
+
 					<div class="row">
-						<div class="col-lg-12 col-md-12">
-							
-							<div class="breadcrumbs-wrap">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item active" aria-current="page">Contact Me</li>
-								</ol>
-								<h2 class="breadcrumb-title">Contact Us - Get in Touch</h2>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- ============================ Page Title End ================================== -->
-			
-			<!-- ============================ Agency List Start ================================== -->
-		<!--	<section class="gray-simple">
-			
-				<div class="container">
-				
-					<!-- row Start -->
-					<div class="row">
-					
-						<div class="col-lg-8 col-md-7">
-							<div class="property_block_wrap style-2">
-								
-								<div class="property_block_wrap_header no-collapse">
-									<h4 class="property_block_title">Fillup The Form</h4>
+
+						<div class="col-lg-3 col-md-4 col-sm-12">
+							<div class="property_dashboard_navbar">
+
+								<div class="dash_user_menues">
+									<ul>
+									<!--	<li><a href="dashboard.html"><i class="ti-dashboard"></i>Dashboard</a></li>-->
+										<li class="active"><a href="{{ url_for('myprofile') }}"><i class="ti-user"></i>My Profile</a></li>
+										<li><a href="{{ url_for('bookmarkproperty')}}"><i class="ti-bookmark"></i>Saved Property</a></li>
+										<!--	<li><a href="my-property.html"><i class="ti-layers"></i>My Properties</a></li>-->
+									<!--	<li><a href="choose-package.html"><i class="ti-gift"></i>Choose Package</a></li>-->
+
+										<li><a href="{{ url_for('logout') }}"><i class="ti-power-off"></i>Log Out</a></li>
+									</ul>
 								</div>
-								
-								<div class="block-body">
-									<form class="form-simple">
-										<div class="row">
-											<div class="col-lg-6 col-md-12">
-												<div class="form-group">
-													<label>Name</label>
-													<input type="text" class="form-control simple">
-												</div>
-											</div>
-											<div class="col-lg-6 col-md-12">
-												<div class="form-group">
+
+							</div>
+						</div>
+
+						<div class="col-lg-9 col-md-8 col-sm-12">
+							<div class="dashboard-body">
+
+								<div class="dashboard-wraper">
+
+									<!-- Basic Information -->
+
+									<div class="frm_submit_block">
+										<h4>My Account</h4>
+                                        <form class="form-simple" method="post" action="/edit">
+{#										<div class="frm_submit_wrap">#}
+											<div class="form-row">
+
+												<div class="form-group col-md-6">
+													<label>Your Name</label>
+{#													<input type="text" class="form-control" value="{{ user["user_name"] }}">#}
+												    <p>{{ user["user_name"] }}</p>
+                                                </div>
+
+												<div class="form-group col-md-6">
 													<label>Email</label>
-													<input type="email" class="form-control simple">
+													<input type="email" class="form-control" name="email" value="{{ user["email"] }}">
 												</div>
+
+{#												<div class="form-group col-md-6">#}
+{#													<label>Your Title</label>#}
+{#													<input type="text" class="form-control" value="Example">#}
+{#												</div>#}
+
+												<div class="form-group col-md-6">
+													<label>Phone</label>
+													<input type="text" class="form-control" name="phone" value="{{ user["phone_number"] }}">
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>Address</label>
+													<input type="text" class="form-control" name="address" value="{{ user["curr_address"] }}">
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>City</label>
+													<input type="text" class="form-control" name="city" value="{{ user["city"] }}">
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>Country</label>
+													<input type="text" class="form-control" name="country" value="{{ user["country"] }}">
+												</div>
+
+
+
+{#												<div class="form-group col-md-12">#}
+{#													<label>About</label>#}
+{#													<textarea class="form-control">This is a beautiful house</textarea>#}
+{#												</div>#}
+												<button type="submit" class="btn btn-md full-width pop-login bg-2" >Save</button>
+{#                                                <button type="submit" class="btn btn-md full-width pop-login bg-2">Change Your Password</button>#}
+											</div>
+{#										</div>#}
+                                        </form>
+									</div>
+
+									<div class="frm_submit_block">
+										<!--<h4>Social Accounts</h4>
+										<div class="frm_submit_wrap">
+											<div class="form-row">
+
+												<div class="form-group col-md-6">
+													<label>Facebook</label>
+													<input type="text" class="form-control" value="https://facebook.com/">
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>Twitter</label>
+													<input type="email" class="form-control" value="https://twitter.com/">
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>Google Plus</label>
+													<input type="text" class="form-control" value="https://googleplus.com">
+												</div>
+
+												<div class="form-group col-md-6">
+													<label>LinkedIn</label>
+													<input type="text" class="form-control" value="https://linkedin.com/">
+												</div>
+
+												<div class="form-group col-lg-12 col-md-12">
+													<button class="btn btn-theme bg-2" type="submit">Save Changes</button>
+												</div>-->
+
 											</div>
 										</div>
-										
-										<div class="form-group">
-											<label>Subject</label>
-											<input type="text" class="form-control simple">
-										</div>
-										
-										<div class="form-group">
-											<label>Message</label>
-											<textarea class="form-control simple"></textarea>
-										</div>
-										
-										<div class="form-group">
-											<button class="btn btn-theme bg-2" type="submit">Submit Request</button>
-										</div>
-									</form>
+									</div>
+
 								</div>
-								
+
+								<div class="row">
+									<div class="col-md-12 col-lg-12 mt-4">
+										<footer class="text-center">
+											<p class="mb-0">© 2020 Verio. Designd By <a href="#">Pexel Experts</a> All Rights Reserved</p>
+										</footer>
+									</div>
+								</div>
+								<!-- row -->
+
 							</div>
-											
 						</div>
-						
-					<!--	<div class="col-lg-4 col-md-5">
-						
-							<div class="contact-box">
-								<i class="ti-location-pin"></i>
-								<h4>Head Office</h4>
-								<p>2512, New Market<br>Eliza Road, Sincher 80 CA,<br>Canada, USA</p>
-							</div>
-							
-							<div class="contact-box">
-								<i class="ti-email"></i>
-								<h4>Contact Us</h4>
-								<p>sales@rikadahelp.co.uk</p>
-								<span>+01 215 245 6258</span>
-							</div>
-							
-						</div>-->
-						
+
 					</div>
-					<!-- /row -->
-					
 				</div>
-						
+
 			</section>
-			<!-- ============================ Agency List End ================================== -->
-			
-			<!-- ============================ Call To Action ================================== -->
-			<section class="newsletter inverse-theme">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-7 col-md-8 col-sm-10">
-							<div class="text-center">
-								<h2>Signup for your real home thats feels you real home owner</h2>
-								<p>Subscribe our newsletter & get latest news and updation!</p>
-								<form class="sup-form">
-									<input type="email" class="form-control sigmup-me" placeholder="Your Email Address" required="required">
-									<button type="submit" class="btn btn-theme bg-2">Subscribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- ============================ Call To Action End ================================== -->
-			
-			<!-- ============================ Footer Start ================================== -->
-			<footer class="dark-footer skin-dark-footer style-2">
-				
-				<div class="footer-middle">
-					<div class="container">
-						<div class="row">
-							
-							<div class="col-lg-4 col-md-4">
-								<div class="footer_widget">
-									<div class="footlogo"><img src="../static/assets/img/logo-light.png" class="img-fluid mb-3" alt="" /></div>
-									<p>2512, New Market Eliza Road, Sincher 80<br>Montreal Central Canada,<br>USA QHVK1254</p>
-									<ul class="footer-bottom-social">
-										<li><a href="#"><i class="ti-facebook"></i></a></li>
-										<li><a href="#"><i class="ti-twitter"></i></a></li>
-										<li><a href="#"><i class="ti-instagram"></i></a></li>
-										<li><a href="#"><i class="ti-linkedin"></i></a></li>
-									</ul>
-								</div>
-							</div>
-									
-							<div class="col-lg-2 col-md-2">
-								<div class="footer_widget">
-									<h4 class="widget_title">My Homes</h4>
-									<ul class="footer-menu">
-										<li><a href="#">New York</a></li>
-										<li><a href="#">California</a></li>
-										<li><a href="#">Louisiana</a></li>
-										<li><a href="#">Las Vegas</a></li>
-									</ul>
-								</div>
-							</div>
-									
-							<div class="col-lg-2 col-md-2">
-								<div class="footer_widget">
-									<h4 class="widget_title">About Us</h4>
-									<ul class="footer-menu">
-										<li><a href="#">Apartment</a></li>
-										<li><a href="#">My Houses</a></li>
-										<li><a href="#">Restaurant</a></li>
-										<li><a href="#">Nightlife</a></li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="col-lg-2 col-md-2">
-								<div class="footer_widget">
-									<h4 class="widget_title">News</h4>
-									<ul class="footer-menu">
-										<li><a href="#">My Profile</a></li>
-										<li><a href="#">My account</a></li>
-										<li><a href="#">My Property</a></li>
-										<li><a href="#">Favorites</a></li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="col-lg-2 col-md-2">
-								<div class="footer_widget">
-									<h4 class="widget_title">Help</h4>
-									<ul class="footer-menu">
-										<li><a href="#">Conditions</a></li>
-										<li><a href="#">Privacy</a></li>
-										<li><a href="#">Blog</a></li>
-										<li><a href="#">FAQs</a></li>
-									</ul>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-				
-				<div class="footer-bottom">
-					<div class="container">
-						<div class="row align-items-center">
-							
-							<div class="col-lg-12 col-md-12">
-								<p class="mb-0">© 2020 Verio. Designd By <a href="http://www.bootstrapmb.com/">bootstrapmb</a></p>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</footer>
-			<!-- ============================ Footer End ================================== -->
-			
+			<!-- ============================ User Dashboard End ================================== -->
+
 			<!-- Log In Modal -->
 			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
-					<header class="modal_content_header">
-						<div class="hm_nav">
-							<h3 class="hm_nav_title">Log In</h3>
-							<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-							<span class="hm_nav_clear">Clear</span>
-						</div>
-					</header>
 					<div class="modal-content" id="registermodal">
+						<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
 						<div class="modal-body">
+							<h4 class="modal-header-title">Log In</h4>
 							<div class="login-form">
 								<form>
-								
+
 									<div class="form-group">
 										<label>User Name</label>
 										<div class="input-with-icon">
@@ -385,7 +315,7 @@
 											<i class="ti-user"></i>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<label>Password</label>
 										<div class="input-with-icon">
@@ -393,11 +323,11 @@
 											<i class="ti-unlock"></i>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-md full-width pop-login bg-2">Login</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or login via</span></div>
@@ -407,7 +337,7 @@
 									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="social-login mb-3">
 								<ul>
 									<li>
@@ -417,7 +347,7 @@
 									<li><a href="#" class="theme-cl">Forget Password?</a></li>
 								</ul>
 							</div>
-							
+
 							<div class="text-center">
 								<p class="mt-2">Haven't Any Account? <a href="register.html" class="link">Click here</a></p>
 							</div>
@@ -426,70 +356,61 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Sign Up Modal -->
 			<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="sign-up" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
-					<header class="modal_content_header">
-						<div class="hm_nav">
-							<h3 class="hm_nav_title">Sign Up</h3>
-							<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-							<span class="hm_nav_clear">Clear</span>
-						</div>
-					</header>
 					<div class="modal-content" id="sign-up">
+						<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
 						<div class="modal-body">
+							<h4 class="modal-header-title">Sign Up</h4>
 							<div class="login-form">
 								<form>
-									
+
 									<div class="row">
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
-												<label>Full Name</label>
 												<div class="input-with-icon">
 													<input type="text" class="form-control" placeholder="Full Name">
 													<i class="ti-user"></i>
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
-												<label>Email</label>
 												<div class="input-with-icon">
 													<input type="email" class="form-control" placeholder="Email">
 													<i class="ti-email"></i>
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
-												<label>Username</label>
 												<div class="input-with-icon">
 													<input type="text" class="form-control" placeholder="Username">
 													<i class="ti-user"></i>
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
-												<label>Password</label>
 												<div class="input-with-icon">
 													<input type="password" class="form-control" placeholder="*******">
 													<i class="ti-unlock"></i>
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="form-group">
-										<button type="submit" class="btn btn-md full-width pop-login bg-2">Create Account</button>
+										<button type="submit" class="btn btn-md full-width pop-login">Sign Up</button>
 									</div>
-								
+
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or Signup via</span></div>
@@ -507,7 +428,7 @@
 				</div>
 			</div>
 			<!-- End Modal -->
-			
+
 			<!-- Video Modal -->
 			<div class="modal fade" id="popup-video" tabindex="-1" role="dialog" aria-labelledby="popup-video" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
@@ -515,9 +436,9 @@
 				</div>
 			</div>
 			<!-- End Video Modal -->
-			
+
 			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
-			
+
 
 		</div>
 		<!-- ============================================================== -->

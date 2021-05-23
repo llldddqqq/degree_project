@@ -479,7 +479,7 @@
 {#                                    <form method="post" action="/collect/{{ id }}">#}
                                         <ul class="like_share_list">
                                             <!--<li><a href="#" class="btn btn-likes" data-toggle="tooltip" data-original-title="Share"><i class="fas fa-share"></i>Share</a></li>-->
-                                            <li><a href="{{ url_for('collect', id=id) }}" class="btn btn-likes" data-toggle="tooltip" data-original-title="Save"><i class="fas fa-heart"></i>{% if id in prefer %}Unsave{% else %}Save{% endif %}</a></li>
+                                            <li><a href="{{ url_for('collect', id=id) }}" class="btn btn-likes" data-toggle="tooltip" data-original-title="Save"><i class="fas fa-heart"></i>{% if id in prefer %}UnSave{% else %}save{% endif %}</a></li>
                                         </ul>
 {#                                        <input type="submit" value="Save" class="btn btn-danger" data-toggle="tooltip" data-original-title="Save" />#}
 {#                                    </form>#}
@@ -595,100 +595,100 @@
 									</ul>
 								</div>
 								
-								<!-- Featured Property -->
+								<-- Featured Property -->
 								<div class="sidebar-widgets">
 									
 									<h4>Similar Property</h4>
 									
 									<div class="sidebar_featured_property">
-										
+										{% for id in featured %}
 										<!-- List Sibar Property -->
 										<div class="sides_list_property midium b-0">
 											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/1.jpg" class="img-fluid" alt="">
+												<img src="{{ featured[id]['pic_add'] }}" class="img-fluid" alt="">
 											</div>
 											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Loss vengel New Apartment</a></h4>
-												<span><i class="ti-location-pin"></i>Sans Fransico</span>
+												<h4><a href="/estates/{{id}}">{{ featured[id]['address'] }}</a></h4>
+												<span><i class="ti-location-pin"></i>{{ featured[id]['country'] }}</span>
 												<div class="lists_property_types mt-1">
 													<div class="property_types_vlix sale">For Sale</div>
 												</div>
 												<div class="lists_property_price">
 													<div class="lists_property_price_value first">
-														<h4>$4,240</h4>
+														<h4>{{ featured[id]['price'] }}</h4>
 													</div>
-													<div class="lists_property_added">
-														<small>3 days ago</small>
-													</div>
+{#													<div class="lists_property_added">#}
+{#														<small>3 days ago</small>#}
+{#													</div>#}
 												</div>
 											</div>
 										</div>
-										
-										<!-- List Sibar Property -->
-										<div class="sides_list_property midium b-0">
-											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/2.jpg" class="img-fluid" alt="">
-											</div>
-											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Montreal Quriqe Apartment</a></h4>
-												<span><i class="ti-location-pin"></i>Liverpool, London</span>
-												<div class="lists_property_types mt-1">
-													<div class="property_types_vlix">For Rent</div>
-												</div>
-												<div class="lists_property_price">
-													<div class="lists_property_price_value first">
-														<h4>$7,380</h4>
-													</div>
-													<div class="lists_property_added">
-														<small>10 days ago</small>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<!-- List Sibar Property -->
-										<div class="sides_list_property midium b-0">
-											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/3.jpg" class="img-fluid" alt="">
-											</div>
-											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Curmic Studio For Office</a></h4>
-												<span><i class="ti-location-pin"></i>Montreal, Canada</span>
-												<div class="lists_property_types mt-1">
-													<div class="property_types_vlix">For Rent</div>
-												</div>
-												<div class="lists_property_price">
-													<div class="lists_property_price_value first">
-														<h4>$8,730</h4>
-													</div>
-													<div class="lists_property_added">
-														<small>25 days ago</small>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<!-- List Sibar Property -->
-										<div class="sides_list_property midium b-0">
-											<div class="sides_list_property_thumb">
-												<img src="../static/assets/img/indoors/4.jpg" class="img-fluid" alt="">
-											</div>
-											<div class="sides_list_property_detail">
-												<h4><a href="single-property-1.html">Lisque Viral Villa</a></h4>
-												<span><i class="ti-location-pin"></i>Sreek View, New York</span>
-												<div class="lists_property_types mt-1">
-													<div class="property_types_vlix buy">For Buy</div>
-												</div>
-												<div class="lists_property_price">
-													<div class="lists_property_price_value first">
-														<h4>$7,240</h4>
-													</div>
-													<div class="lists_property_added">
-														<small>29 days ago</small>
-													</div>
-												</div>
-											</div>
-										</div>
+										{% endfor %}
+{#										<!-- List Sibar Property -->#}
+{#										<div class="sides_list_property midium b-0">#}
+{#											<div class="sides_list_property_thumb">#}
+{#												<img src="../static/assets/img/indoors/2.jpg" class="img-fluid" alt="">#}
+{#											</div>#}
+{#											<div class="sides_list_property_detail">#}
+{#												<h4><a href="single-property-1.html">Montreal Quriqe Apartment</a></h4>#}
+{#												<span><i class="ti-location-pin"></i>Liverpool, London</span>#}
+{#												<div class="lists_property_types mt-1">#}
+{#													<div class="property_types_vlix">For Rent</div>#}
+{#												</div>#}
+{#												<div class="lists_property_price">#}
+{#													<div class="lists_property_price_value first">#}
+{#														<h4>$7,380</h4>#}
+{#													</div>#}
+{#													<div class="lists_property_added">#}
+{#														<small>10 days ago</small>#}
+{#													</div>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#										#}
+{#										<!-- List Sibar Property -->#}
+{#										<div class="sides_list_property midium b-0">#}
+{#											<div class="sides_list_property_thumb">#}
+{#												<img src="../static/assets/img/indoors/3.jpg" class="img-fluid" alt="">#}
+{#											</div>#}
+{#											<div class="sides_list_property_detail">#}
+{#												<h4><a href="single-property-1.html">Curmic Studio For Office</a></h4>#}
+{#												<span><i class="ti-location-pin"></i>Montreal, Canada</span>#}
+{#												<div class="lists_property_types mt-1">#}
+{#													<div class="property_types_vlix">For Rent</div>#}
+{#												</div>#}
+{#												<div class="lists_property_price">#}
+{#													<div class="lists_property_price_value first">#}
+{#														<h4>$8,730</h4>#}
+{#													</div>#}
+{#													<div class="lists_property_added">#}
+{#														<small>25 days ago</small>#}
+{#													</div>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#										#}
+{#										<!-- List Sibar Property -->#}
+{#										<div class="sides_list_property midium b-0">#}
+{#											<div class="sides_list_property_thumb">#}
+{#												<img src="../static/assets/img/indoors/4.jpg" class="img-fluid" alt="">#}
+{#											</div>#}
+{#											<div class="sides_list_property_detail">#}
+{#												<h4><a href="single-property-1.html">Lisque Viral Villa</a></h4>#}
+{#												<span><i class="ti-location-pin"></i>Sreek View, New York</span>#}
+{#												<div class="lists_property_types mt-1">#}
+{#													<div class="property_types_vlix buy">For Buy</div>#}
+{#												</div>#}
+{#												<div class="lists_property_price">#}
+{#													<div class="lists_property_price_value first">#}
+{#														<h4>$7,240</h4>#}
+{#													</div>#}
+{#													<div class="lists_property_added">#}
+{#														<small>29 days ago</small>#}
+{#													</div>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
 										
 									</div>
 									
@@ -703,22 +703,7 @@
 			<!-- ============================ Property Detail End ================================== -->
 			
 			<!-- ============================ Call To Action ================================== -->
-			<section class="newsletter inverse-theme">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-7 col-md-8 col-sm-10">
-							<div class="text-center">
-								<h2>Signup for your real home thats feels you real home owner</h2>
-								<p>Subscribe our newsletter & get latest news and updation!</p>
-								<form class="sup-form">
-									<input type="email" class="form-control sigmup-me" placeholder="Your Email Address" required="required">
-									<button type="submit" class="btn btn-theme bg-2">Subscribe</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+
 			<!-- ============================ Call To Action End ================================== -->
 			
 			<!-- ============================ Footer Start ================================== -->
@@ -993,21 +978,5 @@
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->
-        <script type="text/javascript">
-        $(function () {
-            $('.btn-likes').click(function () {
-                // this在回调函数中没有意义，需要临时保存
-                _this = this
-                $.get($(this).attr('href'), function () {
-                    if ($(_this).text() == 'Save') {
-                        $(_this).text('Unsave')
-                    } else {
-                        $(_this).text('Save')
-                    }
-                })
-            })
-        })
-        </script>
-
 	</body>
 </html>

@@ -1,6 +1,6 @@
 import Usercf_house
 from pymysql import *
-
+import time
 host = 'rm-2ze6920m86z2g1by69o.mysql.rds.aliyuncs.com'
 port = 3306
 db_user = 'dingqi'
@@ -56,4 +56,17 @@ def update():
             conn.commit()
     cur.close()
 
-update()
+#update()
+
+time_now=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6]
+#print(str(time_now))
+i=1
+while True:
+    time_now = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6])
+    print(1)
+    if time_now=='08':
+        print(1)
+        time.sleep(1)
+        continue
+
+    #time.sleep()
