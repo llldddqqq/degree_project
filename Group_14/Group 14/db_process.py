@@ -169,7 +169,7 @@ def check_prefer(username):
     results = result[0][0].split(',')[:-1]
     #print(results)
     return results
-
+#print(check_prefer('ldq'))
 
 def renew_prefer(username):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -223,10 +223,18 @@ def get_house(id):
             'house_orientation',
             'sold'
             ]
+    #print(len(head),len(result[0]))
     for i in range(0, len(head)):
-        house_dic[head[i]] = result[0][i]
+        #print(result[0][i])
+        try:
+            house_dic[head[i]] = result[0][i]
+        except:
+            house_dic[head[i]] = ''
     return house_dic
 
+
+# for id in check_prefer('ldq'):
+#     print(get_house(id))
 
 def update_user_email(username, email):  # curr_address, city, country):
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
@@ -401,7 +409,7 @@ def check_recomm(username):
     return results
 
 
-print(check_recomm('ldq16'))
+#print(check_recomm('ldq'))
 
 
 def add_comment(username, house_id, comments):

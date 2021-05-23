@@ -313,16 +313,16 @@ def logout():
 def recommend_to_user(user):
     # 获取user信息
     house_list = check_recomm(user)
-    print(house_list)
+    #print('recommend_to_user',house_list)
     house_info = {}
     for i in house_list:
-        print(i,get_house(str(i)))
+        #print(i)
         house_info[i] = get_house(str(i))
 
     return house_info
 
 
-# recommend_to_user('ldq')
+recommend_to_user('ldq')
 
 
 if __name__ == '__main__':

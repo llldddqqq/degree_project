@@ -50,23 +50,23 @@ def update():
             cur.execute(sql)
             conn.commit()
         except:
-            result2='1,3,7,10,12,13,14,15,16,17'
+            result2='1,23,27,10,12,13,24,15,16,17'
             sql = "UPDATE user_info SET recom='" + result2 + "'"+"WHERE user_name='"+user+"'"
             cur.execute(sql)
             conn.commit()
     cur.close()
 
-#update()
+update()
 
-time_now=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6]
-#print(str(time_now))
-i=1
-while True:
-    time_now = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6])
-    print(1)
-    if time_now=='08':
-        print(1)
-        time.sleep(1)
-        continue
+# time_now=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6]
+# #print(str(time_now))
+# i=1
+# while True:
+#     time_now = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6])
+#     print(1)
+#     if time_now!='12':
+#         print(1)
+#         time.sleep(1)
+#         continue
 
     #time.sleep()
