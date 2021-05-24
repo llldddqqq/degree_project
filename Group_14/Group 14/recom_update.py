@@ -13,7 +13,7 @@ database = 'degree_project_db'
 def recommend_to_user(user):
     # 获取user信息
     house_list = Usercf_house.recommendation(user)
-    house_list2 = [1002, 1203, 1398, 3254, 234, 1, 462177, 124, 12535, 4234]
+    house_list2 = [1002, 1203, 12402, 3254, 234, 1, 23, 124, 12535, 4234]
     pivot = 10 - len(house_list) - 1
     if len(house_list) < 10:
         for i in range(0, pivot + 1):
@@ -66,8 +66,8 @@ update()
 # i=1
 # while True:
 #     time_now = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())[-8:-6])
-#     #print(1)
-#     if time_now != '08':
+#     print(1)
+#     if time_now != '15':
 #         time.sleep(60 * 60)
 #     else:
 #         try:
@@ -76,7 +76,6 @@ update()
 #             db_process.sentemail('ldq-990730@163.com')
 #         except:
 #             print('update fail')
-#             continue
 #         time.sleep(60 * 60)
-#
-#     # time.sleep()
+
+    # time.sleep()
