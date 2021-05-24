@@ -6,6 +6,7 @@ from db_process import *
 import Usercf_house
 
 app = Flask(__name__)
+app.config["DEBUG"] = True
 app.config["SECRET_KEY"] = 'abcde'
 
 
@@ -172,12 +173,59 @@ def edit():
 
 @app.route('/listings', methods=['GET', "POST"])
 def listings():
-    result = get_allhouse()
+    print(request.url)
+    request_url = request.url
+    index = request_url.find('?')
+    if request_url.find('&page_no=') != -1:
+        request_url = request_url.split('&page_no=')[0]
+    flag = False
+    if index != -1:
+        flag = True
+    else:
+        flag = False
+    page_no = request.args.get('page_no', 1)
+    page_size = request.args.get('page_size', 15)
+    result= get_allhouse()
+    ptype = request.args.get('ptype', '')
+    bedrooms = request.args.get('bedrooms', '')
+    price = request.args.get('price', '')
+    if ptype != '' or bedrooms != '' or price != '':
+        # 如果有检索参数强制修改page_no = 1  page_size = 10
+        # page_no = 1
+        # page_size = 10
+        for id in list(result):
+            if ptype != '' and result[id]['type'] != ptype:
+                del result[id]
+        for id in list(result):
+            if bedrooms != '' and result[id]['bedroom_amount'] != int(bedrooms):
+                del result[id]
+        for id in list(result):
+            if price != '' and (result[id]['price'] < int(price.split(',')[0]) or result[id]['price'] > int(price.split(',')[1])):
+                del result[id]
+    ids = list(result)  # 返回所有的id列表
+    print(len(ids))
+    if len(ids) % page_size == 0:
+        all_page = len(ids) // page_size
+    else:
+        all_page = len(ids) // page_size + 1
+    if int(page_no) > 1:
+        if len(ids) > int(page_no) * int(page_size):
+            ids = ids[(int(page_no) - 1) * int(page_size): int(page_no) * int(page_size)]
+        else:
+            ids = ids[(int(page_no) - 1) * int(page_size): len(ids)]
+    else:
+        if len(ids) > int(page_size):
+            ids = ids[0: int(page_no) * int(page_size)]
+        else:
+            ids = ids[0: len(ids)]
+    all_obj = {}
+    for i in ids:
+        all_obj[i] = result[i]
     if not session.get("CUS") is None:
         username = session.get('CUS')
-        return render_template('grid-layout-4.html', username=username, result=result)
+        return render_template('grid-layout-4.html', username=username, flag=flag, result=all_obj, all_page=all_page, page_no=int(page_no), url=request_url)
     else:
-        return render_template('grid-layout-4_before.html', result=result)
+        return render_template('grid-layout-4_before.html', flag=flag, result=all_obj, all_page=all_page, page_no=int(page_no), url=request_url)
 
 
 @app.route('/myproperty', methods=['GET', "POST"])
@@ -276,34 +324,70 @@ def collect(id):
             number = len(comments)
         return render_template('single-property-1_before.html', house=house, id=id, comments=comments, number=number, msg='Please Login')
 
+
 @app.route('/search/<query>', methods=['GET', "POST"])
 def search(query):
-    request_url = request.base_url
+    print(request.url)
+    request_url = request.url
+    index = request_url.find('?')
+    if request_url.find('&page_no=') != -1:
+        request_url = request_url.split('&page_no=')[0]
+    flag = False
+    if index != -1:
+        flag = True
+    else:
+        flag = False
     start_search = time.time()
     page_no = request.args.get('page_no', 1)
     page_size = request.args.get('page_size', 10)
-    result, all_page = house_search(query, page_no, page_size)
+    result = house_search(query)
     end_search = time.time()
     print('search time:', str(end_search - start_search))
-    if request.method == 'POST':
-        ptype = request.form.get('ptype')
-        bedrooms = request.form.get('bedrooms')
-        bathrooms = request.form.get('bathrooms')
-        if ptype != '' or bedrooms != '' or bathrooms != '':
-            for id in list(result):
-                if ptype != '' and result[id]['type'] != ptype:
-                    del result[id]
-            for id in list(result):
-                if bedrooms != '' and result[id]['bedroom_amount'] != int(bedrooms):
-                    del result[id]
-            for id in list(result):
-                if bathrooms != '' and result[id]['bathroom_amount'] != int(bathrooms):
-                    del result[id]
+
+    ptype = request.args.get('ptype', '')
+    bedrooms = request.args.get('bedrooms', '')
+    bathrooms = request.args.get('bathrooms', '')
+    price = request.args.get('price', '')
+    if ptype != '' or bedrooms != '' or bathrooms != '' or price != '':
+        # 如果有检索参数强制修改page_no = 1  page_size = 10
+        # page_no = 1
+        # page_size = 10
+        for id in list(result):
+            if ptype != '' and result[id]['type'] != ptype:
+                del result[id]
+        for id in list(result):
+            if bedrooms != '' and result[id]['bedroom_amount'] != int(bedrooms):
+                del result[id]
+        for id in list(result):
+            if bathrooms != '' and result[id]['bathroom_amount'] != int(bathrooms):
+                del result[id]
+        for id in list(result):
+            if price != '' and (result[id]['price'] < int(price.split(',')[0]) or result[id]['price'] > int(price.split(',')[1])):
+                del result[id]
+    ids = list(result)  # 返回所有的id列表
+    print(len(ids))
+    if len(ids) % page_size == 0:
+        all_page = len(ids) // page_size
+    else:
+        all_page = len(ids) // page_size + 1
+    if int(page_no) > 1:
+        if len(ids) > int(page_no) * int(page_size):
+            ids = ids[(int(page_no) - 1) * int(page_size): int(page_no) * int(page_size)]
+        else:
+            ids = ids[(int(page_no) - 1) * int(page_size): len(ids)]
+    else:
+        if len(ids) > int(page_size):
+            ids = ids[0: int(page_no) * int(page_size)]
+        else:
+            ids = ids[0: len(ids)]
+    all_obj = {}
+    for i in ids:
+        all_obj[i] = result[i]
     if session.get('CUS'):
         username = session.get('CUS')
-        return render_template('search.html', result=result, username=username, all_page=all_page, page_no=int(page_no), url=request_url)
+        return render_template('search.html', flag=flag, result=all_obj, username=username, all_page=all_page, page_no=int(page_no), url=request_url)
     else:
-        return render_template('search_before.html', result=result, all_page=all_page, page_no=int(page_no), url=request_url)
+        return render_template('search_before.html', flag=flag, result=all_obj, all_page=all_page, page_no=int(page_no), url=request_url)
 
 
 @app.route('/logout')

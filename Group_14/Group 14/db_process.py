@@ -70,19 +70,22 @@ def db_user_signup(user, password):
 #     db_user_signup(string, 'liu1',str(i))
 
 
-def house_search(query, page_no, page_size):
+def house_search(query):
     results = search(query)
-    all_page = len(results) // page_size + 1
-    if int(page_no) > 1:
-        if len(results) > int(page_no) * int(page_size):
-            results = results[(int(page_no) - 1) * int(page_size): int(page_no) * int(page_size)]
-        else:
-            results = results[(int(page_no) - 1) * int(page_size): len(results)]
-    else:
-        if len(results) > int(page_size):
-            results = results[0: int(page_no) * int(page_size)]
-        else:
-            results = results[0: len(results)]
+    # if len(results) % page_size == 0:
+    #     all_page = len(results) // page_size
+    # else:
+    #     all_page = len(results) // page_size + 1
+    # if int(page_no) > 1:
+    #     if len(results) > int(page_no) * int(page_size):
+    #         results = results[(int(page_no) - 1) * int(page_size): int(page_no) * int(page_size)]
+    #     else:
+    #         results = results[(int(page_no) - 1) * int(page_size): len(results)]
+    # else:
+    #     if len(results) > int(page_size):
+    #         results = results[0: int(page_no) * int(page_size)]
+    #     else:
+    #         results = results[0: len(results)]
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
     house_dic = {}
@@ -103,15 +106,30 @@ def house_search(query, page_no, page_size):
         temp['bedroom_amount'] = result[0][11]
         temp['bathroom_amount'] = result[0][12]
         house_dic[id] = temp
-    return house_dic, all_page
+    return house_dic
+
 
 def get_allhouse():
     conn = connect(host=host, port=port, user=db_user, password=db_password, database=database)
     cur = conn.cursor()
-    sql = "select * from datas limit 0,10"
+    sql = "select * from datas limit 0,300"
     cur.execute(sql)
     result = cur.fetchall()
     cur.close()
+    # if len(result) % page_size == 0:
+    #     all_page = len(result) // page_size
+    # else:
+    #     all_page = len(result) // page_size + 1
+    # if int(page_no) > 1:
+    #     if len(result) > int(page_no) * int(page_size):
+    #         result = result[(int(page_no) - 1) * int(page_size): int(page_no) * int(page_size)]
+    #     else:
+    #         result = result[(int(page_no) - 1) * int(page_size): len(result)]
+    # else:
+    #     if len(result) > int(page_size):
+    #         result = result[0: int(page_no) * int(page_size)]
+    #     else:
+    #         result = result[0: len(result)]
     house_dic = {}
     head = ['address',
             'postcode',

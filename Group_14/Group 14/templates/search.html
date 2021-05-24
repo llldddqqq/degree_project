@@ -181,7 +181,7 @@
 									<!-- Find New Property -->
 									<div class="sidebar-widgets">
 
-									<form method="post">
+									<form method="get">
 										<div class="form-group">
 											<div class="simple-input">
 												<select id="ptype" name="ptype" class="form-control">
@@ -228,6 +228,19 @@
  												</select>
  											</div>
  										</div>
+
+                                        <div class="form-group">
+ 											<div class="simple-input">
+ 												<select id="price" name="price" class="form-control">
+                                                    <option value="">&nbsp;</option>
+ 													<option value="0, 100000">lower than $100000</option>
+ 													<option value="100000, 200000">$100000 ~ $200000</option>
+                                                    <option value="200000, 300000">$200000 ~ $300000</option>
+ 													<option value="300000, 400000">$300000 ~ $400000</option>
+                                                    <option value="400000, 999999999">higher than $400000</option>
+ 												</select>
+ 											</div>
+ 										</div>
 										
 {#										<div class="form-group">#}
 {#											<div class="simple-input">#}
@@ -241,23 +254,23 @@
 {#											</div>#}
 {#										</div>#}
 										
-										<div class="row">
-											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">
-												<h6>Area Range</h6>
-												<div class="rg-slider">
-													 <input type="text" class="js-range-slider" name="area_range" value="" />
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">
-												<h6>Choose Price</h6>
-												<div class="rg-slider">
-													 <input type="text" class="js-range-slider" name="price_range" value="" />
-												</div>
-											</div>
-										</div>
+{#										<div class="row">#}
+{#											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">#}
+{#												<h6>Area Range</h6>#}
+{#												<div class="rg-slider">#}
+{#													 <input type="text" class="js-range-slider" name="area_range" value="" />#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#										#}
+{#										<div class="row">#}
+{#											<div class="col-lg-12 col-md-12 col-sm-12 pt-4 pb-4">#}
+{#												<h6>Choose Price</h6>#}
+{#												<div class="rg-slider">#}
+{#													 <input type="text" class="js-range-slider" name="price_range" value="" />#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
 										
 										<input type="submit" value="Find" class="btn btn-theme full-width bg-2"/>
                                     </form>
@@ -300,49 +313,97 @@
 							
 							<!-- Pagination -->
 							<div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <ul class="pagination p-center">
-                                    <li class="page-item">
-                                        {% if page_no == 1 %}
-                                            <a class="page-link" href="{{ url }}?page_no=1" aria-label="Previous">
-                                                <span class="ti-arrow-left"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        {% else %}
-                                            <a class="page-link" href="{{ url }}?page_no={{ page_no - 1 }}"
-                                               aria-label="Previous">
-                                                <span class="ti-arrow-left"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        {% endif %}
-
-                                    </li>
-                                    {% for i in range(1, all_page + 1) %}
-                                        {% if i == page_no %}
-                                            <li class="page-item active"><a class="page-link"
-                                                                            href="{{ url }}?page_no={{ i }}">{{ i }}</a>
-                                            </li>
-                                        {% else %}
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="{{ url }}?page_no={{ i }}">{{ i }}</a></li>
-                                        {% endif %}
-
-                                    {% endfor %}
-                                    <li class="page-item">
-                                        {% if page_no == all_page %}
-                                            <a class="page-link" href="{{ url }}?page_no={{ page_no }}" aria-label="Next">
-                                                <span class="ti-arrow-right"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <ul class="pagination p-center">
+                                        <li class="page-item">
+                                            {% if page_no == 1 %}
+                                                {% if flag %}
+                                                    <a class="page-link" href="{{ url }}&page_no=1" aria-label="Previous">
+                                                        <span class="ti-arrow-left"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                {% else %}
+                                                    <a class="page-link" href="{{ url }}?page_no=1" aria-label="Previous">
+                                                        <span class="ti-arrow-left"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                {% endif %}
                                             {% else %}
-                                            <a class="page-link" href="{{ url }}?page_no={{ page_no + 1 }}" aria-label="Next">
-                                                <span class="ti-arrow-right"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        {% endif %}
-                                    </li>
-                                </ul>
-                            </div>
+                                                {% if flag %}
+                                                    <a class="page-link" href="{{ url }}&page_no={{ page_no - 1 }}"
+                                                       aria-label="Previous">
+                                                        <span class="ti-arrow-left"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                {% else %}
+                                                    <a class="page-link" href="{{ url }}?page_no={{ page_no - 1 }}"
+                                                       aria-label="Previous">
+                                                        <span class="ti-arrow-left"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </li>
+                                        {% for i in range(1, all_page + 1) %}
+                                            {% if i == page_no %}
+                                                {% if flag %}
+                                                    <li class="page-item active"><a class="page-link"
+                                                                                    href="{{ url }}&page_no={{ i }}">{{ i }}</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item active"><a class="page-link"
+                                                                                    href="{{ url }}?page_no={{ i }}">{{ i }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                            {% else %}
+                                                {% if flag %}
+                                                    <li class="page-item"><a class="page-link"
+                                                                             href="{{ url }}&page_no={{ i }}">{{ i }}</a></li>
+                                                {% else %}
+                                                    <li class="page-item"><a class="page-link"
+                                                                             href="{{ url }}?page_no={{ i }}">{{ i }}</a></li>
+                                                {% endif %}
+
+                                            {% endif %}
+
+                                        {% endfor %}
+                                        <li class="page-item">
+                                            {% if page_no == all_page %}
+                                                {% if flag %}
+                                                    <a class="page-link" href="{{ url }}&page_no={{ page_no }}"
+                                                       aria-label="Next">
+                                                        <span class="ti-arrow-right"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                {% else %}
+                                                    <a class="page-link" href="{{ url }}?page_no={{ page_no }}"
+                                                       aria-label="Next">
+                                                        <span class="ti-arrow-right"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                {% endif %}
+
+                                            {% else %}
+                                                {% if flag %}
+                                                    <a class="page-link" href="{{ url }}&page_no={{ page_no + 1 }}"
+                                                       aria-label="Next">
+                                                        <span class="ti-arrow-right"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                {% else %}
+                                                    <a class="page-link" href="{{ url }}?page_no={{ page_no + 1 }}"
+                                                       aria-label="Next">
+                                                        <span class="ti-arrow-right"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                {% endif %}
+
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
 					
 						</div>
